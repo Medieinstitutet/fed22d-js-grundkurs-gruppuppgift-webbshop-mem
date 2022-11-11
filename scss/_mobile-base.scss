@@ -1,6 +1,9 @@
+@use "variables" as var;
+
 div {
   outline: 1px solid green;
 }
+
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
@@ -32,14 +35,39 @@ div {
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
   padding: 0% 5% 0% 5%;
   height: 50px;
   background-color: blue;
   position: fixed;
-  width: 100%;
+  width: 100%;*/
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: pink;
+  }
 }
+
+//Menyknapp 
+button#menu_button{
+    margin-top: 3px;
+    height: 45px;
+    width: 45px;
+    background-color: transparent;
+    //border: none;    
+}
+
+span{
+    display: block;
+    height: 5px;
+    width: 30px;
+    color: var.$blackTextColor;
+}
+
+
 .start_page {
   height: 100vh;
   background-color: green;
@@ -62,7 +90,7 @@ button {
   height: 30px;
 }
 .shopping_basket {
-  //@include visuallyHidden();
+  @include visuallyHidden();
   position: fixed;
   top: 0;
   width: 100%;
