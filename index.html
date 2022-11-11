@@ -150,14 +150,28 @@
         <section class="shopping_basket">
             <h2>Varukorg</h2>
             <!--här ska varukorgen ligga-->
-            <div>
-                <input type="text" class="discount_text">
+
+            <div class="current_donuts_order">
+                <!-- Placeholder, inom den här ska valda donuts ligga-->
+               <ul>
+                <li class="placeholder_donut1"></li>
+                <li class="placeholder_donut2"></li>
+                <li class="placeholder_donut3"></li>
+                <li class="placeholder_donut4"></li>
+                <li class="placeholder_donut5"></li>
+               </ul>
+            </div> 
+
+            <div class="price_discount">
+                <input type="text" class="discount_text" value="Rabattkod:">
                 <div class="discount_amount">rabattsumma</div>
                 <div class="amount_text">Totalt</div>
                 <div class="total_amount">totalsumma</div>
             </div>
-            <button>Beställ</button>
+            <div class="order_clear_buttons">
             <button>Rensa</button>
+            <button>Beställ</button>
+            </div>
             <article>
                 <form action="">
                     <label for="first_name">Förnamn:</label>
