@@ -18,7 +18,7 @@ div {
   overflow: hidden;
 }
 
-@mixin RemoveVisuallyHidden {
+@mixin removeVisuallyHidden {
   position: unset;
   width: unset;
   height: unset;
@@ -43,28 +43,57 @@ header {
   position: fixed;
   width: 100%;*/
 
-  nav{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background-color: pink;
-  }
+    nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        background-color: rgb(255, 248, 249);
+    }
+    .menu_links{
+        @include visuallyHidden();
+    }
+    .menu_links.active{
+        @include removeVisuallyHidden();
+    }
+
+    ul{
+        list-style-type: none;
+    }
 }
 
 //Menyknapp 
-button#menu_button{
-    margin-top: 3px;
+button.toggle_menu{
+    background-color: transparent;
+    position: absolute;
+    margin-top: 5px;
     height: 45px;
     width: 45px;
-    background-color: transparent;
-    //border: none;    
+    top: 2px;
+    right: 0.5rem;
+    border: none;    
 }
 
 span{
     display: block;
-    height: 5px;
-    width: 30px;
-    color: var.$blackTextColor;
+    height: 4px;
+    width: 35px;
+    background-color: var.$blackTextColor;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+button.toggle_menu:focus span:nth-child(2){
+    opacity: 0;
+}
+
+button.toggle_menu:focus span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+button.toggle_menu:focus span:nth-child(3){
+    transform: translateY(-10px) rotate(-45deg);
 }
 
 
