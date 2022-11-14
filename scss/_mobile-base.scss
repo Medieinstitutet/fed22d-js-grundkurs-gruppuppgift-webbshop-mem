@@ -48,16 +48,22 @@ header {
         justify-content: space-between;
         padding: 0.5rem;
         background-color: rgb(255, 248, 249);
+        /*position: fixed;
+        width: 100%;*/
     }
     .menu_links{
+        width: 100%;
         @include visuallyHidden();
+
+        ul{
+            width: 100%;
+            li{
+                list-style-type: none;
+            }
+        }
     }
     .menu_links.active{
         @include removeVisuallyHidden();
-    }
-
-    ul{
-        list-style-type: none;
     }
 }
 
