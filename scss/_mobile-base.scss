@@ -1,9 +1,5 @@
 @use "variables" as var;
 
-div {
-  outline: 1px solid green;
-}
-
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
@@ -35,43 +31,53 @@ div {
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  /*display: flex;
-  justify-content: space-between;
-  padding: 0% 5% 0% 5%;
-  height: 50px;
-  background-color: blue;
-  position: fixed;
-  width: 100%;*/
-
+  background-color: var.$whiteBgColor;
     nav{
-        display: flex;
-        justify-content: space-between;
         padding: 0.5rem;
-        background-color: rgb(255, 248, 249);
         /*position: fixed;
         width: 100%;*/
-    }
-    .menu_links{
-        width: 100%;
-        @include visuallyHidden();
 
-        ul{
-            width: 100%;
-            li{
-                list-style-type: none;
+        .menu_links ul{
+          width: 100%;
+          padding: 0;
+          margin: 0;
+        
+          li{
+            list-style-type: none;
+            text-align: center;
+            &:hover{
+              background-color: #dcdcdc;
             }
+            a{
+              color: var.$blackTextColor;
+              text-decoration: none;
+              padding: 0.5rem 1rem;
+              display: block;
+              font-size: 1.3rem;
+              font-weight: 500;
+              font-family: var.$rubikFont;
+            }
+          }
         }
     }
-    .menu_links.active{
-        @include removeVisuallyHidden();
-    }
 }
+
+.menu_links{
+  width: 100%;
+  @include visuallyHidden();
+}
+
+.menu_links.active{
+  @include removeVisuallyHidden();
+}
+
+
 
 //Menyknapp 
 button.toggle_menu{
     background-color: transparent;
     position: absolute;
-    margin-top: 5px;
+    margin-top: 8px;
     height: 45px;
     width: 45px;
     top: 2px;
