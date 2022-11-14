@@ -1,6 +1,9 @@
+@use "variables" as var;
+
 div {
   outline: 1px solid green;
 }
+
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
@@ -15,7 +18,7 @@ div {
   overflow: hidden;
 }
 
-@mixin RemoveVisuallyHidden {
+@mixin removeVisuallyHidden {
   position: unset;
   width: unset;
   height: unset;
@@ -32,14 +35,74 @@ div {
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
   padding: 0% 5% 0% 5%;
   height: 50px;
   background-color: blue;
   position: fixed;
-  width: 100%;
+  width: 100%;*/
+
+    nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        background-color: rgb(255, 248, 249);
+        /*position: fixed;
+        width: 100%;*/
+    }
+    .menu_links{
+        width: 100%;
+        @include visuallyHidden();
+
+        ul{
+            width: 100%;
+            li{
+                list-style-type: none;
+            }
+        }
+    }
+    .menu_links.active{
+        @include removeVisuallyHidden();
+    }
 }
+
+//Menyknapp 
+button.toggle_menu{
+    background-color: transparent;
+    position: absolute;
+    margin-top: 5px;
+    height: 45px;
+    width: 45px;
+    top: 2px;
+    right: 0.5rem;
+    border: none;    
+}
+
+span{
+    display: block;
+    height: 4px;
+    width: 35px;
+    background-color: var.$blackTextColor;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+button.toggle_menu:focus span:nth-child(2){
+    opacity: 0;
+}
+
+button.toggle_menu:focus span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+button.toggle_menu:focus span:nth-child(3){
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+
 .start_page {
   height: 100vh;
   background-color: green;
@@ -58,9 +121,18 @@ button {
   width: 80px;
   height: 30px;
 }
+.shopping_basket {
+  @include visuallyHidden();
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: aquamarine;
+  z-index: 3;
+} 
+
 /*-------------------------------------------regler för beställningssida------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------*/
-
 //Chrome, Safari, Edge, Opera
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
