@@ -46,7 +46,6 @@ nav{
                 &:hover{
                     background: none;
                 }
-
                 a.underline{
                     margin-right: 5px ;
                     position: relative;
@@ -73,6 +72,10 @@ nav{
             }
         }
     }
+}
+
+li:hover{
+    background: none;
 }
 
 button.toggle_menu{
