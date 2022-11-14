@@ -1,0 +1,80 @@
+@use "variables" as var;
+
+@mixin visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin removeVisuallyHidden {
+  position: unset;
+  width: unset;
+  height: unset;
+  margin: unset;
+  border: unset;
+  padding: unset;
+
+  white-space: unset;
+  clip-path: unset;
+  clip: unset;
+  overflow: unset;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu_links{
+        @include removeVisuallyHidden();
+
+        ul{
+            display: flex;
+            justify-content: flex-end;
+            li{
+                display: block;
+                margin-right: 5px;
+                &:hover{
+                    background: none;
+                }
+
+                a.underline{
+                    margin-right: 5px ;
+                    position: relative;
+                    font-size: 1.1rem;
+
+                    &::after{
+                        content:'';
+                        position: absolute;
+                        width: 100%;
+                        transform: scaleX(0);
+                        height: 2.7px;
+                        bottom: 6px;
+                        left: 0;
+                        background-color: var.$blackTextColor;
+                        transform-origin: bottom right;
+                        transition: transform 0.3s ease-out;
+                    }
+
+                    &:hover:after{
+                        transform: scaleX(1);
+                        transform-origin: bottom left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+button.toggle_menu{
+    @include visuallyHidden();
+}
