@@ -7,13 +7,23 @@
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-
+.toggle-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 @mixin removeVisuallyHidden {
   position: unset;
   width: unset;
@@ -154,15 +164,11 @@ button.toggle_menu:focus span.menu_bar:nth-child(3){
     }
 }
 
-.shopping_basket {
-    @include visuallyHidden();
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: aquamarine;
-    z-index: 3;
-} 
+button {
+  width: 80px;
+  height: 30px;
+}
+
 
     /*-------------------------------------------regler för beställningssida------------------------------------------------
     ---------------------------------------------------------------------------------------------------------------------*/
@@ -191,81 +197,94 @@ input[type="number"] {
         grid-area: filter;
     }
 }
-.donut_article {
-    display: flex;
-    div {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        input {
-            grid-column: 1 /2;
-            grid-row: 1 / 3;
-        }
-        button {
-            width: 100%;
-            height: 100%;
-        }
-    }
-}
 
-    /*-----------------------------------------shopping-cart------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------------------------------------*/
-    .shopping_basket {
-    //@include visuallyHidden();
-    position: fixed;
-    top: 50px; // Lämnar plats till header
-    width: 100%;
-    height: 100%;
-    background-color: grey;
-    z-index: 3;
+.donut_article {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  text-align: center;
+  font-size: 1.1rem;
+  div {
+    display: flex;
+    ul {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      padding: 0;
+      li {
+        list-style: none;
+        &:nth-child(1) {
+          border-bottom: solid;
+        }
+      }
+    }
+  }
+  .plus_minusBtn {
     display: flex;
     flex-direction: column;
-    h2 {
-    text-align: center;
-    width: 80%;
-    padding: 10px 0;
-    margin: 15px auto;
-    background-color: azure;
+    button {
+      width: 100%;
+      height: 100%;
 
     }
-    div {
-    min-width: 100px;
-    min-height: 40px;
-    }
-    .price_discount {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    background-color: white;
-    input {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    }
-    .discount_amount {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    }
-    .amount_text {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    }
-    .total_amount {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    }
-    }
-    .order_clear_buttons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    button:nth-child(1) {
-    margin-right: 10px;
-    }
-    button:nth-child(2) {
-    width: 150px;
-    }
-    }
-    article {
-    @include visuallyHidden();
-    }
+}
+/*-----------------------------------------shopping-cart------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------*/
+.shopping_basket {
+  position: absolute;
+  top: 50px; // Lämnar plats till header
+  width: 100%;
+  height: 100%;
+  background-color: grey;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+h2 {
+  text-align: center;
+  width: 80%;
+  padding: 10px 0;
+  margin: 15px auto;
+  background-color: azure;
+
+.price_discount {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: white;
+  input {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.discount_amount {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.amount_text {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+.total_amount {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+}
+.order_clear_buttons {
+margin-top: 15px;
+display: flex;
+justify-content: center;
+
+button {
+margin-right: 10px;
+}
+button:nth-child(3) {
+width: 150px;
+}
+}
+.selectedOrder {
+background-color: whitesmoke;
+display: flex;
+justify-content: space-between;
+padding-right: 10px;
+}
+article {
+@include visuallyHidden();
+}
 }
