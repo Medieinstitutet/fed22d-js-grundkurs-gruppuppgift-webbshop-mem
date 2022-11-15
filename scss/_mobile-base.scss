@@ -161,10 +161,20 @@ input[type="number"] {
   display: grid;
   grid-template-columns: 2fr 0.5fr 0.5fr;
   text-align: center;
+  font-size: 1.1rem;
   div {
     display: flex;
-  }
-  .selectcounter {
+    ul {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      padding: 0;
+      li {
+        list-style: none;
+        &:nth-child(1) {
+          border-bottom: solid;
+        }
+      }
+    }
   }
   .plus_minusBtn {
     display: flex;
