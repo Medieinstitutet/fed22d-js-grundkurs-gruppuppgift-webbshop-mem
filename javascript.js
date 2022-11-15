@@ -133,7 +133,7 @@ const donuts =
         )
     ];
 const donutPlacement = document.querySelectorAll(".donuts");
-/* fungerar ej att lägga in i donutMarkup ännu 
+/* fungerar ej att lägga in denna i donutMarkup ännu 
 <figure>
        <img src="${donuts[i].picSrc}" alt="${donuts[i].name}>
        <figcaption>${donuts[i].review}/10</figcaption>
@@ -144,7 +144,7 @@ for (let i = 0; i < donuts.length; i++) { // Denna skriver ut alla våra donuts
     let donutNr = "nr" + i;
     const donutMarkup = `
     <div class="${donutNr} donuts">
-    <img src="${donuts[i].picSrc}" width="120px" height="70">
+    <img src="${donuts[i].picSrc}" width="130px" height="130">
    <h4>${donuts[i].name}</h4>
    <ul>
        <li>${donuts[i].price}kr</li>
@@ -280,7 +280,7 @@ function toggleOrderPage() { // Togglar synligheten på varukorgen + placerar ut
     const selectedOrderplacment = document.querySelectorAll(".selectedOrder")
     for (let i = 0; i < donuts.length; i++) {
         const cartOrderMarkup = `
-            <img src="${donuts[i].picSrc}" width="120px" height="70">
+            <img src="${donuts[i].picSrc}" width="150px" height="150">
             <h4>${donuts[i].name}</h4>
             <ul>
                <li>${donuts[i].price}kr</li>
