@@ -6,8 +6,13 @@ let menuOpen = false; //Menyn är stängd som default
 menuButton.addEventListener('click', () =>{
     menuOpen =!menuOpen; //Gör att menyn får värdet true
     if(!menuOpen) menuButton.blur(); // Tar bort fokus från knappen
-    menuLinks.classList.add('active');
-    menuButton.classList.toggle('active');
+    if(menuOpen){
+        menuButton.classList.add('active');
+        menuLinks.classList.add('active');
+    }else{
+        menuButton.classList.remove('active');
+        menuLinks.classList.remove('active');
+    }
     menuButton.setAttribute('aria-expanded', true);
 })
 
@@ -16,7 +21,11 @@ document.querySelectorAll('.list_item').forEach(n => n.
     addEventListener('click', () =>{
         menuOpen = false;
         menuButton.blur();
-        menuButton.classList.remove('active');
-        menuLinks.classList.remove('active');
-        console.log('hej');
+        if(menuOpen){
+            menuButton.classList.add('active');
+            menuLinks.classList.add('active');
+        }else{
+            menuButton.classList.remove('active');
+            menuLinks.classList.remove('active');
+        }
 }))

@@ -1,9 +1,5 @@
 @use "variables" as var;
 
-div {
-  outline: 1px solid green;
-}
-
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
@@ -35,43 +31,51 @@ div {
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  /*display: flex;
-  justify-content: space-between;
-  padding: 0% 5% 0% 5%;
-  height: 50px;
-  background-color: blue;
-  position: fixed;
-  width: 100%;*/
-
+  background-color: var.$whiteBgColor;
     nav{
-        display: flex;
-        justify-content: space-between;
         padding: 0.5rem;
-        background-color: rgb(255, 248, 249);
         /*position: fixed;
         width: 100%;*/
-    }
-    .menu_links{
-        width: 100%;
-        @include visuallyHidden();
 
-        ul{
-            width: 100%;
-            li{
-                list-style-type: none;
+        .menu_links ul{
+          width: 100%;
+          padding: 0;
+          margin: 0;
+        
+          li{
+            list-style-type: none;
+            text-align: center;
+            &:hover{
+              background-color: #dcdcdc;
             }
+            a{
+              color: var.$menuColor;
+              text-decoration: none;
+              padding: 0.5rem 1rem;
+              display: block;
+              font-size: 1.3rem;
+              font-weight: 500;
+              font-family: var.$rubikFont;
+            }
+          }
         }
     }
-    .menu_links.active{
-        @include removeVisuallyHidden();
-    }
+}   
+
+.menu_links{
+    width: 100%;
+    @include visuallyHidden();
+}
+
+.menu_links.active{
+  @include removeVisuallyHidden();
 }
 
 //Menyknapp 
 button.toggle_menu{
     background-color: transparent;
     position: absolute;
-    margin-top: 5px;
+    margin-top: 8px;
     height: 45px;
     width: 45px;
     top: 2px;
@@ -83,12 +87,12 @@ span{
     display: block;
     height: 4px;
     width: 35px;
-    background-color: var.$blackTextColor;
+    background-color: var.$menuColor;
     margin-bottom: 5px;
     border-radius: 4px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-}
+}  
 
 button.toggle_menu:focus span:nth-child(2){
     opacity: 0;
@@ -102,20 +106,28 @@ button.toggle_menu:focus span:nth-child(3){
     transform: translateY(-10px) rotate(-45deg);
 }
 
-
 .start_page {
-  height: 100vh;
-  background-color: green;
-  div {
-    display: flex;
-    align-items: flex-end;
-    height: 300px;
-    background-image: url("images/donut_image_startpage.jpg");
-    background-size: cover;
-    h1 {
-      margin: 0 auto;
+    height: 100vh;
+    background-color: var.$whiteBgColor;
+    .header_image {
+        display: flex;
+        align-items: flex-end;
+        height: 300px;
+        background-image: url("images/donut_image_startpage.jpg");
+        background-size: cover;
+        h1 {
+            margin: 0 auto;
+            margin-bottom: 4em;
+            color: var.$blackTextColor;
+            font-family: var.$rubikFont;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
     }
-  }
+    p{
+        color: var.$blackTextColor;
+        font-family: var.$rubikFont;
+    }
 }
 button {
   width: 80px;
