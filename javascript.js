@@ -5,7 +5,9 @@ let menuOpen = false; //Menyn är stängd som default
 
 menuButton.addEventListener('click', () =>{
     menuOpen =!menuOpen; //Gör att menyn får värdet true
-    if(!menuOpen) menuButton.blur(); // Tar bort fokus från knappen
+    if(!menuOpen){
+        menuButton.blur();// Tar bort fokus från knappen
+    } 
     if(menuOpen){
         menuButton.classList.add('active');
         menuLinks.classList.add('active');
@@ -17,8 +19,8 @@ menuButton.addEventListener('click', () =>{
 })
 
 //Tar bort active när man klickar på en av länkarna. Gäller alla länkar
-document.querySelectorAll('.list_item').forEach(n => n.
-    addEventListener('click', () =>{
+document.querySelectorAll('.list_item').forEach(link => link.
+    addEventListener('click', () =>{ //Be om hjälp för att skriva om detta
         menuOpen = false;
         menuButton.blur();
         if(menuOpen){

@@ -107,8 +107,9 @@ button.toggle_menu:focus span:nth-child(3){
 }
 
 .start_page {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var.$whiteBgColor;
+
     .header_image {
         display: flex;
         align-items: flex-end;
@@ -124,15 +125,31 @@ button.toggle_menu:focus span:nth-child(3){
             text-transform: uppercase;
         }
     }
-    p{
-        color: var.$blackTextColor;
+
+    article{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p{
+            color: var.$blackTextColor;
+            font-family: var.$rubikFont;
+            text-align: center;
+            line-height: 1.3rem;
+        }
+    }  
+
+    button{
         font-family: var.$rubikFont;
+        text-transform: uppercase;
+        min-width: 50px;
+        height: 40px;
+        margin-bottom: 2em;
+        cursor: pointer;
     }
 }
-button {
-  width: 80px;
-  height: 30px;
-}
+
 .shopping_basket {
   @include visuallyHidden();
   position: fixed;
