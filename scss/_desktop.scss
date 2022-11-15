@@ -81,3 +81,15 @@ li:hover{ //Kolla varför li inte fungerar
 button.toggle_menu{
     @include visuallyHidden();
 }
+
+.start_page{
+    button{
+        margin-top: 5rem;
+        padding: 15px 8px;
+
+        &:hover{
+            background-color: #999999;
+            transition: 0.3s;
+        }
+    }
+}
