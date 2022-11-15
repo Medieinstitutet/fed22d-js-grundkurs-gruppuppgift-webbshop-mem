@@ -7,13 +7,23 @@
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-
+.toggle-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 @mixin removeVisuallyHidden {
   position: unset;
   width: unset;
@@ -31,6 +41,7 @@
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
+
   background-color: var.$whiteBgColor;
     nav{
         padding: 0.5rem;
@@ -94,16 +105,16 @@ span{
     transition: all 0.3s ease-in-out;
 }  
 
-button.toggle_menu:focus span:nth-child(2){
-    opacity: 0;
+button.toggle_menu:focus span:nth-child(2) {
+  opacity: 0;
 }
 
-button.toggle_menu:focus span:nth-child(1){
-    transform: translateY(8px) rotate(45deg);
+button.toggle_menu:focus span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
 }
 
-button.toggle_menu:focus span:nth-child(3){
-    transform: translateY(-10px) rotate(-45deg);
+button.toggle_menu:focus span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
 }
 
 .start_page {
@@ -133,15 +144,6 @@ button {
   width: 80px;
   height: 30px;
 }
-.shopping_basket {
-  @include visuallyHidden();
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: aquamarine;
-  z-index: 3;
-} 
 
 /*-------------------------------------------regler för beställningssida------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------*/
@@ -170,15 +172,27 @@ input[type="number"] {
   }
 }
 .donut_article {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  text-align: center;
+  font-size: 1.1rem;
   div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    input {
-      grid-column: 1 /2;
-      grid-row: 1 / 3;
+    display: flex;
+    ul {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      padding: 0;
+      li {
+        list-style: none;
+        &:nth-child(1) {
+          border-bottom: solid;
+        }
+      }
     }
+  }
+  .plus_minusBtn {
+    display: flex;
+    flex-direction: column;
     button {
       width: 100%;
       height: 100%;
@@ -189,8 +203,7 @@ input[type="number"] {
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 .shopping_basket {
-  // @include visuallyHidden();
-  position: fixed;
+  position: absolute;
   top: 50px; // Lämnar plats till header
   width: 100%;
   height: 100%;
@@ -204,11 +217,6 @@ input[type="number"] {
     padding: 10px 0;
     margin: 15px auto;
     background-color: azure;
-
-  }
-  div {
-    min-width: 100px;
-    min-height: 40px;
   }
   .price_discount {
     display: grid;
@@ -236,12 +244,18 @@ input[type="number"] {
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    button:nth-child(1) {
+    button {
       margin-right: 10px;
     }
-    button:nth-child(2) {
+    button:nth-child(3) {
       width: 150px;
     }
+  }
+  .selectedOrder {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
   }
   article {
     @include visuallyHidden();
