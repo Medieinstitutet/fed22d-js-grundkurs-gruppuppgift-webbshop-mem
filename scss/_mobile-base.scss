@@ -198,17 +198,35 @@ input[type="number"] {
 
   .shopping_cart {
     grid-area: shopping_cart;
+    display: flex;
   }
 
   .sorting {
     grid-area: sorting;
+    display:flex;
+  }
+
+  .material-symbols-outlined {
+    display: inline-block;
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
   }
 
   .filter {
     grid-area: filter;
+    display:flex;
   }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
-
+}
 .donut_article {
   display: grid;
   grid-template-columns: 2fr 0.5fr 0.5fr;
