@@ -44,7 +44,7 @@ nav{
                 display: block;
                 margin-right: 5px;
                 &:hover{
-                    background: none;
+                    background-color: unset !important;
                 }
                 a.underline{
                     margin-right: 5px ;
@@ -74,9 +74,9 @@ nav{
     }
 }
 
-li:hover{ //Kolla varför li inte fungerar
-    background: none;
-}
+/*li:hover{ //Kolla varför li inte fungerar
+    background-color: none;
+}*/
 
 button.toggle_menu{
     @include visuallyHidden();
@@ -85,7 +85,6 @@ button.toggle_menu{
 .start_page{
     button{
         margin-top: 5rem;
-        padding: 15px 8px;
 
         &:hover{
             background-color: #999999;
