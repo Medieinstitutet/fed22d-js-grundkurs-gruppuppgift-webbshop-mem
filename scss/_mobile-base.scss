@@ -12,6 +12,7 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
 .toggle-hidden {
   position: absolute;
   width: 1px;
@@ -24,6 +25,7 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
 @mixin removeVisuallyHidden {
   position: unset;
   width: unset;
@@ -37,11 +39,13 @@
   clip: unset;
   overflow: unset;
 }
+
 /* ------------------------Regler för startpage ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
   background-color: var.$whiteBgColor;
+
   nav {
     padding: 0.5rem;
     /*position: fixed;
@@ -55,9 +59,11 @@ header {
       li {
         list-style-type: none;
         text-align: center;
+
         &:hover {
           background-color: #dcdcdc;
         }
+
         a {
           color: var.$menuColor;
           text-decoration: none;
@@ -126,6 +132,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
     height: 300px;
     background-image: url("images/donut_image_startpage.jpg");
     background-size: cover;
+
     h1 {
       margin: 0 auto;
       margin-bottom: 4em;
@@ -142,6 +149,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     p {
       color: var.$blackTextColor;
       font-family: var.$rubikFont;
@@ -182,16 +190,20 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
 .filtering_buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas: "shopping_cart . sorting filter";
+
   .shopping_cart {
     grid-area: shopping_cart;
   }
+
   .sorting {
     grid-area: sorting;
   }
+
   .filter {
     grid-area: filter;
   }
@@ -203,16 +215,20 @@ input[type="number"] {
   text-align: center;
   border: 1px solid black;
   align-items: center;
+
   div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
     ul {
       display: grid;
       grid-template-rows: 1fr 1fr;
       padding: 0;
       margin-left: 20px;
+
       li {
         list-style: none;
+
         &:nth-child(1) {
           border-bottom: solid;
         }
@@ -220,6 +236,7 @@ input[type="number"] {
     }
   }
 }
+
 .selectcounter {
   border: 1px solid black;
   font-size: 1.5rem;
@@ -231,6 +248,7 @@ input[type="number"] {
 .plus_minusBtn {
   display: flex !important;
   flex-direction: column;
+
   button {
     min-width: 50px;
     min-width: 50px;
@@ -238,6 +256,7 @@ input[type="number"] {
     height: 100%;
   }
 }
+
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 .shopping_basket {
@@ -248,6 +267,7 @@ input[type="number"] {
   z-index: 3;
   display: flex;
   flex-direction: column;
+
   h2 {
     text-align: center;
     width: 80%;
@@ -257,43 +277,52 @@ input[type="number"] {
     border-radius: 40px;
   }
 }
+
 .price_discount {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
   background-color: white;
   font-size: 1.2rem;
+
   input {
     grid-column: 1/2;
     grid-row: 1/2;
   }
+
   .discount_amount {
     grid-column: 2/3;
     grid-row: 1/2;
     background-color: rgb(255, 235, 222);
   }
+
   .amount_text {
     grid-column: 1/2;
     grid-row: 2/3;
     background-color: rgb(255, 235, 222);
   }
+
   .total_amount {
     grid-column: 2/3;
     grid-row: 2/3;
     background-color: rgb(255, 235, 222);
   }
 }
+
 .order_clear_buttons {
   margin-top: 15px;
   display: flex;
   justify-content: center;
+
   button {
     margin-right: 10px;
   }
+
   button:nth-child(3) {
     width: 150px;
   }
 }
+
 .selectedOrder {
   background-color: whitesmoke;
   display: flex;
