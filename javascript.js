@@ -62,73 +62,73 @@ class Donut {
 // Alla våra donuts anges nedan i denna array
 const donuts =
     [new Donut(
-        "Choklad Donut",
+        "Blåbärsmunk",
         20,
         8,
-        "gluten",
+        "bär glasyr",
         "images/small/blabarsmunk_liten.jpg"
     ), new Donut
         (
-            "Blåbär Donut",
+            "Chokladmunk",
             22,
             6,
-            "bär",
+            "choklad",
             "images/small/chokladmunk_liten.jpg"
         ), new Donut
         (
-            "Jordgubbs Donut",
+            "Dubbel chokladmunk",
             25,
             9,
-            "bär",
+            "choklad",
             "images/small/dubbelchoklad_liten.jpg"
         ), new Donut
         (
-            "Vanilj Donut",
+            "Glasyrmunk",
             15,
             7,
-            "gluten",
+            "glasyr",
             "images/small/glasymunk2_liten.jpg"
         ), new Donut
         (
-            "Jordgubb & Vanilj Donut",
+            "Sockermunk, glutenfri",
             30,
             5,
-            "gluten bär",
+            "socker glutenfri",
             "images/small/sockermunk2_liten.jpg"
         ), new Donut
         (
-            "placeholder donut 6",
+            "Strösselmunk",
             32,
             4,
-            "placeholder aspect",
+            "strössel glasyr",
             "images/small/strosselmunk_liten.jpg"
         ), new Donut
         (
-            "placeholder donut 7",
+            "Syltmunk, glutenfri",
             32,
             4,
-            "placeholder aspect",
+            "socker glutenfri",
             "images/small/syltmunk_liten.jpg"
         ), new Donut
         (
-            "placeholder donut 8",
+            "Toppingmunk",
             32,
             6,
-            "placeholder aspect",
+            "strössel glasyr",
             "images/small/toppingmunk_liten.jpg"
         ), new Donut
         (
-            "placeholder donut 9",
+            "Vaniljmunk",
             32,
             6,
-            "placeholder aspect 19",
+            "vaniljkräm glasyr",
             "images/small/vaniljmunk_liten.jpg"
         ), new Donut
         (
-            "placeholder donut 10",
+            "Violmunk",
             32,
             6,
-            "placeholder aspect 10",
+            "strössel glasyr",
             "images/small/violmunk2_liten.jpg"
         )
     ];
