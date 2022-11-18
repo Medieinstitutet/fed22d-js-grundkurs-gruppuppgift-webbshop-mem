@@ -1,180 +1,190 @@
 @use "variables" as var;
 
 @mixin visuallyHidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
 .toggle-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
 @mixin removeVisuallyHidden {
-  position: unset;
-  width: unset;
-  height: unset;
-  margin: unset;
-  border: unset;
-  padding: unset;
+    position: unset;
+    width: unset;
+    height: unset;
+    margin: unset;
+    border: unset;
+    padding: unset;
 
-  white-space: unset;
-  clip-path: unset;
-  clip: unset;
-  overflow: unset;
+    white-space: unset;
+    clip-path: unset;
+    clip: unset;
+    overflow: unset;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /* ------------------------Regler för startpage ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  background-color: var.$whiteBgColor;
+    background-color: var.$whiteBgColor;
 
-  nav {
-    padding: 0.5rem;
-    /*position: fixed;
+    nav {
+        padding: 0.5rem;
+        /*position: fixed;
         width: 100%;*/
 
-    .menu_links ul {
-      width: 100%;
-      padding: 0;
-      margin: 0;
+        .menu_links ul {
+            width: 100%;
+            padding: 0;
+            margin: 0;
 
-      li {
-        list-style-type: none;
-        text-align: center;
+            li {
+                list-style-type: none;
+                text-align: center;
 
-        &:hover {
-          background-color: #dcdcdc;
+                &:hover {
+                    background-color: #dcdcdc;
+                }
+
+                a {
+                    color: var.$menuColor;
+                    text-decoration: none;
+                    padding: 0.5rem 1rem;
+                    display: block;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    font-family: var.$rubikFont;
+                }
+            }
         }
-
-        a {
-          color: var.$menuColor;
-          text-decoration: none;
-          padding: 0.5rem 1rem;
-          display: block;
-          font-size: 1.3rem;
-          font-weight: 500;
-          font-family: var.$rubikFont;
-        }
-      }
     }
-  }
 }
 
 .menu_links {
-  width: 100%;
-  @include visuallyHidden();
+    width: 100%;
+    @include visuallyHidden();
 }
 
 .menu_links.active {
-  @include removeVisuallyHidden();
+    @include removeVisuallyHidden();
 }
 
 //Menyknapp
 button.toggle_menu {
-  background-color: transparent;
-  position: absolute;
-  margin-top: 8px;
-  height: 45px;
-  width: 45px;
-  top: 2px;
-  right: 0.5rem;
-  border: none;
+    background-color: transparent;
+    position: absolute;
+    margin-top: 8px;
+    height: 45px;
+    width: 45px;
+    top: 2px;
+    right: 0.5rem;
+    border: none;
 }
 
 span.menu_bar {
-  display: block;
-  height: 4px;
-  width: 35px;
-  background-color: var.$menuColor;
-  margin-bottom: 5px;
-  border-radius: 4px;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+    display: block;
+    height: 4px;
+    width: 35px;
+    background-color: var.$menuColor;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 button.toggle_menu:focus span.menu_bar:nth-child(2) {
-  opacity: 0;
+    opacity: 0;
 }
 
 button.toggle_menu:focus span.menu_bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
 }
 
 button.toggle_menu:focus span.menu_bar:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
 }
 
 .start_page {
-  min-height: 100vh;
-  background-color: var.$whiteBgColor;
+    min-height: 100vh;
+    background-color: var.$whiteBgColor;
 
-  .header_image {
-    display: flex;
-    align-items: flex-end;
-    height: 300px;
-    background-image: url("images/donut_image_startpage.jpg");
-    background-size: cover;
+    .header_image {
+        display: flex;
+        align-items: flex-end;
+        height: 300px;
+        background-image: url("images/donut_image_startpage.jpg");
+        background-size: cover;
 
-    h1 {
-      margin: 0 auto;
-      margin-bottom: 4em;
-      color: var.$blackTextColor;
-      font-family: var.$rubikFont;
-      font-size: 2rem;
-      text-transform: uppercase;
+        h1 {
+            margin: 0 auto;
+            margin-bottom: 4em;
+            color: var.$blackTextColor;
+            font-family: var.$rubikFont;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
     }
-  }
 
-  article {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    article {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-    p {
-      color: var.$blackTextColor;
-      font-family: var.$rubikFont;
-      text-align: center;
-      line-height: 1.3rem;
+        p {
+            color: var.$blackTextColor;
+            font-family: var.$rubikFont;
+            text-align: center;
+            line-height: 1.3rem;
+        }
     }
-  }
 
-  button {
-    background-color: #bebebe;
-    font-family: var.$rubikFont;
-    text-transform: uppercase;
-    min-width: 140px;
-    min-height: 40px;
-    margin-bottom: 2em;
-    cursor: pointer;
-    align-self: center;
-    border-radius: 4px;
-    border: 3px solid #8e8e8e;
-  }
+    button {
+        background-color: #bebebe;
+        font-family: var.$rubikFont;
+        text-transform: uppercase;
+        min-width: 140px;
+        min-height: 40px;
+        margin-bottom: 2em;
+        cursor: pointer;
+        align-self: center;
+        border-radius: 4px;
+        border: 3px solid #8e8e8e;
+
+        a {
+            text-decoration: none;
+            color: var.$blackTextColor;
+            font-weight: 500;
+        }
+    }
 }
 
 button {
-  width: 80px;
-  height: 30px;
+    width: 80px;
+    height: 30px;
 }
 
 /*-------------------------------------------regler för beställningssida------------------------------------------------
@@ -182,169 +192,171 @@ button {
 //Chrome, Safari, Edge, Opera
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 //Firefox
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .filtering_buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "shopping_cart . sorting filter";
-
-  .shopping_cart {
-    grid-area: shopping_cart;
-    display: flex;
-  }
-
-  .sorting {
-    grid-area: sorting;
-    display:flex;
-  }
-
-  .material-symbols-outlined {
-    display: inline-block;
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 48
-  }
-
-  .filter {
-    grid-area: filter;
-    display:flex;
-  }
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-}
-}
-.donut_article {
-  display: grid;
-  grid-template-columns: 2fr 0.5fr 0.5fr;
-  text-align: center;
-  border: 1px solid black;
-  align-items: center;
-
-  div {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "shopping_cart . sorting filter";
 
-    ul {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      padding: 0;
-      margin-left: 20px;
-
-      li {
-        list-style: none;
-
-        &:nth-child(1) {
-          border-bottom: solid;
-        }
-      }
+    .shopping_cart {
+        grid-area: shopping_cart;
+        display: flex;
     }
-  }
+
+    .sorting {
+        grid-area: sorting;
+        display: flex;
+    }
+
+    .material-symbols-outlined {
+        display: inline-block;
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    .filter {
+        grid-area: filter;
+        display: flex;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+}
+
+.donut_article {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 0.5fr;
+    text-align: center;
+    border: 1px solid black;
+    align-items: center;
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        ul {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            padding: 0;
+            margin-left: 20px;
+
+            li {
+                list-style: none;
+
+                &:nth-child(1) {
+                    border-bottom: solid;
+                }
+            }
+        }
+    }
 }
 
 .selectcounter {
-  border: 1px solid black;
-  font-size: 1.5rem;
-  margin-left: 20px;
-  height: 50px;
-  width: 50px;
+    border: 1px solid black;
+    font-size: 1.5rem;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
 }
 
 .plus_minusBtn {
-  display: flex !important;
-  flex-direction: column;
+    display: flex !important;
+    flex-direction: column;
 
-  button {
-    min-width: 50px;
-    min-width: 50px;
-    width: 100%;
-    height: 100%;
-  }
+    button {
+        min-width: 50px;
+        min-width: 50px;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 .shopping_basket {
-  position: absolute;
-  top: 50px; // Lämnar plats till header
-  width: 100%;
-  background-color: rgb(112, 45, 45);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
+    position: absolute;
+    top: 50px; // Lämnar plats till header
+    width: 100%;
+    background-color: gray;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
 
-  h2 {
-    text-align: center;
-    width: 80%;
-    padding: 10px 0;
-    margin: 15px auto;
-    background-color: azure;
-    border-radius: 40px;
-  }
+    h2 {
+        text-align: center;
+        width: 80%;
+        padding: 10px 0;
+        margin: 15px auto;
+        background-color: azure;
+        border-radius: 40px;
+    }
 }
 
 .price_discount {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  background-color: white;
-  font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: white;
+    font-size: 1.2rem;
 
-  input {
-    grid-column: 1/2;
-    grid-row: 1/2;
-  }
+    input {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
 
-  .discount_amount {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    background-color: rgb(255, 235, 222);
-  }
+    .discount_amount {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        background-color: rgb(255, 235, 222);
+    }
 
-  .amount_text {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    background-color: rgb(255, 235, 222);
-  }
+    .amount_text {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        background-color: rgb(255, 235, 222);
+    }
 
-  .total_amount {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    background-color: rgb(255, 235, 222);
-  }
+    .total_amount {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        background-color: rgb(255, 235, 222);
+    }
 }
 
 .order_clear_buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
 
-  button {
-    margin-right: 10px;
-  }
+    button {
+        margin-right: 10px;
+    }
 
-  button:nth-child(3) {
-    width: 150px;
-  }
+    button:nth-child(3) {
+        width: 150px;
+    }
 }
 
 .selectedOrder {
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 10%;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10%;
 }
