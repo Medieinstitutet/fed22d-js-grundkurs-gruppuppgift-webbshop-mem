@@ -241,6 +241,21 @@ input[type="number"] {
   height: 130px;
   max-width: 800px;
   margin: 0 auto;
+  figure {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    figcaption {
+      color: whitesmoke;
+      position: absolute;
+      bottom: 15px;
+      left: 30px;
+      border-radius: 10px;
+      background-color: rgb(112, 45, 45);
+      min-width: 70px;
+    }
+  }
   div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
