@@ -263,6 +263,7 @@ function clearCart() {
         donuts[i].selectCounter = 0;
         document.querySelector(".current_donuts_order").children[i].innerHTML = '';
     }
+    calcTotalorder();
 }
 
 // Functioner anges ovan ---------------------------- 
