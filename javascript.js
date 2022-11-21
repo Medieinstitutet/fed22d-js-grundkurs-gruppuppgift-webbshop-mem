@@ -304,7 +304,7 @@ function toggleOrderPage() { // Togglar synligheten på varukorgen + placerar ut
     totalAmountPlacement.innerHTML = totalAmount + "kr";
 }
 
-//Kod för betalningsformulär
+//Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
 const paymentForm = document.querySelector('form');
 const firstName = document.getElementById('#first_name');
 const lastLame = document.getElementById('#last_name');
@@ -321,7 +321,7 @@ console.log(paymentForm);
 /**
  X HTML struktur för fromulär
  X Variabler för alla input-fält
- Funktion som visar felmeddelanden
+ Funktion som visar felmeddelanden 
  Funktion som visar ett meddelande när formuläret är korrekt ifyllt (Du har lagt en beställning)
  I funktionen bör if-satser finnas för att avgöra om kriterierna är uppfyllda
 
