@@ -33,12 +33,6 @@ document.querySelectorAll('.list_item').forEach(link => link.
     }))
 
 
-
-
-
-
-
-
 // Shoppingcart page toggle ----
 const toggleShoppingCartBtn = document.querySelector(".shopping_cart");
 const shoppingCartPage = document.querySelector(".shopping_basket");
@@ -66,7 +60,7 @@ const donuts =
         20,
         8,
         "bär glasyr",
-        "images/small/blabarsmunk_liten.jpg"
+        ["images/small/blabarsmunk_liten.jpg", "images/small/blabarsmunk2_liten.jpg"]
     ), new Donut
         (
             "Chokladmunk",
@@ -132,6 +126,8 @@ const donuts =
             "images/small/violmunk2_liten.jpg"
         )
     ];
+ 
+
 const donutPlacement = document.querySelectorAll(".donuts");
 const selectedOrderplacment = document.querySelectorAll(".selectedOrder");
 let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
@@ -139,16 +135,21 @@ let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let shopCartBtnUp = '';
 let shopCartBtnDown = '';
 
+//bildspelsvariabler
+const img1 = document.querySelector('#img1');
+let currentImageIndex = 0; 
+
+
 
 // Funktion lista nedan
 
 function displayDonut1() {
-    for (let i = 0; i < donuts.length; i++) { // Denna skriver ut alla våra donuts
+    for (let i = 0; i < donutObjects.length; i++) { // Denna skriver ut alla våra donuts
         let donutNr = "nr" + i;
         const donutMarkup = `
         <div class="${donutNr} donuts">
              <figure>
-                <img src="${donuts[i].picSrc}" alt="${donuts[i].name}" width="130" height="130">
+                <img id="img1" class="img-1" src="" alt="" width="130" height="130">
                 <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
             <h4>${donuts[i].name}</h4>
@@ -160,6 +161,21 @@ function displayDonut1() {
         donutPlacement[i].outerHTML = donutMarkup;
     }
 }
+
+//funktioner för bildspel
+function nextImage (){
+    let i = 0;
+    if (currentImageIndex + 1 > donuts[0].picSrc[0].length -1) {
+        currentImageIndex = 0;
+        
+      }else {
+        currentImageIndex +=1;
+        
+      }
+      img1.setAttribute('src', donuts[0].picSrc[0]); 
+    
+    }
+    nextImage ();
 
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
