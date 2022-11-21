@@ -177,6 +177,7 @@
                 <footer></footer>
             </section>
             <section class="shopping_basket toggle-hidden">
+                <div class="border"></div>
                 <h2>Varukorg</h2>
 
                 <div class="current_donuts_order">
@@ -193,16 +194,21 @@
                     <div class="selectedOrder"></div>
                 </div>
 
-                <div class="price_discount">
-                    <input type="text" class="discount_text" value="Rabattkod:">
+                <div class="price_discount"> <!--Används ej under test-->
+                    <label>
+                        <span>Rabattkod:</span>
+                        <input type="text" class="discount_text" >
+                    </label>
                     <div class="discount_amount">Rabattsumma:</div>
+                </div>
+                <div class="total_sum">
                     <div class="amount_text">Totalt:</div>
                     <div class="total_amount"></div>
-                </div>
+                </div>  
+                <h3>Dina Uppgifter</h3>
                 <div class="order_clear_buttons">
                     <button id="toggle_shopping_cart">Tillbaka</button>
                     <button id="clearCartBtn">Rensa</button>
-                    <button>Beställ</button>
                 </div>
                 <article>
                     <form action="" id="paymentForm">
@@ -263,6 +269,7 @@
                             <small>Error</small>
                         </label><br>
                     </form>
+                    <button>Betalning</button><br>
                     <button>Kortbetalning</button>
                     <form action="">
                         <label for="cardnr">Kortnummer:</label>
@@ -279,6 +286,7 @@
                         <label for="idnr">Personnummer:</label>
                         <input type="number" id="idnr" name="idnr" required>
                     </form>
+                    <button>Beställ</button>
                 </article>
             </section>
     </main>

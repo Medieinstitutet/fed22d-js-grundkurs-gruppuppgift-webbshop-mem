@@ -282,7 +282,7 @@ const postalAdress = document.getElementById('#postalAdress');
 //Skippa Portkoden då den inte är obligatorisk
 const tel = document.getElementById('#tel');
 
-console.log(paymentForm);
+console.log(firstName);
 
 /**
  X HTML struktur för fromulär

@@ -105,7 +105,7 @@ button.toggle_menu {
 
 span.menu_bar {
     display: block;
-    height: 4px;
+    height: 3.5px;
     width: 35px;
     background-color: var.$menuColor;
     margin-bottom: 5px;
@@ -356,34 +356,58 @@ input[type="number"] {
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
-.shopping_basket {
-  position: absolute;
-  top: 50px; // Lämnar plats till header
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(112, 45, 45);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
 
-  h2 {
-    text-align: center;
-    width: 80%;
-    padding: 10px 0;
-    margin: 15px auto;
-    background-color: azure;
-    border-radius: 40px;
-  }
+.border{
+    width: 70%;
+    margin: 0 auto;
+
+    &::before{
+        position: absolute;
+        margin-bottom: 2rem;  
+        width: 70%;
+        height: 1.8px;
+        background: rgb(84, 84, 84);
+        border-radius: 100%;
+        content: "";
+    }
 }
 
-.price_discount {
+.shopping_basket {
+    position: absolute;
+    top: 68px; // Lämnar plats till header - Döljer just nu menyn
+    width: 100%;
+    min-height: 110vh;
+    background-color: var.$whiteBgColor;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    font-family: var.$rubikFont;
+    padding-bottom: 3em;
+
+    h2, h3{
+        text-align: center;
+        text-transform: uppercase;
+        width: 80%;
+        margin: 15px auto;
+        font-family: var.$rubikFont;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3{
+        font-size: 1.3rem;
+    }
+}
+
+/*.price_discount {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
-    background-color: white;
-    font-size: 1.2rem;
+    background-color: white; 
+    font-size: 1rem;
 
-    input {
+    label span {
         grid-column: 1/2;
         grid-row: 1/2;
     }
@@ -405,12 +429,48 @@ input[type="number"] {
         grid-row: 2/3;
         background-color: rgb(255, 235, 222);
     }
+
+}*/
+.selectedOrder {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10%;
+}
+
+.price_discount{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+
+    label{
+        margin-bottom: 1rem;
+    }
+
+    .discount_amount{
+        margin-right: 10.8em;
+    }
+}
+
+.total_sum{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-right: 3em;
+    margin-bottom: 1rem;
+
+    .amount_text{
+        margin-right: 10em;
+    }
 }
 
 .order_clear_buttons {
     margin-top: 15px;
+    margin-bottom: 1rem;
     display: flex;
-    justify-content: center;
+    //justify-content: center;
 
     button {
         margin-right: 10px;
@@ -421,13 +481,11 @@ input[type="number"] {
     }
 }
 
-    .selectedOrder {
-    background-color: whitesmoke;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 10%;
-    }
-
-
 //Formulär för betalning
+form#paymentForm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
