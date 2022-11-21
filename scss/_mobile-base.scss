@@ -202,40 +202,107 @@ input[type="number"] {
 }
 
 .filtering_buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "shopping_cart . sorting filter";
+  max-width: 800px;
+  height: 60px;
+  margin: 0 auto;
+  align-items: center;
+  background-color: #ed9e70;
+
+  .shopping_cart {
+    grid-area: shopping_cart;
+    display: flex;
+  }
+
+  .sorting {
+    grid-area: sorting;
+    display:flex;
+  }
+
+  .material-symbols-outlined {
+    display: inline-block;
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+  }
+
+  .filter {
+    grid-area: filter;
+    display:flex;
+  }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+}
+.donut_article{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "shopping_cart . sorting filter";
+    grid-template-columns: 2fr 0.5fr 0.5fr;
+    text-align: center;
+    border: 1px solid black;
+    align-items: center;
+    height: 130px;
+    max-width: 800px;
+    margin: 0 auto;
+    figure {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        text-align: center;
 
-    .shopping_cart {
-        grid-area: shopping_cart;
-        display: flex;
+        figcaption {
+            color: whitesmoke;
+            position: absolute;
+            bottom: 15px;
+            left: 30px;
+            border-radius: 10px;
+            background-color: rgb(112, 45, 45);
+            min-width: 70px;
+        }
     }
+    div {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas: "shopping_cart . sorting filter";
 
-    .sorting {
-        grid-area: sorting;
-        display: flex;
-    }
+        .shopping_cart {
+            grid-area: shopping_cart;
+            display: flex;
+        }
 
-    .material-symbols-outlined {
-        display: inline-block;
-        font-variation-settings:
+        .sorting {
+            grid-area: sorting;
+            display: flex;
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+
+        .filter {
+            grid-area: filter;
+            display: flex;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
             'FILL' 0,
             'wght' 400,
             'GRAD' 0,
             'opsz' 48
-    }
-
-    .filter {
-        grid-area: filter;
-        display: flex;
-    }
-
-    .material-symbols-outlined {
-        font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
+        }
     }
 }
 
@@ -290,13 +357,14 @@ input[type="number"] {
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 .shopping_basket {
-    position: absolute;
-    top: 50px; // Lämnar plats till header
-    width: 100%;
-    background-color: gray;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  top: 50px; // Lämnar plats till header
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(112, 45, 45);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
 
     h2 {
         text-align: center;
@@ -353,17 +421,13 @@ input[type="number"] {
     }
 }
 
-.selectedOrder {
+    .selectedOrder {
     background-color: whitesmoke;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-right: 10%;
-}
+    }
+
 
 //Formulär för betalning
-#paymentForm{
-    i{
-        
-    }
-}
