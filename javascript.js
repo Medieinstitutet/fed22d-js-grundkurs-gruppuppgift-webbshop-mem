@@ -262,8 +262,11 @@ function clearCart() {
     for (let i = 0; i < donuts.length; i++) {
         donuts[i].selectCounter = 0;
         document.querySelector(".current_donuts_order").children[i].innerHTML = '';
+        document.querySelectorAll(".selectcounter")[i].innerHTML = '';
+
     }
     calcTotalorder();
+    
 }
 
 // Functioner anges ovan ---------------------------- 
