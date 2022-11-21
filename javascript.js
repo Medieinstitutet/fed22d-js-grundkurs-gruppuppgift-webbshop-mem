@@ -67,7 +67,7 @@ const donuts =
             22,
             6,
             "choklad",
-            "images/small/chokladmunk_liten.jpg"
+            ["images/small/chokladmunk_liten.jpg", "images/small/chokladmunk2_liten.jpg"]
         ), new Donut
         (
             "Dubbel chokladmunk",
@@ -136,7 +136,7 @@ let shopCartBtnUp = '';
 let shopCartBtnDown = '';
 
 //bildspelsvariabler
-const img1 = document.querySelector('#img1');
+let img1=null;
 let currentImageIndex = 0; 
 
 
@@ -144,7 +144,7 @@ let currentImageIndex = 0;
 // Funktion lista nedan
 
 function displayDonut1() {
-    for (let i = 0; i < donutObjects.length; i++) { // Denna skriver ut alla våra donuts
+    for (let i = 0; i < donuts.length; i++) { // Denna skriver ut alla våra donuts
         let donutNr = "nr" + i;
         const donutMarkup = `
         <div class="${donutNr} donuts">
@@ -159,23 +159,27 @@ function displayDonut1() {
             </ul>
         </div> `;
         donutPlacement[i].outerHTML = donutMarkup;
+        
     }
+
+     
 }
 
 //funktioner för bildspel
 function nextImage (){
-    let i = 0;
-    if (currentImageIndex + 1 > donuts[0].picSrc[0].length -1) {
+    const img1 = document.querySelector('#img1');
+    let i= 0;
+    if (currentImageIndex + 1 > donuts[i].picSrc[0].length -1) {
         currentImageIndex = 0;
-        
       }else {
         currentImageIndex +=1;
-        
       }
-      img1.setAttribute('src', donuts[0].picSrc[0]); 
+      img1.setAttribute('src', donuts[i].picSrc[0]);
+      
+      
     
     }
-    nextImage ();
+
 
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
@@ -295,7 +299,7 @@ displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
 
-
+nextImage ();
 
 
 
