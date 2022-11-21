@@ -195,6 +195,11 @@ input[type="number"] {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas: "shopping_cart . sorting filter";
+  max-width: 800px;
+  height: 60px;
+  margin: 0 auto;
+  align-items: center;
+  background-color: #ed9e70;
 
   .shopping_cart {
     grid-area: shopping_cart;
@@ -233,7 +238,24 @@ input[type="number"] {
   text-align: center;
   border: 1px solid black;
   align-items: center;
-
+  height: 130px;
+  max-width: 800px;
+  margin: 0 auto;
+  figure {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    figcaption {
+      color: whitesmoke;
+      position: absolute;
+      bottom: 15px;
+      left: 30px;
+      border-radius: 10px;
+      background-color: rgb(112, 45, 45);
+      min-width: 70px;
+    }
+  }
   div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -281,8 +303,9 @@ input[type="number"] {
   position: absolute;
   top: 50px; // Lämnar plats till header
   width: 100%;
+  height: 100vh;
   background-color: rgb(112, 45, 45);
-  z-index: 3;
+  z-index: 5;
   display: flex;
   flex-direction: column;
 
@@ -342,9 +365,10 @@ input[type="number"] {
 }
 
 .selectedOrder {
+
+  div {
   background-color: whitesmoke;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-right: 10%;
+  align-items: center;}
 }
