@@ -188,6 +188,7 @@ function calcTotalorder() {
     }
     totalAmountPlacement.innerHTML = totalAmount + "kr";
 }
+
 function countUp(e) {
     const controll = e.currentTarget.parentElement.parentElement.firstElementChild.attributes.class;
     const updateCounter = document.querySelectorAll(".selectcounter");
