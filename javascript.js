@@ -140,6 +140,7 @@ const img1 = document.querySelector('#img1');
 let currentImageIndex = 0; 
 
 
+let img1 = null;
 
 // Funktion lista nedan
 
@@ -160,6 +161,11 @@ function displayDonut1() {
         </div> `;
         donutPlacement[i].outerHTML = donutMarkup;
     }
+  img1 = document.querySelector("#img1"); // HTML-elementet existerar först efter att det skapats
+  // MEN - man kan bara ha ett ID, det är som ett personnummer. Nu skapas flera img1-bilder.
+  // Så, koden behöver vara:
+  // <img id="img${i}" ...> för att ID:t ska bli unikt.
+  console.log(img1);
 }
 
 //funktioner för bildspel
@@ -176,6 +182,10 @@ function nextImage (){
     
     }
     nextImage ();
+  console.log({ img1 });
+  console.log(donuts[0].picSrc[0]);
+  // img1.setAttribute('src', donuts[0].picSrc[0]);
+nextImage(); // Denna anropas INNAN displayDonut1 har hunnit skapas, varför img1 är null - den finns inte än!
 
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
@@ -301,3 +311,4 @@ document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
 
 
+nextImage(); // Gör anropet här istället
