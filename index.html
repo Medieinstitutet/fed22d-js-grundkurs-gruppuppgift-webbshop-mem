@@ -51,7 +51,7 @@
                     vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
                     commodo.
                 </p>
-                <button type="button" id="order_button">Beställ Här</button>
+                <button type="button" id="order_button"><a href="#donut-articles">Beställ här</a></button>
             </article>
 
         </section>
@@ -66,7 +66,7 @@
                     tune
                     </span></button>
             </div>
-            <section class="donut-articles">
+            <section id="donut-articles">
                 <article class="donut_article">
                     <div class="donuts">
                         <!--Här hamnar donutsen-->
@@ -204,24 +204,64 @@
                     <button id="clearCartBtn">Rensa</button>
                     <button>Beställ</button>
                 </div>
-                <article class="toggle-hidden">
-                    <form action="">
-                        <label for="first_name">Förnamn:</label>
-                        <input type="text" id="first_name" name="first_name" required> <br>
-                        <label for="last_name">Efternamn:</label>
-                        <input type="text" id="last_name" name="last_name" required> <br>
-                        <label for="address">Adress:</label>
-                        <input type="text" id="address" name="address" required> <br>
-                        <label for="zipcode">Postnummer:</label>
-                        <input type="text" id="zipcode" name="zipcode" required> <br>
-                        <label for="fpostort">Postort</label>
-                        <input type="text" id="fpostort" name="fpostort" required> <br>
-                        <label for="doorcode">Ev. Portkod:</label>
-                        <input type="number" id="doorcode" name="doorcode"> <br>
-                        <label for="tel">Telefonnummer:</label>
-                        <input type="tel" id="tel" name="tel" required> <br>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
+                <article>
+                    <form action="" id="paymentForm">
+                        <label>
+                            <span>Förnamn:</span>
+                            <input type="text" id="first_name" name="first_name" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Efternamn:</span>
+                            <input type="text" id="last_name" name="last_name" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Email:</span>
+                            <input type="email" id="email" name="email" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Adress:</span>
+                            <input type="text" id="adress" name="adress" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Postnummer:</span>
+                            <input type="number" id="zipcode" name="zipcode" minlength="4" maxlength="4" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Postort:</span>
+                            <input type="text" id="postal_adress" name="postal_adress" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Ev. Portkod:</span>
+                            <input type="number" id="doorcode" name="doorcode">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
+                        <label>
+                            <span>Telefonnummer:</span>
+                            <input type="tel" id="tel" name="tel" required>
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="material-symbols-outlined">cancel</span>
+                            <small>Error</small>
+                        </label><br>
                     </form>
                     <button>Kortbetalning</button>
                     <form action="">

@@ -74,10 +74,6 @@ nav{
     }
 }
 
-/*li:hover{ //Kolla varför li inte fungerar
-    background-color: none;
-}*/
-
 button.toggle_menu{
     @include visuallyHidden();
 }

@@ -32,13 +32,6 @@ document.querySelectorAll('.list_item').forEach(link => link.
         }
     }))
 
-
-
-
-
-
-
-
 // Shoppingcart page toggle ----
 const toggleShoppingCartBtn = document.querySelector(".shopping_cart");
 const shoppingCartPage = document.querySelector(".shopping_basket");
@@ -53,8 +46,8 @@ class Donut {
     constructor(name, price, review, aspect, picSrc) {
         this.name = name;
         this.price = price;
-        this.aspect = aspect;
         this.review = review; // 1-10
+        this.aspect = aspect;
         this.selectCounter = 0;
         this.picSrc = picSrc;
     }
@@ -279,9 +272,28 @@ displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
 
+//Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
+const paymentForm = document.querySelector('form');
+const firstName = document.getElementById('#first_name');
+const lastLame = document.getElementById('#last_name');
+const email = document.getElementById('#email');
+const adress = document.getElementById('#adress');
+const zipcode = document.getElementById('#zipcode');
+const postalAdress = document.getElementById('#postalAdress');
+//Skippa Portkoden då den inte är obligatorisk
+const tel = document.getElementById('#tel');
 
 
+console.log(paymentForm);
+
+/**
+ X HTML struktur för fromulär
+ X Variabler för alla input-fält
+ Funktion som visar felmeddelanden 
+ Funktion som visar ett meddelande när formuläret är korrekt ifyllt (Du har lagt en beställning)
+ I funktionen bör if-satser finnas för att avgöra om kriterierna är uppfyllda
 
 
+ Felmeddelanden när användaren lämnar fältet utan att uppfylla kraven (Eller vid submit?)
 
-
+ */
