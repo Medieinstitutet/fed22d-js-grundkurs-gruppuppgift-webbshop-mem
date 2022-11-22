@@ -242,15 +242,14 @@ input[type="number"] {
   max-width: 800px;
   margin: 0 auto;
 
-  #img2 {
-    display:none;
-  }
+ 
 
   figure {
     position: relative;
     margin: 0;
     padding: 0;
     text-align: center;
+    
     figcaption {
       color: whitesmoke;
       position: absolute;
@@ -260,24 +259,26 @@ input[type="number"] {
       background-color: rgb(112, 45, 45);
       min-width: 70px;
     }
-    .prev, .next {
+    
+    #img2 {
+      @include visuallyHidden()
+    }
+    #prev, #next {
       cursor: pointer;
       position: absolute;
       top: 50%;
-      width: auto;
       margin-top: -22px;
       padding: 16px;
-      color: white;
+      color: black;
       font-weight: bold;
       font-size: 18px;
-      transition: 0.6s ease;
       border-radius: 0 3px 3px 0;
       user-select: none;
     }
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
+    #next {
+      right: 20px;
     }
+
   }
   div {
     display: grid;

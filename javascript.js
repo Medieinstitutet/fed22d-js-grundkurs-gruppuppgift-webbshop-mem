@@ -147,7 +147,7 @@ function displayDonut1() {
         <div class="${donutNr} donuts">
              <figure class="img-slide" id="img1">
                 <a id="prev" >&#10094;</a>
-                <img src="${donuts[i].picSrc[i]}" alt="" width="130" height="130">
+                <img src="" alt="" width="130" height="130">
                 <a id="next">&#10095;</a>
                 <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
@@ -162,38 +162,38 @@ function displayDonut1() {
     }
         
   
-}
+}displayDonut1 ()
 
 //funktioner för bildspel
-let photos = donuts[0].picSrc[0];
+let images = donuts[0].picSrc[0]
+const img1= document.querySelector('#img1');
 
-const imgTag = document.querySelector("img-slide");
-let count = 0;
+const nextBtn =document.querySelector('#next');
+const prevBtn = document.querySelector('#prev');
 
-const nextArrow = document.getElementById('#next');
-nextArrow.addEventListener('click', next);
+let currentImageIndex = 0;
 
-function next(){
-    count++;
-    if(count >= photos.length){
-        count = 0;
-        imgTag.src = photos[1];
-    }else{
-        imgTag.src = photos[0];
+
+function nextImage() {
+    let i = 0;
+    if (currentImageIndex + 1 > images.length - 1) {
+      currentImageIndex = 0;
+    } else {
+      currentImageIndex += 1;
     }
-}
 
-const prevArrow = document.getElementById('#prev')
-prevArrow.addEventListener('click', prev)
-function prev(){
-    count--;
-    if(count < 0){
-        count = photos.length -1;
-        imgTag.src = photos[0];
-    }else{
-        imgTag.src = photos[1];
-    }
+    img1.setAttribute('src', images[currentImageIndex] )
 }
+function prevImage (){
+    if (currentImageIndex - 1 < 0) {
+        currentImageIndex = images.length -1;
+}  else {
+    currentImageIndex -=1;
+}
+img1.setAttribute('src', images[currentImageIndex] )
+}
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
 
 
 //funktioner för varugkorg
@@ -314,7 +314,8 @@ for (let i = 0; i < plusbtn.length; i++) {
 }
 displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
-
+nextImage ();
+prevImage ();
 
 
 
