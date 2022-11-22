@@ -146,9 +146,9 @@ function displayDonut1() {
         const donutMarkup = `
         <div class="${donutNr} donuts">
              <figure class="img-slide" id="img1">
-                <a class="prev" onclick="prev()">&#10094;</a>
+                <a id="prev" >&#10094;</a>
                 <img src="${donuts[i].picSrc[i]}" alt="" width="130" height="130">
-                <a class="next" onclick="next()">&#10095;</a>
+                <a id="next">&#10095;</a>
                 <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
             <h4>${donuts[i].name}</h4>
@@ -170,6 +170,9 @@ let photos = donuts[0].picSrc[0];
 const imgTag = document.querySelector("img-slide");
 let count = 0;
 
+const nextArrow = document.getElementById('#next');
+nextArrow.addEventListener('click', next);
+
 function next(){
     count++;
     if(count >= photos.length){
@@ -180,6 +183,8 @@ function next(){
     }
 }
 
+const prevArrow = document.getElementById('#prev')
+prevArrow.addEventListener('click', prev)
 function prev(){
     count--;
     if(count < 0){
