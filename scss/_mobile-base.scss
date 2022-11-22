@@ -266,6 +266,7 @@ input[type="number"] {
       min-width: 70px;
     }
   }
+}
   div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -343,6 +344,7 @@ input[type="number"] {
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
+
 .shopping_basket {
   position: absolute;
   top: 50px; // Lämnar plats till header
