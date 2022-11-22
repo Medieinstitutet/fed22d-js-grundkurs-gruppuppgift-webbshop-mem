@@ -241,6 +241,11 @@ input[type="number"] {
   height: 130px;
   max-width: 800px;
   margin: 0 auto;
+
+  #img2 {
+    display:none;
+  }
+
   figure {
     position: relative;
     margin: 0;
@@ -254,6 +259,24 @@ input[type="number"] {
       border-radius: 10px;
       background-color: rgb(112, 45, 45);
       min-width: 70px;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
     }
   }
   div {
@@ -275,7 +298,7 @@ input[type="number"] {
       }
     }
   }
-}
+
 
 .selectcounter {
   border: 1px solid black;
@@ -371,4 +394,5 @@ input[type="number"] {
   display: flex;
   justify-content: space-between;
   align-items: center;}
+}
 }

@@ -74,72 +74,69 @@ const donuts =
             25,
             9,
             "choklad",
-            "images/small/dubbelchoklad_liten.jpg"
+            ["images/small/dubbelchoklad_liten.jpg", "images/small/dubbelchoklad2_liten.jpg"]
         ), new Donut
         (
             "Glasyrmunk",
             15,
             7,
             "glasyr",
-            "images/small/glasymunk2_liten.jpg"
+            ["images/small/glasymunk2_liten.jpg", "images/small/glasymunk2_liten.jpg"]
         ), new Donut
         (
             "Sockermunk, glutenfri",
             30,
             5,
             "socker glutenfri",
-            "images/small/sockermunk2_liten.jpg"
+            ["images/small/sockermunk_liten.jpg", "images/small/sockermunk2_liten.jpg",]
         ), new Donut
         (
             "Strösselmunk",
             32,
             4,
             "strössel glasyr",
-            "images/small/strosselmunk_liten.jpg"
+            ["images/small/strosselmunk_liten.jpg", "images/small/strosselmunk2_liten.jpg",]
         ), new Donut
         (
             "Syltmunk, glutenfri",
             32,
             4,
             "socker glutenfri",
-            "images/small/syltmunk_liten.jpg"
+            ["images/small/syltmunk_liten.jpg", "images/small/syltmunk2_liten.jpg"]
         ), new Donut
         (
             "Toppingmunk",
             32,
             6,
             "strössel glasyr",
-            "images/small/toppingmunk_liten.jpg"
+            ["images/small/toppingmunk_liten.jpg", "images/small/toppingmunk2_liten.jpg"]
         ), new Donut
         (
             "Vaniljmunk",
             32,
             6,
             "vaniljkräm glasyr",
-            "images/small/vaniljmunk_liten.jpg"
+            ["images/small/vaniljmunk_liten.jpg", "images/small/vaniljmunk2_liten.jpg"]
         ), new Donut
         (
             "Violmunk",
             32,
             6,
             "strössel glasyr",
-            "images/small/violmunk2_liten.jpg"
+            ["images/small/violmunk2_liten.jpg", "images/small/violmunk2_liten.jpg"]
         )
     ];
  
 
 const donutPlacement = document.querySelectorAll(".donuts");
 const selectedOrderplacment = document.querySelectorAll(".selectedOrder");
+const imageHolder = document.querySelectorAll('figure');
 let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let shopCartBtnUp = '';
 let shopCartBtnDown = '';
 
 //bildspelsvariabler
-let img1=null;
-let currentImageIndex = 0; 
-
-
 
 // Funktion lista nedan
 
@@ -148,8 +145,10 @@ function displayDonut1() {
         let donutNr = "nr" + i;
         const donutMarkup = `
         <div class="${donutNr} donuts">
-             <figure>
-                <img id="img1" class="img-1" src="" alt="" width="130" height="130">
+             <figure class="img-slide" id="img1">
+                <a class="prev" onclick="prev()">&#10094;</a>
+                <img src="${donuts[i].picSrc[i]}" alt="" width="130" height="130">
+                <a class="next" onclick="next()">&#10095;</a>
                 <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
             <h4>${donuts[i].name}</h4>
@@ -161,26 +160,38 @@ function displayDonut1() {
         donutPlacement[i].outerHTML = donutMarkup;
         
     }
-
-     
+        
+  
 }
 
 //funktioner för bildspel
-function nextImage (){
-    const img1 = document.querySelector('#img1');
-    let i= 0;
-    if (currentImageIndex + 1 > donuts[i].picSrc[0].length -1) {
-        currentImageIndex = 0;
-      }else {
-        currentImageIndex +=1;
-      }
-      img1.setAttribute('src', donuts[i].picSrc[0]);
-      
-      
-    
+let photos = donuts[0].picSrc[0];
+
+const imgTag = document.querySelector("img-slide");
+let count = 0;
+
+function next(){
+    count++;
+    if(count >= photos.length){
+        count = 0;
+        imgTag.src = photos[1];
+    }else{
+        imgTag.src = photos[0];
     }
+}
+
+function prev(){
+    count--;
+    if(count < 0){
+        count = photos.length -1;
+        imgTag.src = photos[0];
+    }else{
+        imgTag.src = photos[1];
+    }
+}
 
 
+//funktioner för varugkorg
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
         let donutNr = "nr" + i;
@@ -201,7 +212,8 @@ function displayDonutCart() {
         if (donuts[i].selectCounter > 0) {
             selectedOrderplacment[i].innerHTML = cartOrderMarkup;
         }
-    }
+   
+}
 }
 function calcTotalorder() {
     const totalAmountPlacement = document.querySelector(".total_amount");
@@ -298,8 +310,6 @@ for (let i = 0; i < plusbtn.length; i++) {
 displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
-
-nextImage ();
 
 
 
