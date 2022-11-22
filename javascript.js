@@ -202,16 +202,14 @@ function countUp(e) {
 function countDown(e) {
     const controll = e.currentTarget.parentElement.parentElement.firstElementChild.attributes.class;
     const updateCounter = document.querySelectorAll(".selectcounter");
-    for (let i = 0; i < donuts.length; i++) {
-        for (let i = 0; i < donuts.length; i++) {
-            if (donuts[i].selectCounter <= 0) {
-                return;
-            }
-            else if (controll.value == 'nr' + i + ' donuts') {
+    for (let i = 0; i < donuts.length; i++) { 
+            if (controll.value == 'nr' + i + ' donuts') {
+                if (donuts[i].selectCounter <= 0) {
+                    return;
+                }
                 donuts[i].selectCounter--;
                 updateCounter[i].innerHTML = donuts[i].selectCounter;
             }
-        }
     }
 }
 
@@ -243,6 +241,7 @@ function countDownCart(e) {
     if (donuts[controlValueNumber].selectCounter == 1) {
         donuts[controlValueNumber].selectCounter--;
         e.currentTarget.parentElement.parentElement.innerHTML = ''
+        calcTotalorder();
         return;
     }
     donuts[controlValueNumber].selectCounter--;
@@ -270,6 +269,14 @@ for (let i = 0; i < plusbtn.length; i++) {
 }
 displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
+
+
+
+
+
+
+
+
 
 
 //Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
