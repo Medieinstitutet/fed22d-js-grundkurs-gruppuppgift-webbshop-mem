@@ -212,64 +212,80 @@
                 </div>
                 <article>
                     <form action="" id="paymentForm">
-                        <label>
-                            <span>Förnamn:</span>
-                            <input type="text" id="first_name" name="first_name" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Efternamn:</span>
-                            <input type="text" id="last_name" name="last_name" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Email:</span>
-                            <input type="email" id="email" name="email" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Adress:</span>
-                            <input type="text" id="adress" name="adress" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Postnummer:</span>
-                            <input type="number" id="zipcode" name="zipcode" minlength="4" maxlength="4" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Postort:</span>
-                            <input type="text" id="postal_adress" name="postal_adress" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Ev. Portkod:</span>
-                            <input type="number" id="doorcode" name="doorcode">
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Telefonnummer:</span>
-                            <input type="tel" id="tel" name="tel" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
+                        <div class="form_control">
+                            <label>
+                                <span>Förnamn:</span>
+                                <input type="text" id="first_name" name="first_name" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Efternamn:</span>
+                                <input type="text" id="last_name" name="last_name" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Email:</span>
+                                <input type="email" id="email" name="email" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Adress:</span>
+                                <input type="text" id="adress" name="adress" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Postnummer:</span>
+                                <input type="number" id="zipcode" name="zipcode" minlength="4" maxlength="4" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Postort:</span>
+                                <input type="text" id="postal_adress" name="postal_adress" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Ev. Portkod:</span>
+                                <input type="number" id="doorcode" name="doorcode">
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Telefonnummer:</span>
+                                <input type="tel" id="tel" name="tel" required>
+                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
+                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>   
                     </form>
-                    <button>Betalning</button><br>
+                    <button id="paymentButton">Betalning</button><br>
                     <button>Kortbetalning</button>
                     <form action="">
                         <label for="cardnr">Kortnummer:</label>
