@@ -271,18 +271,54 @@ for (let i = 0; i < plusbtn.length; i++) {
 displayDonut1();
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
-//Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
-const paymentForm = document.querySelector('form');
-const firstName = document.getElementById('#first_name');
-const lastLame = document.getElementById('#last_name');
-const email = document.getElementById('#email');
-const adress = document.getElementById('#adress');
-const zipcode = document.getElementById('#zipcode');
-const postalAdress = document.getElementById('#postalAdress');
-//Skippa Portkoden då den inte är obligatorisk
-const tel = document.getElementById('#tel');
 
-console.log(firstName);
+
+//Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
+
+const paymentForm = document.querySelector('form');
+const firstName = document.querySelector('#first_name');
+const lastLame = document.querySelector('#last_name');
+const email = document.querySelector('#email');
+const adress = document.querySelector('#adress');
+const zipcode = document.querySelector('#zipcode');
+const postalAdress = document.querySelector('#postalAdress');
+//Skippa Portkoden då den inte är obligatorisk
+const tel = document.querySelector('#tel');
+const paymentBtn = document.querySelector('#paymentBtn');
+
+paymentForm.addEventListener('submit', (e) => { // e står för event
+    e.preventDefault(); //Förhindrar att skicka formuläret
+
+    checkInputs();
+});
+
+function checkInputs(){
+    const firstnameValue = firstName.value.trim(); //Trim tar bort eventuellt whitespace
+    const lastnameValue = lastLame.value.trim();
+    const emailValue = email.value.trim();
+    const adressValue = adress.value.trim();
+    const zipcodeValue = zipcode.value.trim();
+    const postalAdressValue = postalAdress.value.trim();
+    const telValue = tel.value.trim();
+
+    if(firstnameValue === ''){
+        setErrorFor(firstName, 'Du måste fylla i fältet.');
+    }else{
+        //setSucessFor(firstName);
+    }
+}
+
+function setErrorFor(input, message){
+    //const formControl = input.parentElement; //Hämtar form_control
+    const formControl = document.querySelector('.form_control');
+    const small = formControl.querySelector('small');
+
+    small.innerText = message;
+    
+    formControl.classList.add('error');
+}
+
+
 
 /**
  X HTML struktur för fromulär
@@ -291,7 +327,16 @@ console.log(firstName);
  Funktion som visar ett meddelande när formuläret är korrekt ifyllt (Du har lagt en beställning)
  I funktionen bör if-satser finnas för att avgöra om kriterierna är uppfyllda
 
+(Värdena i input-fälten ska läsas av. Med hjälp av if-satser ska värdet sedan bli
+godkänt eller nekat beroende på villkor. Sedan följer av felmeddelande eller en check(avklarad))
 
  Felmeddelanden när användaren lämnar fältet utan att uppfylla kraven (Eller vid submit?)
 
  */
+ /*if(firstnameValue === ''){
+    setErrorFor(firstName, 'Du måste fylla i fältet.');
+}else if(firstnameValue < 3){
+    setErrorFor(firstName, 'Ditt namn får inte vara kortare än 3 bokstäver.');
+}else{
+    setSucessFor(firstName);
+}*/

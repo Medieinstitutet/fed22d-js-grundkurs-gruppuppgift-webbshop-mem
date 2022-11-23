@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" type="text/css">
 </head>
 
 <body>
@@ -213,29 +214,29 @@
                 <article>
                     <form action="" id="paymentForm">
                         <div class="form_control">
-                            <label>
+                            <label><!--Uppdatera denna och ev toggle-hidden till sign-->
                                 <span>Förnamn:</span>
-                                <input type="text" id="first_name" name="first_name" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
-                                <small class="toggle-hidden">Error</small>
+                                <input type="text" id="first_name" name="first_name">
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
+                                <small class="error_sign">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>Efternamn:</span>
                                 <input type="text" id="last_name" name="last_name" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
-                                <small class="toggle-hidden">Error</small>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
+                                <small class="error_sign toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>Email:</span>
                                 <input type="email" id="email" name="email" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -243,8 +244,8 @@
                             <label>
                                 <span>Adress:</span>
                                 <input type="text" id="adress" name="adress" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -252,8 +253,8 @@
                             <label>
                                 <span>Postnummer:</span>
                                 <input type="number" id="zipcode" name="zipcode" minlength="4" maxlength="4" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -261,8 +262,8 @@
                             <label>
                                 <span>Postort:</span>
                                 <input type="text" id="postal_adress" name="postal_adress" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -270,8 +271,8 @@
                             <label>
                                 <span>Ev. Portkod:</span>
                                 <input type="number" id="doorcode" name="doorcode">
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -279,13 +280,15 @@
                             <label>
                                 <span>Telefonnummer:</span>
                                 <input type="tel" id="tel" name="tel" required>
-                                <span class="material-symbols-outlined toggle-hidden">check_circle</span>
-                                <span class="material-symbols-outlined toggle-hidden">cancel</span>
+                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
+                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
-                        </div>   
+                        </div>
+                        <div class="form_control">
+                            <button id="paymentButton">Betalning</button> 
+                        </div>
                     </form>
-                    <button id="paymentButton">Betalning</button><br>
                     <button>Kortbetalning</button>
                     <form action="">
                         <label for="cardnr">Kortnummer:</label>

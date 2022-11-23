@@ -11,9 +11,13 @@
     }
 }
 
-/*form#paymentForm{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 1em;
-}*/
+form#paymentForm{
+   flex-direction: row;
+   justify-content: center;
+   max-width: 65%;
+   margin: 0 auto;
+
+   .form_control{
+    margin-right: 30px;
+   }
+}
