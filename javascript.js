@@ -309,8 +309,8 @@ function checkInputs(){
 }
 
 function setErrorFor(input, message){
-    //const formControl = input.parentElement; //Hämtar form_control
-    const formControl = document.querySelector('.form_control');
+    const formControl = input.parentElement; //Hämtar form_control
+    //const formControl = document.querySelector('.form_control');
     const small = formControl.querySelector('small');
 
     small.innerText = message;
