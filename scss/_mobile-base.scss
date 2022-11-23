@@ -295,14 +295,6 @@ input[type="number"] {
             grid-area: filter;
             display: flex;
         }
-
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
-        }
     }
 }
 
@@ -400,37 +392,6 @@ input[type="number"] {
     }
 }
 
-/*.price_discount {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    background-color: white; 
-    font-size: 1rem;
-
-    label span {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    .discount_amount {
-        grid-column: 2/3;
-        grid-row: 1/2;
-        background-color: rgb(255, 235, 222);
-    }
-
-    .amount_text {
-        grid-column: 1/2;
-        grid-row: 2/3;
-        background-color: rgb(255, 235, 222);
-    }
-
-    .total_amount {
-        grid-column: 2/3;
-        grid-row: 2/3;
-        background-color: rgb(255, 235, 222);
-    }
-
-}*/
 .selectedOrder {
     background-color: whitesmoke;
     display: flex;
@@ -542,7 +503,6 @@ form#paymentForm{
 
     .form_control.error small{
         color: var.$errorColor;
-        //visibility: visible;
     }
 
     button#paymentButton{
