@@ -126,7 +126,7 @@ const donuts =
             ["images/small/violmunk2_liten.jpg", "images/small/violmunk2_liten.jpg"]
         )
     ];
- 
+ console.log(Donut)
 
 const donutPlacement = document.querySelectorAll(".donuts");
 const selectedOrderplacment = document.querySelectorAll(".selectedOrder");
@@ -145,9 +145,9 @@ function displayDonut1() {
         let donutNr = "nr" + i;
         const donutMarkup = `
         <div class="${donutNr} donuts">
-             <figure class="img-slide" id="img1">
+             <figure class="img-slide" >
                 <a id="prev" >&#10094;</a>
-                <img src="" alt="" width="130" height="130">
+                <img id="img1" src="" alt="" width="130" height="130">
                 <a id="next">&#10095;</a>
                 <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
@@ -165,13 +165,15 @@ function displayDonut1() {
 }displayDonut1 ()
 
 //funktioner för bildspel
-let images = donuts[0].picSrc[0]
+
 const img1= document.querySelector('#img1');
 
 const nextBtn =document.querySelector('#next');
 const prevBtn = document.querySelector('#prev');
 
-let currentImageIndex = 0;
+let images = donuts[0].picSrc[0]
+
+let currentImageIndex = 1;
 
 
 function nextImage() {
@@ -182,15 +184,16 @@ function nextImage() {
       currentImageIndex += 1;
     }
 
-    img1.setAttribute('src', images[currentImageIndex] )
+    img1.setAttribute('src', donuts[i].picSrc[1] )
 }
 function prevImage (){
+    let i = 0;
     if (currentImageIndex - 1 < 0) {
         currentImageIndex = images.length -1;
 }  else {
     currentImageIndex -=1;
 }
-img1.setAttribute('src', images[currentImageIndex] )
+img1.setAttribute('src', donuts[i].picSrc[0] )
 }
 nextBtn.addEventListener('click', nextImage);
 prevBtn.addEventListener('click', prevImage);
