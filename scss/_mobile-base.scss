@@ -267,9 +267,7 @@ input[type="number"] {
     }
   }
 }
-  div {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+ 
 
     .material-symbols-outlined {
         display: inline-block;
@@ -292,7 +290,7 @@ input[type="number"] {
             'GRAD' 0,
             'opsz' 48
     }
-}
+
 
 .donut_article {
     display: grid;
@@ -409,11 +407,16 @@ input[type="number"] {
         width: 150px;
     }
 }
+.current_donuts_order {
+    display: flex;
+    flex-direction: column;
+}
 
-.selectedOrder {
-  div {
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;}
+.selectedOrder div{
+        display: grid;
+        grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
+        background-color: whitesmoke;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 }
