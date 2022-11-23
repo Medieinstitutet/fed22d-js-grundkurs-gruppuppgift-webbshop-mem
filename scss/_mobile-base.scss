@@ -512,7 +512,7 @@ form#paymentForm{
         i{
             position: absolute;
             right: -3px;
-            top: 32px;
+            top: 34px;
             visibility: hidden;
         }
 
@@ -521,10 +521,29 @@ form#paymentForm{
             left: 0;
             visibility: hidden;
         }
+    }
 
-        small.error_sign{
-            color: var.$errorColor;
-        }
+    .form_control.success input{
+        border: 2px solid var.$sucessColor;
+    }
+
+    .form_control.success i.fa-circle-check{
+        color: var.$sucessColor;
+        visibility: visible;
+    }
+    
+    .form_control.error input{
+        border: 2px solid var.$errorColor;
+    }
+    
+    .form_control.error i.fa-circle-xmark{
+        color: var.$errorColor;
+        visibility: visible;
+    }
+
+    .form_control.error small{
+        color: var.$errorColor;
+        visibility: visible;
     }
 
     button#paymentButton{
@@ -534,22 +553,4 @@ form#paymentForm{
         font-weight: 500;
         text-transform: uppercase;
     }
-}
-
-.form_control.sucess input{
-    border: 2px solid var.$sucessColor;
-}
-
-i.sucess_sign{
-    color: var.$sucessColor;
-    visibility: visible;
-}
-
-.form_control.error input{
-    border: 2px solid var.$errorColor;
-}
-
-i.error_sign{
-    color: var.$errorColor;
-    visibility: visible;
 }

@@ -298,7 +298,7 @@ function checkInputs(){
     const emailValue = email.value.trim();
     const adressValue = adress.value.trim();
     const zipcodeValue = zipcode.value.trim();
-    const postalAdressValue = postalAdress.value.trim();
+    //const postalAdressValue = postalAdress.value.trim();
     const telValue = tel.value.trim();
 
     if(firstnameValue === ''){
@@ -309,12 +309,10 @@ function checkInputs(){
 }
 
 function setErrorFor(input, message){
-    const formControl = input.parentElement; //Hämtar form_control
-    //const formControl = document.querySelector('.form_control');
+    const formControl = document.querySelector('.form_control');
     const small = formControl.querySelector('small');
 
     small.innerText = message;
-    
     formControl.classList.add('error');
 }
 
