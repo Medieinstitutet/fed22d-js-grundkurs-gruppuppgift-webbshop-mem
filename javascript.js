@@ -273,16 +273,16 @@ document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
 
 
 
-//Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
+//Kod för betalningsformulär
 
 const paymentForm = document.querySelector('form');
 const firstName = document.querySelector('#first_name');
-const lastLame = document.querySelector('#last_name');
+const lastName = document.querySelector('#last_name');
 const email = document.querySelector('#email');
 const adress = document.querySelector('#adress');
 const zipcode = document.querySelector('#zipcode');
 const postalAdress = document.querySelector('#postalAdress');
-//Skippa Portkoden då den inte är obligatorisk
+//const doorCode = document.querySelector('#doorcode');
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
 
@@ -294,47 +294,109 @@ paymentForm.addEventListener('submit', (e) => { // e står för event
 
 function checkInputs(){
     const firstnameValue = firstName.value.trim(); //Trim tar bort eventuellt whitespace
-    const lastnameValue = lastLame.value.trim();
+    const lastnameValue = lastName.value.trim();
     const emailValue = email.value.trim();
     const adressValue = adress.value.trim();
     const zipcodeValue = zipcode.value.trim();
-    //const postalAdressValue = postalAdress.value.trim();
+    const postalAdressValue = postalAdress.value.trim();
+    //const doorCode = doorCode.value.trim();
     const telValue = tel.value.trim();
 
+    //Blir väldigt mycket upprepning av kod här, går det att förenkla med en loop trots att jag även vill kolla unika statements för varje input?
     if(firstnameValue === ''){
         setErrorFor(firstName, 'Du måste fylla i fältet.');
+    }else if(firstnameValue.length < 3){
+        setErrorFor(firstName, 'Ditt namn måste var längre än 3 bokstäver');
     }else{
-        //setSucessFor(firstName);
+        setSuccessFor(firstName);
+    }
+
+    if(lastnameValue === ''){
+        setErrorFor(lastName, 'Du måste fylla i fältet');
+    }else if(lastnameValue.length < 5){
+        setErrorFor(lastName, 'Ditt namn måste var längre än 2 bokstäver');
+    }else{
+        setSuccessFor(lastName);
+    }
+
+    if(emailValue === ''){
+        setErrorFor(email, 'Du måste fylla i fältet');
+    }else if(!isEmail(emailValue)){
+        setErrorFor(email, 'Du måste ange en giltig E-mail');
+    }else{
+        setSuccessFor(email);
+    }
+
+    if(adressValue === ''){
+        setErrorFor(adress, 'Du måste fylla i fältet');
+    }else if(adressValue.length < 6){
+        setErrorFor(adress, 'Fältet måste vara längre än 6 bokstäver');
+    }else{
+        setSuccessFor(adress);
+    }
+
+    if(zipcodeValue === ''){
+        setErrorFor(zipcode, 'Du måste fylla i fältet');
+    }else if(zipcodeValue.length < 4){
+        setErrorFor(zipcode, 'Fältet måste bestå av 4 siffror');
+    }else if(zipcodeValue.length > 4){
+        setErrorFor(zipcode, 'Du får inte ange mer än 4 siffror');
+    }else if(zipcodeValue.length == 4){
+        setSuccessFor(zipcode);
+    }
+
+    if(postalAdressValue=== ''){
+        setErrorFor(postalAdress, 'Du måste fylla i fältet');
+    }else if(postalAdressValue.length < 6){
+        setErrorFor(postalAdress, 'Fältet måste vara längre än 4 bokstäver');
+    }else{
+        setSuccessFor(postalAdress);
+    }
+
+    if(telValue === ''){
+        setErrorFor(tel, 'Du måste fylla i fältet');
+    }else if(telValue.length < 10){
+        setErrorFor(tel, 'Fältet måste bestå av 10 siffror');
+    }else if(telValue.length > 10){
+        setErrorFor(telValue, 'Du får inte ange mer än 10 siffror');
+    }else if(telValue.length == 10){
+        setSuccessFor(tel);
     }
 }
 
 function setErrorFor(input, message){
-    const formControl = document.querySelector('.form_control');
+    const formControl = input.parentElement;
     const small = formControl.querySelector('small');
+    const icon = formControl.querySelector('i');
+
+    icon.classList.remove('toggle-hidden'); //Tar bort klassen toggle-hidden vilket gör ikonen och texten synlig
+    small.classList.remove('toggle-hidden');
 
     small.innerText = message;
-    formControl.classList.add('error');
+    formControl.className = 'form_control error';
 }
 
+function setSuccessFor(input){
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    const icon = formControl.querySelector('i');
 
+    icon.classList.remove('toggle-hidden');
+    small.classList.add('toggle-hidden'); //Döljer texten för felmeddelande
+    formControl.className = 'form_control success';
+
+}
+
+function isEmail(email){
+   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+}
 
 /**
  X HTML struktur för fromulär
  X Variabler för alla input-fält
- Funktion som visar felmeddelanden 
+ XFunktion som visar felmeddelanden 
  Funktion som visar ett meddelande när formuläret är korrekt ifyllt (Du har lagt en beställning)
- I funktionen bör if-satser finnas för att avgöra om kriterierna är uppfyllda
+ Funktion som rensar formuläret
 
-(Värdena i input-fälten ska läsas av. Med hjälp av if-satser ska värdet sedan bli
-godkänt eller nekat beroende på villkor. Sedan följer av felmeddelande eller en check(avklarad))
-
- Felmeddelanden när användaren lämnar fältet utan att uppfylla kraven (Eller vid submit?)
-
- */
- /*if(firstnameValue === ''){
-    setErrorFor(firstName, 'Du måste fylla i fältet.');
-}else if(firstnameValue < 3){
-    setErrorFor(firstName, 'Ditt namn får inte vara kortare än 3 bokstäver.');
-}else{
-    setSucessFor(firstName);
-}*/
+ Lägg till - Om man väljer att ange en portkod ska enbart 4 siffror godkännas.
+**/

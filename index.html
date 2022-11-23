@@ -214,12 +214,12 @@
                 <article>
                     <form action="" id="paymentForm">
                         <div class="form_control">
-                            <label><!--Uppdatera denna och ev toggle-hidden till sign-->
+                            <label>
                                 <span>Förnamn:</span>
                                 <input type="text" id="first_name" name="first_name">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
-                                <small>Error</small>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
@@ -228,15 +228,15 @@
                                 <input type="text" id="last_name" name="last_name">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
-                                <small>Error</small>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>Email:</span>
-                                <input type="email" id="email" name="email">
-                                <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
-                                <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
+                                <input type="text" id="email" name="email">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
@@ -252,7 +252,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postnummer:</span>
-                                <input type="number" id="zipcode" name="zipcode">
+                                <input type="number" id="zipcode" name="zipcode" maxlength="4">
                                 <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
                                 <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -261,7 +261,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postort:</span>
-                                <input type="text" id="postal_adress" name="postal_adress">
+                                <input type="text" id="postalAdress" name="postal_adress">
                                 <i class="fa-regular fa-circle-xmark fa-lg sucess_sign"></i>
                                 <i class="fa-regular fa-circle-check fa-lg error_sign"></i>
                                 <small class="toggle-hidden">Error</small>

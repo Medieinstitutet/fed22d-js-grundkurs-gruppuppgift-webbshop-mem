@@ -139,10 +139,10 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
 
         h1 {
             margin: 0 auto;
-            margin-bottom: 4em;
+            margin-bottom: 5em;
             color: var.$blackTextColor;
             font-family: var.$rubikFont;
-            font-size: 2rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
         }
     }
@@ -495,7 +495,7 @@ form#paymentForm{
 
         label{
             display: inline-block;
-            margin-bottom: 3px;
+           // margin-bottom: 3px; Kolla upp denna
         }
 
         input{
@@ -519,7 +519,6 @@ form#paymentForm{
         small{
             position: absolute;
             left: 0;
-            visibility: hidden;
         }
     }
 
@@ -543,7 +542,7 @@ form#paymentForm{
 
     .form_control.error small{
         color: var.$errorColor;
-        visibility: visible;
+        //visibility: visible;
     }
 
     button#paymentButton{
