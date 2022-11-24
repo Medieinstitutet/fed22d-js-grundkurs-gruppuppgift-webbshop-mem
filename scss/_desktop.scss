@@ -1,4 +1,4 @@
-@use "variables" as var;
+@use 'variables' as var;
 
 @mixin visuallyHidden {
   position: absolute;
@@ -28,67 +28,63 @@
   overflow: unset;
 }
 
-nav{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
-    .menu_links{
-        @include removeVisuallyHidden();
+  .menu_links {
+    @include removeVisuallyHidden();
 
-        ul{
-            display: flex;
-            justify-content: flex-end;
-            li{
-                display: block;
-                margin-right: 5px;
-                &:hover{
-                    background-color: unset !important;
-                }
-                a.underline{
-                    margin-right: 5px ;
-                    position: relative;
-                    font-size: 1.1rem;
-
-                    &::after{
-                        content:'';
-                        position: absolute;
-                        width: 100%;
-                        transform: scaleX(0);
-                        height: 2.7px;
-                        bottom: 6px;
-                        left: 0;
-                        background-color: var.$blackTextColor;
-                        transform-origin: bottom right;
-                        transition: transform 0.3s ease-out;
-                    }
-
-                    &:hover:after{
-                        transform: scaleX(1);
-                        transform-origin: bottom left;
-                    }
-                }
-            }
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      li {
+        display: block;
+        margin-right: 5px;
+        &:hover {
+          background-color: unset !important;
         }
+        a.underline {
+          margin-right: 5px;
+          position: relative;
+          font-size: 1.1rem;
+
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2.7px;
+            bottom: 6px;
+            left: 0;
+            background-color: var.$blackTextColor;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+          }
+
+          &:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+      }
     }
+  }
 }
 
-/*li:hover{ //Kolla varför li inte fungerar
-    background-color: none;
-}*/
-
-button.toggle_menu{
-    @include visuallyHidden();
+button.toggle_menu {
+  @include visuallyHidden();
 }
 
-.start_page{
-    button{
-        margin-top: 5rem;
+.start_page {
+  button {
+    margin-top: 5rem;
 
-        &:hover{
-            background-color: #999999;
-            transition: 0.3s;
-        }
+    &:hover {
+      background-color: #999999;
+      transition: 0.3s;
     }
+  }
 }

@@ -1,4 +1,4 @@
-@use "variables" as var;
+@use 'variables' as var;
 
 @mixin visuallyHidden {
   position: absolute;
@@ -38,6 +38,10 @@
   clip-path: unset;
   clip: unset;
   overflow: unset;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* ------------------------Regler för startpage ---------------------------------------------------------------------------
@@ -130,7 +134,7 @@ span.menu_bar {
     display: flex;
     align-items: flex-end;
     height: 300px;
-    background-image: url("images/donut_image_startpage.jpg");
+    background-image: url('images/donut_image_startpage.jpg');
     background-size: cover;
 
     h1 {
@@ -169,6 +173,12 @@ span.menu_bar {
     align-self: center;
     border-radius: 4px;
     border: 3px solid #8e8e8e;
+
+    a {
+      text-decoration: none;
+      color: var.$blackTextColor;
+      font-weight: 500;
+    }
   }
 }
 
@@ -187,14 +197,14 @@ input::-webkit-inner-spin-button {
 }
 
 //Firefox
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
 .filtering_buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "shopping_cart . sorting filter";
+  grid-template-areas: 'shopping_cart . sorting filter';
   max-width: 800px;
   height: 60px;
   margin: 0 auto;
@@ -208,29 +218,21 @@ input[type="number"] {
 
   .sorting {
     grid-area: sorting;
-    display:flex;
+    display: flex;
   }
 
   .material-symbols-outlined {
     display: inline-block;
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 48
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
   }
 
   .filter {
     grid-area: filter;
-    display:flex;
+    display: flex;
   }
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-}
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
 }
 .donut_article {
   display: grid;
@@ -285,6 +287,29 @@ input[type="number"] {
     } 
 
   }
+}
+
+.material-symbols-outlined {
+  display: inline-block;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.filter {
+  grid-area: filter;
+  display: flex;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.donut_article {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
+  text-align: center;
+  border: 1px solid black;
+  align-items: center;
+
   div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -328,6 +353,7 @@ input[type="number"] {
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
+
 .shopping_basket {
   position: absolute;
   top: 50px; // Lämnar plats till header
@@ -392,13 +418,17 @@ input[type="number"] {
     width: 150px;
   }
 }
+.current_donuts_order {
+  display: flex;
+  flex-direction: column;
+}
 
-.selectedOrder {
-
-  div {
+.selectedOrder div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
   background-color: whitesmoke;
   display: flex;
   justify-content: space-between;
-  align-items: center;}
+  align-items: center;
 }
-}
+
