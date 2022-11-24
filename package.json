@@ -1,4 +1,5 @@
 {
+
   "name": "eslint",
   "version": "1.0.0",
   "description": "",
@@ -14,5 +15,6 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "2.7.1"
+
   }
 }
