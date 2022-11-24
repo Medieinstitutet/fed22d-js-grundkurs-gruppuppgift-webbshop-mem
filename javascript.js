@@ -385,12 +385,11 @@ const email = document.querySelector('#email');
 const adress = document.querySelector('#adress');
 const zipcode = document.querySelector('#zipcode');
 const postalAdress = document.querySelector('#postalAdress');
-//const doorCode = document.querySelector('#doorcode');
+const doorCode = document.querySelector('#doorcode'); //Ordna så det inte krävs att fylla i portkod
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
 
-paymentForm.addEventListener('submit', (e) => {
-  // e står för event
+paymentForm.addEventListener('submit', (e) => { // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
@@ -403,7 +402,7 @@ function checkInputs() {
   const adressValue = adress.value.trim();
   const zipcodeValue = zipcode.value.trim();
   const postalAdressValue = postalAdress.value.trim();
-  //const doorCode = doorCode.value.trim();
+  const doorcodeValue = doorCode.value.trim();
   const telValue = tel.value.trim();
 
   //Blir väldigt mycket upprepning av kod här, går det att förenkla med en loop trots att jag även vill kolla unika statements för varje input?
@@ -457,6 +456,14 @@ function checkInputs() {
     setSuccessFor(postalAdress);
   }
 
+  if(doorcodeValue.length < 4) {
+    setErrorFor(doorCode, 'Fältet måste bestå av 4 siffror');
+  } else if (doorcodeValue.length > 4) {
+    setErrorFor(doorCode, 'Du får inte ange mer än 4 siffror');
+  } else if (doorcodeValue.length == 4) {
+    setSuccessFor(doorCode);
+  }
+
   if (telValue === '') {
     setErrorFor(tel, 'Du måste fylla i fältet');
   } else if (telValue.length < 10) {
@@ -493,14 +500,3 @@ function setSuccessFor(input) {
 function isEmail(email) {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 }
-
-/**
- X HTML struktur för fromulär
- X Variabler för alla input-fält
- XFunktion som visar felmeddelanden 
- Funktion som visar ett meddelande när formuläret är korrekt ifyllt (Du har lagt en beställning)
- Funktion som rensar formuläret
-
-
- Lägg till - Om man väljer att ange en portkod ska enbart 4 siffror godkännas.
-**/
