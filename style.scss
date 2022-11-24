@@ -1,10 +1,10 @@
-@import "scss/normalize";
-@import "scss/mobile-base";
-@media screen and (min-width: 600px){
-    @import "scss/tablet";
+@import 'scss/normalize';
+@import 'scss/mobile-base';
+@media screen and (min-width: 600px) {
+  @import 'scss/tablet';
 }
-@media screen and (min-width: 1000px){
-    @import "scss/desktop";
+@media screen and (min-width: 1000px) {
+  @import 'scss/desktop';
 }
 @media screen and (min-width: 1500px){
     @import "scss/large-desktop";

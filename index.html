@@ -17,7 +17,7 @@
     <main>
         <header>
             <nav>
-                <img src="images/logo.jpg" alt="brown donut with sprinkles" width="50" height="50">
+                <img src="images/logo.jpg" alt="brun donut med strössel" width="50" height="50">
                 <button class="toggle_menu" aria-label="menu-button" aria-haspopup="true" aria-expanded="false">
                     <span class="menu_bar"></span>
                     <span class="menu_bar"></span>
@@ -50,7 +50,9 @@
                     vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
                     commodo.
                 </p>
-                <button type="button" id="order_button"><a href="#donut-articles">Beställ här</a></button>
+                
+                <button class="orderbutton" type="button" id="order_button">Beställ Här</button>
+
             </article>
 
         </section>
@@ -58,10 +60,10 @@
             <div class="filtering_buttons">
                 <input type="image" name="shopping_cart" class="shopping_cart" src="images/cart.jpg" width="35" height="35" alt="varukorg"/>
                 <!-- <button class="shopping_cart"><img src=images/cart.jpg width="35" height="35" loading="lazy" > </button>-->
-                <button class="sorting"><span>Sortera</span><span class="material-symbols-outlined">
+                <button aria-label="sortera munkar" class="sorting"><span>Sortera</span><span class="material-symbols-outlined">
                     expand_more
                     </span></button>
-                <button class="filter"><span>Filtrera</span><span class="material-symbols-outlined">
+                <button aria-label="filtera munkar" class="filter"><span>Filtrera</span><span class="material-symbols-outlined">
                     tune
                     </span></button>
             </div>
@@ -307,7 +309,6 @@
                 </article>
             </section>
     </main>
-
     <script src="javascript.js"></script>
 </body>
 

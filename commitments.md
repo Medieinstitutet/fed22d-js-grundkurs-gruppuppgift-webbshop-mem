@@ -24,7 +24,7 @@ Det roliga är att problemlösa och att hitta vägar framåt
 Vi kör med VS inbyggda kod-formatering
 Kort sammanfattning på engelska, vi lägger på en ändelse (fix, addition) för att visa om vi lagt till eller ändrat.
 Vi commitar efter varje avslutat moment eller fix.
-När man har avslutat ett steg så begär vi review av båda andra, den som hinner först tittar och godkänner. 
+När man har avslutat ett steg så begär vi review av båda andra, den som hinner först tittar och godkänner.
 Backlogen ligger i issues, där fördelar vi mellan varandra och lägger till våra egna issues.
 Tidsplan: Vi följer föreslagen tidsplan. Sista veckan ska bara vara för finlir.
 
