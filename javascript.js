@@ -40,6 +40,9 @@ const returnToShoppingCartBtn = document.querySelector("#toggle_shopping_cart");
 toggleShoppingCartBtn.addEventListener("click", toggleOrderPage);
 returnToShoppingCartBtn.addEventListener("click", toggleOrderPage);
 
+/****************************************************************************
+ *                  Funktioner för orderpage
+ ****************************************************************************/
 
 // For Donut order page
 
@@ -53,7 +56,7 @@ class Donut {
         this.picSrc = picSrc;
     }
 }
-// Alla våra donuts anges nedan i denna array
+// Donuts-array
 const donuts =
     [new Donut(
         "Blåbärsmunk",
@@ -126,7 +129,6 @@ const donuts =
             ["images/small/violmunk2_liten.jpg", "images/small/violmunk2_liten.jpg"]
         )
     ];
- console.log(Donut)
 
 const donutPlacement = document.querySelectorAll(".donuts");
 const selectedOrderplacment = document.querySelectorAll(".selectedOrder");
@@ -136,20 +138,20 @@ let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let shopCartBtnUp = '';
 let shopCartBtnDown = '';
 
-//bildspelsvariabler
+
 
 // Funktion lista nedan
-
+// Denna skriver ut alla våra donuts på orderpage
 function displayDonut1() {
-    for (let i = 0; i < donuts.length; i++) { // Denna skriver ut alla våra donuts
+    for (let i = 0; i < donuts.length; i++) { 
         let donutNr = "nr" + i;
         const donutMarkup = `
         <div class="${donutNr} donuts">
-             <figure class="img-slide" >
-                <a id="prev" >&#10094;</a>
-                <img id="img1" src="" alt="" width="130" height="130">
-                <a id="next">&#10095;</a>
-                <figcaption>${donuts[i].review}/10</figcaption>
+             <figure id="img-slide" >
+                <button id="prev-${i}" class='prev'> &#10094; </button>
+                <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
+                <button id="next-${i}" class='next' >&#10095;</button>
+                <!--<figcaption>${donuts[i].review}/10</figcaption>-->
              </figure>
             <h4>${donuts[i].name}</h4>
             <ul>
@@ -160,46 +162,51 @@ function displayDonut1() {
         donutPlacement[i].outerHTML = donutMarkup;
         
     }
-        
-  
+    const nextBtns= document.querySelectorAll('.donut-articles button.next')
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', nextImage);
+    })
+
+    const prevBtns = document.querySelectorAll('.donut-articles button.prev')
+    prevBtns.forEach(btn => {
+        console.log(btn)
+        btn.addEventListener('click', prevImage )
+    })
+    console.log(prevBtns)
+
 }displayDonut1 ()
 
-//funktioner för bildspel
 
-const img1= document.querySelector('#img1');
+let currentImageIndex = 0;
 
-const nextBtn =document.querySelector('#next');
-const prevBtn = document.querySelector('#prev');
-
-let images = donuts[0].picSrc[0]
-
-let currentImageIndex = 1;
-
-
-function nextImage() {
+function nextImage(btn) {
+    const donutIndex= btn.currentTarget.id.replace('next-', '') //donutIndex = donutsens placering i arrayen
     let i = 0;
-    if (currentImageIndex + 1 > images.length - 1) {
+    if (currentImageIndex + 1 > donuts[i].picSrc[0].length - 1) {
       currentImageIndex = 0;
     } else {
       currentImageIndex += 1;
     }
-
-    img1.setAttribute('src', donuts[i].picSrc[1] )
+    document.querySelector(`#img-${donutIndex}`).setAttribute('src', donuts[donutIndex].picSrc[1] ) //plockar upp bild
+    
 }
-function prevImage (){
+
+function prevImage (btn){
+    const donutIndex= btn.currentTarget.id.replace('prev-', '')
     let i = 0;
     if (currentImageIndex - 1 < 0) {
-        currentImageIndex = images.length -1;
+        currentImageIndex = donuts[i].picSrc[1].length -1;
 }  else {
     currentImageIndex -=1;
 }
-img1.setAttribute('src', donuts[i].picSrc[0] )
+document.querySelector(`#img-${donutIndex}`).setAttribute('src', donuts[donutIndex].picSrc[0] )
 }
-nextBtn.addEventListener('click', nextImage);
-prevBtn.addEventListener('click', prevImage);
 
 
-//funktioner för varugkorg
+
+/****************************************************************************
+ *                  Funktioner för shopping-basket
+ ****************************************************************************/
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
         let donutNr = "nr" + i;
@@ -309,16 +316,16 @@ function clearCart() {
     
 }
 
-// Functioner anges ovan ---------------------------- 
+
 
 for (let i = 0; i < plusbtn.length; i++) {
     plusbtn[i].addEventListener('click', countUp);
     minusbtn[i].addEventListener('click', countDown);
 }
-displayDonut1();
+
 document.querySelector("#clearCartBtn").addEventListener('click', clearCart);
-nextImage ();
-prevImage ();
+//nextImage ();
+//prevImage ();
 
 
 

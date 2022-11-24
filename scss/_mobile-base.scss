@@ -88,7 +88,7 @@ header {
 }
 
 //Menyknapp
-button.toggle_menu {
+.toggle_menu {
   background-color: transparent;
   position: absolute;
   margin-top: 8px;
@@ -110,15 +110,15 @@ span.menu_bar {
   transition: all 0.3s ease-in-out;
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(2) {
+.toggle_menu:focus span.menu_bar:nth-child(2) {
   opacity: 0;
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(1) {
+.toggle_menu:focus span.menu_bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(3) {
+.toggle_menu:focus span.menu_bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
 
@@ -158,7 +158,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
     }
   }
 
-  button {
+  .orderbutton {
     background-color: #bebebe;
     font-family: var.$rubikFont;
     text-transform: uppercase;
@@ -172,7 +172,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
   }
 }
 
-button {
+.orderbutton {
   width: 80px;
   height: 30px;
 }
@@ -260,24 +260,29 @@ input[type="number"] {
       min-width: 70px;
     }
     
-    #img2 {
-      @include visuallyHidden()
-    }
-    #prev, #next {
+    
+    .prev, .next {
       cursor: pointer;
       position: absolute;
       top: 50%;
-      margin-top: -22px;
-      padding: 16px;
       color: black;
       font-weight: bold;
       font-size: 18px;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
+      background: none;
+      border: none;
+      z-index: 1;
     }
-    #next {
-      right: 20px;
+    
+    .prev:hover, .next:hover {
+      background-color: white;
+      opacity: 0.5;
     }
+    .next {
+      right: 15%;
+    }
+    .prev {
+      left:15%
+    } 
 
   }
   div {
