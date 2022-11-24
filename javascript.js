@@ -296,6 +296,12 @@ function toggleFilterOptions() {
   sortSelect.classList.toggle('toggle-hidden');
 }
 
+function toggleFilter(e) {
+  const filterValue = e.currentTarget.innerHTML
+}
+
+
+
 // Functioner anges ovan ----------------------------
 displayDonut1();
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
@@ -309,10 +315,23 @@ document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
 const sortSelect = document.querySelector('#sorting');
 sortSelect.addEventListener('input', onSortSelect);
 document.querySelector('#mainFilterBtn').addEventListener('click', toggleFilterOptions);
+const filterButtons = document.querySelector('.filterOptions').children;
 
 
+/*
+// Filter alternativ nedan
+let bar = false;
+let glasyr = false;
+let choklad = false;
+let socer = false;
+let strossel = false;
 
-
+filterButtons.forEach((i), () => {
+  filterButtons[i].addEventListener('click', addFilter);
+})
+console.log(filterButtons);
+// Filter ej klart ännu
+*/
 
 
 //Kod för betalningsformulär (Borde kanske vara Let istället för Const?)
