@@ -145,7 +145,7 @@ const donuts =
             32,
             6,
             "strössel glasyr",
-            ["images/small/violmunk2_liten.jpg", "images/small/violmunk2_liten.jpg"]
+            ["images/small/violmunk_liten.jpg", "images/small/violmunk2_liten.jpg"]
         )
     ];
 
