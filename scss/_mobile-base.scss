@@ -244,8 +244,6 @@ input[type='number'] {
   max-width: 800px;
   margin: 0 auto;
 
- 
-
   figure {
     position: relative;
     margin: 0;
@@ -262,30 +260,7 @@ input[type='number'] {
       min-width: 70px;
     }
     
-    
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      color: black;
-      font-weight: bold;
-      font-size: 18px;
-      background: none;
-      border: none;
-      z-index: 1;
-    }
-    
-    .prev:hover, .next:hover {
-      background-color: white;
-      opacity: 0.5;
-    }
-    .next {
-      right: 15%;
-    }
-    .prev {
-      left:15%
-    } 
-
+     
   }
 }
 
@@ -301,6 +276,29 @@ input[type='number'] {
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  background: none;
+  border: none;
+  z-index: 1;
+}
+
+.prev:hover, .next:hover {
+  background-color: white;
+  opacity: 0.5;
+}
+.next {
+  right: 15%;
+}
+.prev {
+  left:15%
 }
 
 .donut_article {
@@ -350,7 +348,7 @@ input[type='number'] {
     height: 100%;
   }
 }
-
+}
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 

@@ -33,11 +33,11 @@ document.querySelectorAll('.list_item').forEach((link) =>
     }
 
     menuButton.setAttribute('aria-expanded', true);
-})
+}))
 
 //Tar bort active när man klickar på en av länkarna. Gäller alla länkar
-document.querySelectorAll('.list_item').forEach(link => link.
-    addEventListener('click', () => { //Be om hjälp för att skriva om detta
+document.querySelectorAll('.list_item').forEach((link) => 
+    link.addEventListener('click', () => { //Be om hjälp för att skriva om detta
         menuOpen = false;
         menuButton.blur();
         if (menuOpen) {
@@ -161,21 +161,16 @@ let shopCartBtnDown = '';
 
 // Funktion lista nedan
 
-// Funktion lista nedan
 // Denna skriver ut alla våra donuts på orderpage
 function displayDonut1() {
-
-
   for (let i = 0; i < donuts.length; i++) {
-    // Denna skriver ut alla våra donuts
     let donutNr = 'nr' + i;
     const donutMarkup = `
-
         <div class="${donutNr} donuts">
              <figure id="img-slide" >
                 <button id="prev-${i}" class='prev'> &#10094; </button>
                 <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
-                <button id="next-${i}" class='next' >&#10095;</button>
+                <button id="next-${i}" class='next'> &#10095; </button>
                 <!--<figcaption>${donuts[i].review}/10</figcaption>-->
              </figure>
             <h4>${donuts[i].name}</h4>
@@ -188,18 +183,19 @@ function displayDonut1() {
         donutPlacement[i].outerHTML = donutMarkup;
         
     }
-    const nextBtns= document.querySelectorAll('.donut-articles button.next')
+    const nextBtns= document.querySelectorAll('.next')
     nextBtns.forEach(btn => {
-        btn.addEventListener('click', nextImage);
-    })
-
-    const prevBtns = document.querySelectorAll('.donut-articles button.prev')
-    prevBtns.forEach(btn => {
         console.log(btn)
+        btn.addEventListener('click', nextImage);
+        
+    })
+    
+
+    const prevBtns = document.querySelectorAll('.prev')
+    prevBtns.forEach(btn => {
+        
         btn.addEventListener('click', prevImage )
     })
-    console.log(prevBtns)
-
 }displayDonut1 ()
 
 
@@ -228,7 +224,6 @@ function prevImage (btn){
 }
 document.querySelector(`#img-${donutIndex}`).setAttribute('src', donuts[donutIndex].picSrc[0] )
 }
-
 
 
 /****************************************************************************
