@@ -1,3 +1,5 @@
+
+
 const menuButton = document.getElementsByClassName('toggle_menu')[0];
 const menuLinks = document.getElementsByClassName('menu_links')[0];
 
@@ -65,6 +67,7 @@ returnToShoppingCartBtn.addEventListener("click", toggleOrderPage);
 // For Donut order page
 
 class Donut {
+  // Template till våra donuts
   constructor(name, price, review, aspect, picSrc) {
     this.name = name;
     this.price = price;
@@ -74,6 +77,9 @@ class Donut {
     this.picSrc = picSrc;
   }
 }
+
+
+
 
 // Donuts-array
 const donuts =
@@ -149,12 +155,13 @@ const donuts =
         )
     ];
 
-const donutPlacement = document.querySelectorAll(".donuts");
+const donutPlacement = document.querySelectorAll('.donut_article');
 const selectedOrderplacment = document.querySelectorAll(".selectedOrder");
 const imageHolder = document.querySelectorAll('figure');
 
 let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
+
 let shopCartBtnUp = '';
 let shopCartBtnDown = '';
 
@@ -178,26 +185,28 @@ function displayDonut1() {
               <li>${donuts[i].price}kr</li>
               <li>Innehåller: ${donuts[i].aspect}</li>
             </ul>
-        </div> `;
+            <div class="selectcounter">${donuts[i].selectCounter}</div>
+            <div class="plus_minusBtn">
+                <button data-operator="plus">+</button>
+                <button data-operator="minus">-</button>
+            </div>
+           </div> `;
+    donutPlacement[i].innerHTML = donutMarkup;
+  }
+=======
 
-        donutPlacement[i].outerHTML = donutMarkup;
-        
-    }
+
+// Bild spel relaterat 
     const nextBtns= document.querySelectorAll('.next')
     nextBtns.forEach(btn => {
         console.log(btn)
-        btn.addEventListener('click', nextImage);
-        
-    })
-    
-
+        btn.addEventListener('click', nextImage);       
+    })   
     const prevBtns = document.querySelectorAll('.prev')
-    prevBtns.forEach(btn => {
-        
+    prevBtns.forEach(btn => {  
         btn.addEventListener('click', prevImage )
     })
-}displayDonut1 ()
-
+}
 
 let currentImageIndex = 0;
 
@@ -266,10 +275,9 @@ function calcTotalorder() {
 }
 
 function countUp(e) {
-  const controll =
-    e.currentTarget.parentElement.parentElement.firstElementChild.attributes
-      .class;
+  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
   const updateCounter = document.querySelectorAll('.selectcounter');
+  console.log(controll.value);
   for (let i = 0; i < donuts.length; i++) {
     if (controll.value == 'nr' + i + ' donuts') {
       donuts[i].selectCounter++;
@@ -278,9 +286,7 @@ function countUp(e) {
   }
 }
 function countDown(e) {
-  const controll =
-    e.currentTarget.parentElement.parentElement.firstElementChild.attributes
-      .class;
+  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
   const updateCounter = document.querySelectorAll('.selectcounter');
   for (let i = 0; i < donuts.length; i++) {
     if (controll.value == 'nr' + i + ' donuts') {
@@ -345,17 +351,73 @@ function clearCart() {
   calcTotalorder();
 }
 
+function onSortSelect() {
+  // Sorterings funktion
+
+  switch (sortSelect.value) {
+    case 'pricefalling':
+      donuts.sort((a, b) => b.price - a.price);
+      displayDonut1();
+      break;
+    case 'pricerising':
+      donuts.sort((a, b) => a.price - b.price);
+      displayDonut1();
+      break;
+    case 'lettersorting':
+      donuts.sort((a, b) => a.name > b.name);
+      displayDonut1();
+      break;
+    case 'reviewsorting':
+      donuts.sort((a, b) => a.review - b.review);
+      displayDonut1();
+      break;
+  }
+}
+
+function toggleFilterOptions() {
+  document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
+  toggleShoppingCartBtn.classList.toggle('toggle-hidden');
+  sortSelect.classList.toggle('toggle-hidden');
+}
+
+function toggleFilter(e) {
+  const filterValue = e.currentTarget.innerHTML
+}
 
 // Functioner anges ovan ----------------------------
+displayDonut1();
 
+const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
+let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
+let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 
 for (let i = 0; i < plusbtn.length; i++) {
   plusbtn[i].addEventListener('click', countUp);
   minusbtn[i].addEventListener('click', countDown);
 }
 
-displayDonut1();
 document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
+const sortSelect = document.querySelector('#sorting');
+sortSelect.addEventListener('input', onSortSelect);
+document.querySelector('#mainFilterBtn').addEventListener('click', toggleFilterOptions);
+const filterButtons = document.querySelector('.filterOptions').children;
+
+
+/*
+// Filter alternativ nedan
+let bar = false;
+let glasyr = false;
+let choklad = false;
+let socer = false;
+let strossel = false;
+
+filterButtons.forEach((i), () => {
+  filterButtons[i].addEventListener('click', addFilter);
+})
+console.log(filterButtons);
+// Filter ej klart ännu
+*/
+
 
 
 //Kod för betalningsformulär
@@ -370,6 +432,8 @@ const postalAdress = document.querySelector('#postalAdress');
 //const doorCode = document.querySelector('#doorcode');
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
+
+
 
 paymentForm.addEventListener('submit', (e) => { // e står för event
     e.preventDefault(); //Förhindrar att skicka formuläret

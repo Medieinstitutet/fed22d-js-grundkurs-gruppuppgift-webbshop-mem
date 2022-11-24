@@ -59,120 +59,69 @@
         <section class="order_page">
             <div class="filtering_buttons">
                 <input type="image" name="shopping_cart" class="shopping_cart" src="images/cart.jpg" width="35" height="35" alt="varukorg"/>
-                <!-- <button class="shopping_cart"><img src=images/cart.jpg width="35" height="35" loading="lazy" > </button>-->
-                <button aria-label="sortera munkar" class="sorting"><span>Sortera</span><span class="material-symbols-outlined">
+                
+                <!-- <label for="sort" aria-label="sortera munkar" class="sorting"><span>Sortera</span><span class="material-symbols-outlined">
                     expand_more
-                    </span></button>
-                <button aria-label="filtera munkar" class="filter"><span>Filtrera</span><span class="material-symbols-outlined">
+                    </span> </label> -->
+                    <select name="sort" id="sorting">
+                        <option autofocus value="">Sortera:</option>
+                        <option value="pricefalling">Pris Fallande</option>
+                        <option value="pricerising">Pris Stigande</option>
+                        <option value="lettersorting">Alfabetisk Ordning</option>
+                        <option value="reviewsorting">Omdömme</option>
+                    </select>
+
+                    <div class="filter">
+                    <button id="mainFilterBtn" aria-label="öppna menyn till filtering" ><span>Filtrera</span><span class="material-symbols-outlined">
                     tune
                     </span></button>
+                        <div class="filterOptions toggle-hidden">
+                            <button>Bär</button>
+                            <button>Glasyr</button>
+                            <button>Choklad</button>
+                            <button>Socker</button>
+                            <button>Strössel</button>
+                        </div>
+                    </div>
+
+
             </div>
             <section id="donut-articles">
                 <article class="donut_article">
-                    <div class="donuts">
-                        <!--Här hamnar donutsen-->
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+            
                 </article>
 
                 <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                    
                 </article>
                 <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                    
                 </article>
 
                 <article class="donut_article">
-                    <div class="donuts">
 
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                </article>
+
+                <article class="donut_article">               
+                  
+                </article>
+                <article class="donut_article">
+                   
                 </article>
 
                 <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
-                </article>
-                <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                   
                 </article>
 
                 <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                   
+                </article>
+                <article class="donut_article">
+                   
                 </article>
 
                 <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
-                </article>
-                <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
-                </article>
-
-                <article class="donut_article">
-                    <div class="donuts">
-
-                    </div>
-                    <div class="selectcounter"></div>
-                    <div class="plus_minusBtn">
-                        <button data-operator="plus">+</button>
-                        <button data-operator="minus">-</button>
-                    </div>
+                   
                 </article>
 
                 <footer></footer>
