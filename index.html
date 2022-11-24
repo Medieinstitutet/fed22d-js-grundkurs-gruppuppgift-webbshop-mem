@@ -50,7 +50,9 @@
                     vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
                     commodo.
                 </p>
-                <button type="button" id="order_button"><a href="#donut-articles">Beställ här</a></button>
+                
+                <button class="orderbutton" type="button" id="order_button">Beställ Här</button>
+
             </article>
 
         </section>
@@ -125,6 +127,7 @@
                 <footer></footer>
             </section>
             <section class="shopping_basket toggle-hidden">
+                <div class="border"></div>
                 <h2>Varukorg</h2>
 
                 <div class="current_donuts_order">
@@ -141,92 +144,117 @@
                     <div class="selectedOrder"></div>
                 </div>
 
-                <div class="price_discount">
-                    <input type="text" class="discount_text" value="Rabattkod:">
+                <div class="price_discount"> <!--Används ej under test-->
+                    <label>
+                        <span>Rabattkod:</span>
+                        <input type="text" class="discount_text" >
+                    </label>
                     <div class="discount_amount">Rabattsumma:</div>
+                </div>
+                <div class="total_sum">
                     <div class="amount_text">Totalt:</div>
                     <div class="total_amount"></div>
-                </div>
+                </div>  
+                <h3>Dina Uppgifter</h3>
                 <div class="order_clear_buttons">
                     <button id="toggle_shopping_cart">Tillbaka</button>
                     <button id="clearCartBtn">Rensa</button>
-                    <button>Beställ</button>
                 </div>
                 <article>
                     <form action="" id="paymentForm">
-                        <label>
-                            <span>Förnamn:</span>
-                            <input type="text" id="first_name" name="first_name" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Efternamn:</span>
-                            <input type="text" id="last_name" name="last_name" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Email:</span>
-                            <input type="email" id="email" name="email" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Adress:</span>
-                            <input type="text" id="adress" name="adress" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Postnummer:</span>
-                            <input type="number" id="zipcode" name="zipcode" minlength="4" maxlength="4" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Postort:</span>
-                            <input type="text" id="postal_adress" name="postal_adress" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Ev. Portkod:</span>
-                            <input type="number" id="doorcode" name="doorcode">
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
-                        <label>
-                            <span>Telefonnummer:</span>
-                            <input type="tel" id="tel" name="tel" required>
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <span class="material-symbols-outlined">cancel</span>
-                            <small>Error</small>
-                        </label><br>
+                        <div class="form_control">
+                            <label>
+                                <span>Förnamn:</span>
+                                <input type="text" id="first_name" name="first_name">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Efternamn:</span>
+                                <input type="text" id="last_name" name="last_name">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Email:</span>
+                                <input type="text" id="email" name="email">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Adress:</span>
+                                <input type="text" id="adress" name="adress">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Postnummer:</span>
+                                <input type="number" id="zipcode" name="zipcode" maxlength="4">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Postort:</span>
+                                <input type="text" id="postalAdress" name="postal_adress">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Ev. Portkod:</span>
+                                <input type="number" id="doorcode" name="doorcode">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Telefonnummer:</span>
+                                <input type="tel" id="tel" name="tel">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <button id="paymentButton">Betalning</button> 
+                        </div>
                     </form>
                     <button>Kortbetalning</button>
                     <form action="">
                         <label for="cardnr">Kortnummer:</label>
-                        <input type="number" id="cardnr" name="cardnr" required> <br>
+                        <input type="number" id="cardnr" name="cardnr"> <br>
                         <label for="date">Månad:</label>
-                        <input type="number" id="date" name="date" required> <br>
+                        <input type="number" id="date" name="date"> <br>
                         <label for="year">År:</label>
-                        <input type="number" id="year" name="year" required> <br>
+                        <input type="number" id="year" name="year"> <br>
                         <label for="cvc">CVC:</label>
-                        <input type="number" id="cvc" name="cvc" required> <br>
+                        <input type="number" id="cvc" name="cvc"> <br>
                     </form>
                     <button>Faktura</button>
                     <form action="">
                         <label for="idnr">Personnummer:</label>
                         <input type="number" id="idnr" name="idnr" required>
                     </form>
+                    <button>Beställ</button>
                 </article>
             </section>
     </main>

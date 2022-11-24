@@ -86,5 +86,13 @@ button.toggle_menu {
       background-color: #999999;
       transition: 0.3s;
     }
-  }
+}
+
+.shopping_basket{
+    top: 60px;
+}
+
+form#paymentForm{
+    max-width: 45%;
+ }
 }

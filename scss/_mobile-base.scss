@@ -92,7 +92,7 @@ header {
 }
 
 //Menyknapp
-button.toggle_menu {
+.toggle_menu {
   background-color: transparent;
   position: absolute;
   margin-top: 8px;
@@ -104,46 +104,47 @@ button.toggle_menu {
 }
 
 span.menu_bar {
-  display: block;
-  height: 4px;
-  width: 35px;
-  background-color: var.$menuColor;
-  margin-bottom: 5px;
-  border-radius: 4px;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+    display: block;
+    height: 3.5px;
+    width: 35px;
+    background-color: var.$menuColor;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(2) {
+.toggle_menu:focus span.menu_bar:nth-child(2) {
   opacity: 0;
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(1) {
+.toggle_menu:focus span.menu_bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
 
-button.toggle_menu:focus span.menu_bar:nth-child(3) {
+.toggle_menu:focus span.menu_bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
 
 .start_page {
-  min-height: 100vh;
-  background-color: var.$whiteBgColor;
+    min-height: 100vh;
+    background-color: var.$whiteBgColor;
 
-  .header_image {
-    display: flex;
-    align-items: flex-end;
-    height: 300px;
-    background-image: url('images/donut_image_startpage.jpg');
-    background-size: cover;
+    .header_image {
+        display: flex;
+        align-items: flex-end;
+        height: 300px;
+        background-image: url("images/donut_image_startpage.jpg");
+        background-size: cover;
 
-    h1 {
-      margin: 0 auto;
-      margin-bottom: 4em;
-      color: var.$blackTextColor;
-      font-family: var.$rubikFont;
-      font-size: 2rem;
-      text-transform: uppercase;
+        h1 {
+            margin: 0 auto;
+            margin-bottom: 5em;
+            color: var.$blackTextColor;
+            font-family: var.$rubikFont;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+        }
     }
   }
 
@@ -162,7 +163,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
     }
   }
 
-  button {
+  .orderbutton {
     background-color: #bebebe;
     font-family: var.$rubikFont;
     text-transform: uppercase;
@@ -182,7 +183,7 @@ button.toggle_menu:focus span.menu_bar:nth-child(3) {
   }
 }
 
-button {
+.orderbutton {
   width: 80px;
   height: 30px;
 }
@@ -225,9 +226,6 @@ input[type='number'] {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
   }
 
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-  }
   .filter {
     margin-right: 20px;
     display: flex;
@@ -259,9 +257,7 @@ input[type='number'] {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-}
+
 .donut_article > div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -300,6 +296,31 @@ input[type='number'] {
       }
     }
   }
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  background: none;
+  border: none;
+  z-index: 1;
+}
+
+.prev:hover, .next:hover {
+  background-color: white;
+  opacity: 0.5;
+}
+.next {
+  right: 15%;
+}
+.prev {
+  left:15%
+}
+
+
   .selectcounter {
     border: 1px solid black;
     font-size: 1.5rem;
@@ -310,7 +331,6 @@ input[type='number'] {
   .plus_minusBtn {
     display: flex !important;
     flex-direction: column;
-
     button {
       min-width: 50px;
       min-width: 50px;
@@ -319,65 +339,87 @@ input[type='number'] {
     }
   }
 }
-
+}
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 
-.shopping_basket {
-  position: absolute;
-  top: 50px; // Lämnar plats till header
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(112, 45, 45);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
 
-  h2 {
-    text-align: center;
-    width: 80%;
-    padding: 10px 0;
-    margin: 15px auto;
-    background-color: azure;
-    border-radius: 40px;
-  }
+.border{
+    width: 70%;
+    margin: 0 auto;
+
+    &::before{
+        position: absolute;
+        margin-bottom: 2rem;  
+        width: 70%;
+        height: 1.8px;
+        background: rgb(84, 84, 84);
+        border-radius: 100%;
+        content: "";
+    }
 }
 
-.price_discount {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  background-color: white;
-  font-size: 1.2rem;
+.shopping_basket {
+    position: absolute;
+    top: 68px; // Lämnar plats till header - Döljer just nu menyn
+    width: 100%;
+    min-height: 110vh;
+    background-color: var.$whiteBgColor;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    font-family: var.$rubikFont;
+    padding-bottom: 3em;
 
-  input {
-    grid-column: 1/2;
-    grid-row: 1/2;
-  }
+    h2, h3{
+        text-align: center;
+        text-transform: uppercase;
+        width: 80%;
+        margin: 15px auto;
+        font-family: var.$rubikFont;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
 
-  .discount_amount {
-    grid-column: 2/3;
-    grid-row: 1/2;
-    background-color: rgb(255, 235, 222);
-  }
+    h3{
+        font-size: 1.3rem;
+    }
+}
 
-  .amount_text {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    background-color: rgb(255, 235, 222);
-  }
+.price_discount{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
 
-  .total_amount {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    background-color: rgb(255, 235, 222);
-  }
+    label{
+        margin-bottom: 1rem;
+    }
+
+    .discount_amount{
+        margin-right: 10.8em;
+    }
+}
+
+.total_sum{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    margin-right: 3em;
+    margin-bottom: 1rem;
+
+    .amount_text{
+        margin-right: 10em;
+    }
 }
 
 .order_clear_buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    }
 
   button {
     margin-right: 10px;
@@ -392,6 +434,77 @@ input[type='number'] {
   flex-direction: column;
 }
 
+//Formulär för betalning
+form#paymentForm{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 2em;
+
+    .form_control{
+        margin-bottom: 1em;
+        position: relative;
+
+        label{
+            display: inline-block;
+           // margin-bottom: 3px; Kolla upp denna
+        }
+
+        input{
+            display: block;
+            border: 1px solid #656565;
+            border-radius: 4px;
+            padding: 3px;
+            width: 100%;
+            height: 23px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        i{
+            position: absolute;
+            right: -3px;
+            top: 34px;
+            visibility: hidden;
+        }
+
+        small{
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    .form_control.success input{
+        border: 2px solid var.$sucessColor;
+    }
+
+    .form_control.success i.fa-circle-check{
+        color: var.$sucessColor;
+        visibility: visible;
+    }
+    
+    .form_control.error input{
+        border: 2px solid var.$errorColor;
+    }
+    
+    .form_control.error i.fa-circle-xmark{
+        color: var.$errorColor;
+        visibility: visible;
+    }
+
+    .form_control.error small{
+        color: var.$errorColor;
+    }
+
+    button#paymentButton{
+        min-width: 8em;
+        height: 2.3em;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+}
 .selectedOrder div {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
@@ -400,3 +513,4 @@ input[type='number'] {
   justify-content: space-between;
   align-items: center;
 }
+
