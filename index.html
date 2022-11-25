@@ -51,8 +51,7 @@
                     commodo.
                 </p>
                 
-                <button class="orderbutton" type="button" id="order_button">Beställ Här</button>
-
+                <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ Här</a></button>
             </article>
 
         </section>
@@ -110,7 +109,6 @@
                 <footer></footer>
             </section>
             <section class="shopping_basket toggle-hidden">
-                <div class="border"></div>
                 <h2>Varukorg</h2>
 
                 <div class="current_donuts_order">
@@ -139,12 +137,12 @@
                     <div class="total_amount"></div>
                 </div>  
                 <h3>Dina Uppgifter</h3>
-                <div class="order_clear_buttons">
-                    <button id="toggle_shopping_cart">Tillbaka</button>
-                    <button id="clearCartBtn">Rensa</button>
-                </div>
                 <article>
                     <form action="" id="paymentForm">
+                        <div class="order_clear_buttons">
+                            <button id="toggle_shopping_cart">Tillbaka</button>
+                            <button id="clearCartBtn" type="reset">Rensa</button>
+                        </div>
                         <div class="form_control">
                             <label>
                                 <span>Förnamn:</span>
@@ -221,21 +219,41 @@
                             <button id="paymentButton">Betalning</button> 
                         </div>
                     </form>
-                    <button>Kortbetalning</button>
-                    <form action="">
-                        <label for="cardnr">Kortnummer:</label>
-                        <input type="number" id="cardnr" name="cardnr"> <br>
-                        <label for="date">Månad:</label>
-                        <input type="number" id="date" name="date"> <br>
-                        <label for="year">År:</label>
-                        <input type="number" id="year" name="year"> <br>
-                        <label for="cvc">CVC:</label>
-                        <input type="number" id="cvc" name="cvc"> <br>
+                    <button id="cardPaymentBtn">Kortbetalning</button>
+                    <form action="" id="cardPaymentForm">
+                        <div class="form_control">
+                            <label>
+                                <span>Kortnummer:</span>
+                                <input type="number" id="cardnr" name="cardnr">
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Månad:</span>
+                                <input type="number" id="date" name="date">
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>År:</span>
+                                <input type="number" id="year" name="year">
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>CVC:</span>
+                                <input type="number" id="cvc" name="cvc">
+                            </label>
+                        </div>
                     </form>
-                    <button>Faktura</button>
-                    <form action="">
-                        <label for="idnr">Personnummer:</label>
-                        <input type="number" id="idnr" name="idnr" required>
+                    <button id="invoicePaymentBtn">Faktura</button>
+                    <form action="" id="invoicePaymentForm">
+                        <div class="form_control">
+                            <label>
+                                <span>Personnummer:</span>
+                                <input type="number" id="idnr" name="idnr">
+                            </label>
+                        </div>  
                     </form>
                     <button>Beställ</button>
                 </article>

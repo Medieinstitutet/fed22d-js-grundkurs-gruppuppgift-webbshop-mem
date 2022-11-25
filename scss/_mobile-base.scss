@@ -346,21 +346,6 @@ input[type='number'] {
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
 
-.border {
-  width: 70%;
-  margin: 0 auto;
-
-  &::before {
-    position: absolute;
-    margin-bottom: 2rem;
-    width: 70%;
-    height: 1.8px;
-    background: rgb(84, 84, 84);
-    border-radius: 100%;
-    content: '';
-  }
-}
-
 .shopping_basket {
   position: absolute;
   top: 60px; // Lämnar plats till header - Döljer just nu menyn
@@ -435,7 +420,7 @@ input[type='number'] {
 }
 
 //Formulär för betalning
-form#paymentForm {
+form#paymentForm, form#cardPaymentForm {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
