@@ -3,7 +3,7 @@ const menuLinks = document.getElementsByClassName('menu_links')[0];
 
 let menuOpen = false; //Menyn är stängd som default
 
-menuButton.addEventListener('click', () => {
+function toggleMenu(){
     menuOpen = !menuOpen; //Gör att menyn får värdet true
     if (!menuOpen) {
         menuButton.blur(); // Tar bort fokus från knappen
@@ -16,7 +16,9 @@ menuButton.addEventListener('click', () => {
         menuLinks.classList.remove('active');
     }
     menuButton.setAttribute('aria-expanded', true);
-});
+}
+
+menuButton.addEventListener('click', toggleMenu);
 
 //Stänger menyn
 const listItemLinks = document.querySelectorAll('.list_item');
@@ -505,7 +507,7 @@ function checkInputs() {
         controlForm++;
     }
 
-    if (doorcodeValue.length < 4) { //If-satsen ska enbart köras OM användaren fyller i fältet
+    if (doorcodeValue.length > 0) { //If-satsen ska enbart köras OM användaren fyller i fältet
         setErrorFor(doorCode, 'Fältet måste bestå av 4 siffror');
     } else if (doorcodeValue.length > 4) {
         setErrorFor(doorCode, 'Du får inte ange mer än 4 siffror');
