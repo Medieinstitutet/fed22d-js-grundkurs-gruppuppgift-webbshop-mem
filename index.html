@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" type="text/css">
 </head>
 
 <body>
@@ -172,7 +173,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Efternamn:</span>
-                                <input type="text" id="last_name" name="last_name">
+                                <input type="text" id="last_name" name="last_name" value="Mässing">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -181,7 +182,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Email:</span>
-                                <input type="text" id="email" name="email">
+                                <input type="text" id="email" name="email" value="emiliamassing@gmail.com">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -190,7 +191,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Adress:</span>
-                                <input type="text" id="adress" name="adress">
+                                <input type="text" id="adress" name="adress" value="Ränngruvevägen 7B">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -199,7 +200,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postnummer:</span>
-                                <input type="number" id="zipcode" name="zipcode" maxlength="4">
+                                <input type="number" id="zipcode" name="zipcode" maxlength="4" value="77240">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -208,7 +209,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postort:</span>
-                                <input type="text" id="postalAdress" name="postal_adress">
+                                <input type="text" id="postalAdress" name="postal_adress" value="Grängesberg">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -217,7 +218,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Ev. Portkod:</span>
-                                <input type="number" id="doorcode" name="doorcode">
+                                <input type="number" id="doorcode" name="doorcode" value="1234">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -226,7 +227,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Telefonnummer:</span>
-                                <input type="tel" id="tel" name="tel">
+                                <input type="tel" id="tel" name="tel" value="0722290469">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -236,8 +237,8 @@
                             <button id="paymentButton">Betalning</button> 
                         </div>
                     </form>
-                    <button id="cardPaymentBtn">Kortbetalning</button>
-                    <form action="" id="cardPaymentForm">
+                    <button id="cardPaymentBtn" class="toggle-hidden">Kortbetalning</button>
+                    <form action="" id="cardPaymentForm" class="toggle-hidden">
                         <div class="form_control">
                             <label>
                                 <span>Kortnummer:</span>
@@ -263,8 +264,8 @@
                             </label>
                         </div>
                     </form>
-                    <button id="invoicePaymentBtn">Faktura</button>
-                    <form action="" id="invoicePaymentForm">
+                    <button id="invoicePaymentBtn" class="toggle-hidden">Faktura</button>
+                    <form action="" id="invoicePaymentForm" class="toggle-hidden">
                         <div class="form_control">
                             <label>
                                 <span>Personnummer:</span>
@@ -272,7 +273,7 @@
                             </label>
                         </div>  
                     </form>
-                    <button>Beställ</button>
+                    <button id="orderBtn" class="toggle-hidden">Beställ</button>
                 </article>
             </section>
     </main>

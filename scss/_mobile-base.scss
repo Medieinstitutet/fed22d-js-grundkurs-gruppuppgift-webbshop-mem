@@ -172,7 +172,8 @@ span.menu_bar {
     cursor: pointer;
     align-self: center;
     border-radius: 4px;
-    border: 3px solid #8e8e8e;
+    border: 2px solid #8e8e8e;
+
 
     a {
       text-decoration: none;
@@ -401,8 +402,17 @@ input[type='number'] {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+
   button {
     margin-right: 10px;
+    padding: 7px;
+
+    &:hover{
+        background-color: #bfbcbc;
+        border: 2px solid #8e8e8e;
+        border-radius: 4px;
+        cursor: pointer;
+    }
   }
 
   button:nth-child(3) {
@@ -415,7 +425,7 @@ input[type='number'] {
 }
 
 //Formulär för betalning
-form#paymentForm, form#cardPaymentForm {
+form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -483,6 +493,13 @@ form#paymentForm, form#cardPaymentForm {
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
+
+    &:hover{
+        background-color: #bfbcbc;
+        border: 2px solid #8e8e8e;
+        border-radius: 4px;
+        cursor: pointer;
+    }
   }
 }
 .selectedOrder div {
