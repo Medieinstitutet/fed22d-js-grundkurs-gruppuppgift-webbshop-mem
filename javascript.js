@@ -144,7 +144,7 @@ function displayDonut1() {
         btn.addEventListener('click', prevImage);
     });
 }
-
+displayDonut1();
 let currentImageIndex = 0;
 
 function nextImage(btn) {
@@ -311,15 +311,16 @@ function onSortSelect() {
     }
 }
 
-function toggleFilterOptions() {
+//Kommentera tillbaka detta innan push
+/* function toggleFilterOptions() {
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
- /* if (open) {
+  if (open) {
     for (let i = 0; i < donuts.length;i++) {
       if()
     }
-  }*/
+  }
   open = true; 
 
 }
@@ -378,9 +379,9 @@ function toggleFilterOptions() {
       console.log(strossel);
       break;
     }
-}
-
+*/
 // Functioner anges ovan ----------------------------
+/*
 displayDonut1();
 
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
@@ -410,7 +411,7 @@ const filterButtons = document.querySelector('.filterOptions').children;
 for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
 }
-
+*/
 
 
 //Kod för betalningsformulär
@@ -512,7 +513,7 @@ function checkInputs() {
         setSuccessFor(doorCode);
     }
 
-    if (telValue === '') {
+    /*if (telValue === '') {
         setErrorFor(tel, 'Du måste fylla i fältet');
     } else if (telValue.length < 10) {
         setErrorFor(tel, 'Fältet måste bestå av 10 siffror');
@@ -521,7 +522,17 @@ function checkInputs() {
     } else if (telValue.length == 10) {
         setSuccessFor(tel);
         controlForm++;
+    }*/
+
+    if (telValue === '') {
+        setErrorFor(tel, 'Du måste fylla i fältet');
+    }else if(!isPhoneNumber(telValue)){
+        setErrorFor(tel, 'Du måste ange ett giltigt mobilnummer');
+    }else{
+        setSuccessFor(tel);
+        controlForm++;
     }
+
 }
 
 function setErrorFor(input, message) {
@@ -548,6 +559,10 @@ function setSuccessFor(input) {
 
 function isEmail(email) {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+}
+
+function isPhoneNumber(tel){
+    return /^07(0|2|3|6|9)\d{7}$/g.test(tel);
 }
 
 //Validering för kortbetalningsformulär

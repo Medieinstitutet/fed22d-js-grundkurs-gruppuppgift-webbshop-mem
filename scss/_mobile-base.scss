@@ -172,7 +172,7 @@ span.menu_bar {
     cursor: pointer;
     align-self: center;
     border-radius: 4px;
-    border: 2px solid #8e8e8e;
+    border: 2px solid var.$btnBorderColor;
 
 
     a {
@@ -413,8 +413,8 @@ input[type='number'] {
     padding: 7px;
 
     &:hover{
-        background-color: #bfbcbc;
-        border: 2px solid #8e8e8e;
+        background-color: var.$btnHoverBgColor;
+        border: 2px solid var.$btnBorderColor;
         border-radius: 4px;
         cursor: pointer;
     }
@@ -500,13 +500,35 @@ form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm {
     text-transform: uppercase;
 
     &:hover{
-        background-color: #bfbcbc;
-        border: 2px solid #8e8e8e;
+        background-color: var.$btnHoverBgColor;
+        border: 2px solid var.$btnBorderColor;
         border-radius: 4px;
         cursor: pointer;
     }
   }
 }
+
+.flex_payment_button{
+    display: flex;
+    justify-content: center;
+
+    button#cardPaymentBtn, button#invoicePaymentBtn{
+        min-width: 5em;
+        height: 1.8em;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-right: 20px;
+
+        &:hover{
+            background-color: var.$btnHoverBgColor;
+            border: 2px solid var.$btnBorderColor;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
 .selectedOrder div {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
