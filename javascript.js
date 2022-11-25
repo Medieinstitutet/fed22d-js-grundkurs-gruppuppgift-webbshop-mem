@@ -59,7 +59,7 @@ class Donut {
 
 // Donuts-array
 const donuts = [
-    new Donut('Blåbärsmunk', 20, 8, 'bär glasyr', [
+    new Donut('Blåbärsmunk', 20, 8, 'bär glasyr',[
         'images/small/blabarsmunk_liten.jpg',
         'images/small/blabarsmunk2_liten.jpg',
     ]),
@@ -143,39 +143,47 @@ function displayDonut1() {
     prevBtns.forEach((btn) => {
         btn.addEventListener('click', prevImage);
     });
-}
+
+} displayDonut1 ()
+
 
 let currentImageIndex = 0;
 
 function nextImage(btn) {
-    const donutIndex = btn.currentTarget.id.replace('next-', ''); //donutIndex = donutsens placering i arrayen
-    let i = 0;
-    if (currentImageIndex + 1 > donuts[i].picSrc[0].length - 1) {
-        currentImageIndex = 0;
+  //donutIndex = donutsens placering i arrayen
+    const donutIndex = btn.currentTarget.id.replace('next-', ''); 
+    //array med alla bilder
+    const imageArray = donuts[donutIndex].picSrc
+    //aktuell bild
+    const currentImage = document.querySelector(`#img-${donutIndex}`)
+    //src för aktuell bild
+    const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src')
+    console.log(currentImageSrc)
+    
+    //byter bild beroende på bildens placering i arrayen
+    if (currentImageSrc === imageArray [0]) {
+      currentImage.setAttribute('src', imageArray[1])
     } else {
-        currentImageIndex += 1;
-    }
-    document
-        .querySelector(`#img-${donutIndex}`)
-        .setAttribute('src', donuts[donutIndex].picSrc[1]); //plockar upp bild
+      currentImage.setAttribute('src', imageArray[0])
+    };
 }
 
 function prevImage(btn) {
-    const donutIndex = btn.currentTarget.id.replace('prev-', '');
-    let i = 0;
-    if (currentImageIndex - 1 < 0) {
-        currentImageIndex = donuts[i].picSrc[1].length - 1;
+   const donutIndex = btn.currentTarget.id.replace('prev-', '');
+    const imageArray = donuts[donutIndex].picSrc
+    const currentImage = document.querySelector(`#img-${donutIndex}`)
+    const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src')
+    console.log(currentImageSrc)
+    
+    if (currentImageSrc === imageArray [0]) {
+      currentImage.setAttribute('src', imageArray[1])
     } else {
-        currentImageIndex -= 1;
-    }
-    document
-        .querySelector(`#img-${donutIndex}`)
-        .setAttribute('src', donuts[donutIndex].picSrc[0]);
+      currentImage.setAttribute('src', imageArray[0])
+    };
 }
-
 /****************************************************************************
  *                  Funktioner för shopping-basket
- ****************************************************************************/
+ ***************************************************************************/
 function displayDonutCart() {
     for (let i = 0; i < donuts.length; i++) {
         let donutNr = 'nr' + i;
@@ -378,7 +386,7 @@ function toggleFilterOptions() {
       console.log(strossel);
       break;
     }
-}
+
 
 // Functioner anges ovan ----------------------------
 displayDonut1();
