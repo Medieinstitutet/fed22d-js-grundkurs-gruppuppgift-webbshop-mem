@@ -312,13 +312,72 @@ function onSortSelect() {
 }
 
 function toggleFilterOptions() {
-    document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
-    toggleShoppingCartBtn.classList.toggle('toggle-hidden');
-    sortSelect.classList.toggle('toggle-hidden');
+  document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
+  toggleShoppingCartBtn.classList.toggle('toggle-hidden');
+  sortSelect.classList.toggle('toggle-hidden');
+ /* if (open) {
+    for (let i = 0; i < donuts.length;i++) {
+      if()
+    }
+  }*/
+  open = true; 
+
 }
 
-function toggleFilter(e) {
-    const filterValue = e.currentTarget.innerHTML;
+  const selectedFilter = e.currentTarget;
+
+  switch (selectedFilter.innerHTML) {
+    case 'Bär':
+      selectedFilter.classList.toggle('highLighted');
+      if (bar) {
+        bar = false;
+        console.log(bar);
+        break;
+      } 
+      bar = true;
+      console.log(bar);
+      break;
+    case 'Glasyr':
+      selectedFilter.classList.toggle('highLighted');
+      if (glasyr) {
+        glasyr = false;
+        console.log(glasyr);
+        break;
+      } 
+      glasyr = true;
+      console.log(glasyr);
+      break;
+    case 'Choklad':
+      selectedFilter.classList.toggle('highLighted');
+      if (choklad) {
+        choklad = false;
+        console.log(choklad);
+        break;
+      } 
+      choklad = true;
+      console.log(choklad);
+      break;
+    case 'Socker':
+      selectedFilter.classList.toggle('highLighted');
+      if (socker) {
+        socker = false;
+        console.log(socker);
+        break;
+      } 
+      socker = true;
+      console.log(socker);
+      break;
+    case 'Strössel':
+      selectedFilter.classList.toggle('highLighted');
+      if (strossel) {
+        strossel = false;
+        console.log(strossel);
+        break;
+      } 
+      strossel = true;
+      console.log(strossel);
+      break;
+    }
 }
 
 // Functioner anges ovan ----------------------------
@@ -327,7 +386,12 @@ displayDonut1();
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
 let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
-
+let bar = false;
+let glasyr = false;
+let choklad = false;
+let socker = false;
+let strossel = false;
+let open = false;
 for (let i = 0; i < plusbtn.length; i++) {
     plusbtn[i].addEventListener('click', countUp);
     minusbtn[i].addEventListener('click', countDown);
@@ -341,20 +405,13 @@ document
     .addEventListener('click', toggleFilterOptions);
 const filterButtons = document.querySelector('.filterOptions').children;
 
-/*
-// Filter alternativ nedan
-let bar = false;
-let glasyr = false;
-let choklad = false;
-let socer = false;
-let strossel = false;
 
-filterButtons.forEach((i), () => {
-  filterButtons[i].addEventListener('click', addFilter);
-})
-console.log(filterButtons);
-// Filter ej klart ännu
-*/
+// Filter alternativ nedan
+for (let i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', toggleFilter);
+}
+
+
 
 //Kod för betalningsformulär
 
