@@ -428,6 +428,14 @@ const doorCode = document.querySelector('#doorcode'); //Ordna så det inte kräv
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
 
+function clearForm(){
+    const formController = document.querySelectorAll('.form_control');
+    formController.forEach(div => {
+        div.classList.remove('success', 'error');
+    })
+    console.log(formController);
+}
+
 paymentForm.addEventListener('submit', (e) => { // e står för event
     e.preventDefault(); //Förhindrar att skicka formuläret
 
@@ -439,6 +447,20 @@ paymentForm.addEventListener('submit', (e) => { // e står för event
 });
 
 let controlForm = 0;
+
+const cardOptionBtn = document.querySelector('#cardPaymentBtn');
+const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
+
+function pickPaymentOption(e){
+    if(e.currentTarget.id == 'cardPaymentBtn'){
+        document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
+    }else if(e.currentTarget.id == 'invoicePaymentBtn'){
+        document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+    }
+}
+
+cardOptionBtn.addEventListener('click', pickPaymentOption);
+invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
 function checkInputs() {
     const firstnameValue = firstName.value.trim(); //Trim tar bort eventuellt whitespace
@@ -489,11 +511,9 @@ function checkInputs() {
 
     if (zipcodeValue === '') {
         setErrorFor(zipcode, 'Du måste fylla i fältet');
-    } else if (zipcodeValue.length < 5) {
-        setErrorFor(zipcode, 'Fältet måste bestå av 5 siffror');
-    } else if (zipcodeValue.length > 5) {
-        setErrorFor(zipcode, 'Du får inte ange mer än 5 siffror');
-    } else if (zipcodeValue.length == 5) {
+    }else if(!isZipcode(zipcodeValue)){
+        setErrorFor(zipcode, 'Du måste ange ett giltigt postnummer');
+    }else{
         setSuccessFor(zipcode);
         controlForm++;
     }
@@ -507,24 +527,13 @@ function checkInputs() {
         controlForm++;
     }
 
-    if (doorcodeValue.length > 0) { //If-satsen ska enbart köras OM användaren fyller i fältet
+    if (doorcodeValue.length > 0) { 
         setErrorFor(doorCode, 'Fältet måste bestå av 4 siffror');
     } else if (doorcodeValue.length > 4) {
         setErrorFor(doorCode, 'Du får inte ange mer än 4 siffror');
     } else if (doorcodeValue.length == 4) {
         setSuccessFor(doorCode);
     }
-
-    /*if (telValue === '') {
-        setErrorFor(tel, 'Du måste fylla i fältet');
-    } else if (telValue.length < 10) {
-        setErrorFor(tel, 'Fältet måste bestå av 10 siffror');
-    } else if (telValue.length > 10) {
-        setErrorFor(telValue, 'Du får inte ange mer än 10 siffror');
-    } else if (telValue.length == 10) {
-        setSuccessFor(tel);
-        controlForm++;
-    }*/
 
     if (telValue === '') {
         setErrorFor(tel, 'Du måste fylla i fältet');
@@ -560,19 +569,72 @@ function setSuccessFor(input) {
 }
 
 function isEmail(email) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(email);
 }
 
 function isPhoneNumber(tel){
     return /^07(0|2|3|6|9)\d{7}$/g.test(tel);
 }
 
+function isZipcode(zipcode){
+    return /^[0-9]{3}\s?[0-9]{2}$/g.test(zipcode);
+}
+
 //Validering för kortbetalningsformulär
 const cardPaymentForm = document.querySelector('#cardPaymentForm');
+const orderBtn = document.querySelector('#orderButton');
 const cardNumber = document.querySelector('#cardnr');
 const cardMonth = document.querySelector('#date');
 const cardYear = document.querySelector('#year');
 const cvc = document.querySelector('#cvc');
+
+cardPaymentForm.addEventListener('submit', (e) => { // e står för event
+    e.preventDefault(); //Förhindrar att skicka formuläret
+
+    checkCardPaymentInputs();
+});
+
+
+function checkCardPaymentInputs(){
+    const cardNumberValue = cardNumber.value.trim();
+    const cardMonthValue = cardMonth.value.trim();
+    const cardYearValue = cardYear.value.trim();
+    const cvcValue = cvc.value.trim();
+
+    if(cardNumberValue === ''){ 
+        setErrorFor(cardNumber, 'Du måste fylla i fältet');
+    }else if(cardNumberValue.length < 16){
+        setErrorFor(cardNumber, 'Fältet måste bestå av 16 siffror');
+    }else if(cardNumberValue.length > 16){
+        setErrorFor(cardNumber, 'Fältet får inte bestå av mer än 16 siffror');
+    }else if(cardNumberValue.length == 16){
+        setSuccessFor(cardNumber);
+    }
+
+    if(cardMonthValue === ''){
+        setErrorFor(cardMonth, 'Du måste fylla i fältet');
+    }else if(cardMonthValue.length < 2){
+        setErrorFor(cardMonth, 'Du måste ange 2 siffror');
+    }
+    else if(cardMonthValue.length > 2){
+        setErrorFor(cardMonth, 'Du får inte ange mer än 2 siffror');
+    }else{
+        setSuccessFor(cardMonth);
+    }
+
+    if(cardYearValue === ''){ //Funkar inte med length. Annan lösning?
+        setErrorFor(cardYear, 'Du måste fylla i fältet');
+    }else if(cardYear.length < 1900){
+        setErrorFor(cardYear, 'Du måste ange ett högre tal än 1900');
+    }
+    else if(cardYearValue.length > 2022){
+        setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2022');
+    }else{
+        setSuccessFor(cardYear);
+    }
+
+}
+
 
 /**
  - När formuläret är godkänt ska betalningsalternativen dyka upp när man klickar på Betalning

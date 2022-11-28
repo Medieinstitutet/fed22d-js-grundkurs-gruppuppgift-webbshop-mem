@@ -142,7 +142,7 @@
                     <form action="" id="paymentForm">
                         <div class="order_clear_buttons">
                             <button id="toggle_shopping_cart">Tillbaka</button>
-                            <button id="clearCartBtn" type="reset">Rensa</button>
+                            <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
                         </div>
                         <div class="form_control">
                             <label>
@@ -229,24 +229,36 @@
                             <label>
                                 <span>Kortnummer:</span>
                                 <input type="number" id="cardnr" name="cardnr">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>Månad:</span>
                                 <input type="number" id="date" name="date">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>År:</span>
                                 <input type="number" id="year" name="year">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                         <div class="form_control">
                             <label>
                                 <span>CVC:</span>
                                 <input type="number" id="cvc" name="cvc">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
                     </form>
@@ -255,10 +267,15 @@
                             <label>
                                 <span>Personnummer:</span>
                                 <input type="number" id="idnr" name="idnr">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>  
                     </form>
-                    <button id="orderBtn" class="toggle-hidden">Beställ</button>
+                    <div class="center_button">
+                        <button id="orderButton">Beställ</button>
+                    </div>
                 </article>
             </section>
     </main>
