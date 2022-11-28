@@ -453,7 +453,7 @@ let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let bar = false;
 let glasyr = false;
-let choklad = false;
+let choklad = false; // Alla alternativ till filter funktionen 
 let socker = false;
 let strossel = false;
 let open = false;
