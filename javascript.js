@@ -310,7 +310,9 @@ function clearCart() {
 }
 
 function onSortSelect() {
-  // Sorterings funktion
+
+  // Sorterings funktion, sorterar när använderan gör ett val i select inputen
+
 
   switch (sortSelect.value) {
     case 'pricefalling':
@@ -326,79 +328,127 @@ function onSortSelect() {
       displayDonut1();
       break;
     case 'reviewsorting':
-      donuts.sort((a, b) => a.review - b.review);
+    
+      donuts.sort((a, b) => b.review - a.review);
       displayDonut1();
       break;
   }
 }
 
 function toggleFilterOptions() {
+  // Visar toggle menyn när man trcker på Filter knappen, filterar sedan när man trycker igen och stänger den.
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
-  /* if (open) {
-     for (let i = 0; i < donuts.length;i++) {
-       if()
-     }
-   }*/
-  open = true;
+
+  if (open) {
+    open = false;
+    for (let i = 0; i < donuts.length; i++) {
+      donutPlacement[i].innerHTML = ''; // Tar bort donutsen som redan visas
+      let donutNr = 'nr' + i;
+      const donutMarkup = ` 
+        <div class="${donutNr} donuts">
+             <figure id="img-slide" >
+                <button id="prev-${i}" class='prev'> &#10094; </button>
+                <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
+                <button id="next-${i}" class='next'> &#10095; </button>
+                <figcaption>${donuts[i].review}/10</figcaption>
+             </figure>
+            <h4>${donuts[i].name}</h4>
+            <ul>
+              <li>${donuts[i].price}kr</li>
+              <li>Innehåller: ${donuts[i].aspect}</li>
+            </ul>
+            <div class="selectcounter">${donuts[i].selectCounter}</div>
+            <div class="plus_minusBtn">
+                <button data-operator="plus">+</button>
+                <button data-operator="minus">-</button>
+            </div>
+           </div> `; // Denna är grund html till donutsen som skrivs ut
+      if (bar) {
+        // Dessa if satser skriver ut donutsen som har ett true värde på dess aspekt.
+        if (donuts[i].aspect.includes('bär')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (glasyr) {
+        if (donuts[i].aspect.includes('glasyr')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (choklad) {
+        if (donuts[i].aspect.includes('choklad')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (socker) {
+        if (donuts[i].aspect.includes('socker')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (strossel) {
+        if (donuts[i].aspect.includes('strössel')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+    }
+  }
+  open = true; // Så koden triggas ändas när man stänger filter menyn
+  if (!bar && !glasyr && !choklad && !socker && !strossel) {
+    // Om man inte valt något alternativ så skrivs donutsen ut som vanligt
+    displayDonut1();
+  }
 }
 
-//const selectedFilter = e.currentTarget;
-
-/*switch (selectedFilter.innerHTML) {
-  case 'Bär':
-    selectedFilter.classList.toggle('highLighted');
-    if (bar) {
-      bar = false;
-      console.log(bar);
+function toggleFilter(e) {
+  // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
+  const selectedFilter = e.currentTarget;
+  switch (
+    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+  ) {
+    case 'Bär':
+      selectedFilter.classList.toggle('highLighted');
+      if (bar) {
+        bar = false;
+        break;
+      }
+      bar = true;
       break;
-    } 
-    bar = true;
-    console.log(bar);
-    break;
-  case 'Glasyr':
-    selectedFilter.classList.toggle('highLighted');
-    if (glasyr) {
-      glasyr = false;
-      console.log(glasyr);
+    case 'Glasyr':
+      selectedFilter.classList.toggle('highLighted');
+      if (glasyr) {
+        glasyr = false;
+        break;
+      }
+      glasyr = true;
       break;
-    } 
-    glasyr = true;
-    console.log(glasyr);
-    break;
-  case 'Choklad':
-    selectedFilter.classList.toggle('highLighted');
-    if (choklad) {
-      choklad = false;
-      console.log(choklad);
+    case 'Choklad':
+      selectedFilter.classList.toggle('highLighted');
+      if (choklad) {
+        choklad = false;
+        break;
+      }
+      choklad = true;
       break;
-    } 
-    choklad = true;
-    console.log(choklad);
-    break;
-  case 'Socker':
-    selectedFilter.classList.toggle('highLighted');
-    if (socker) {
-      socker = false;
-      console.log(socker);
+    case 'Socker':
+      selectedFilter.classList.toggle('highLighted');
+      if (socker) {
+        socker = false;
+        break;
+      }
+      socker = true;
       break;
-    } 
-    socker = true;
-    console.log(socker);
-    break;
-  case 'Strössel':
-    selectedFilter.classList.toggle('highLighted');
-    if (strossel) {
-      strossel = false;
-      console.log(strossel);
+    case 'Strössel':
+      selectedFilter.classList.toggle('highLighted');
+      if (strossel) {
+        strossel = false;
+        break;
+      }
+      strossel = true;
       break;
-    } 
-    strossel = true;
-    console.log(strossel);
-    break;
   }
-*/
+}
+
 
 
 displayDonut1();
@@ -408,7 +458,7 @@ let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let bar = false;
 let glasyr = false;
-let choklad = false;
+let choklad = false; // Alla alternativ till filter funktionen 
 let socker = false;
 let strossel = false;
 let open = false;
@@ -424,6 +474,10 @@ document
   .querySelector('#mainFilterBtn')
   .addEventListener('click', toggleFilterOptions);
 const filterButtons = document.querySelector('.filterOptions').children;
+for (let i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', toggleFilter);
+}
+
 
 
 //Funktion för måndagsrabatt
@@ -439,6 +493,7 @@ function mondayDecrease() {
     discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
   }
 }
+
 //Kod för betalningsformulär
 
 const paymentForm = document.querySelector('form');
