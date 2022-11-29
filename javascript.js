@@ -260,7 +260,7 @@ function tuesdayDiscount() {
 
   if ((weekNumber % 2 == 0) && (tuesday) && totalAmount > 25) {
     console.log(totalAmount * 0.75)
-    totalAmountPlacement.innerHTML = totalAmount * 0.75 + 'kr';
+    totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75)  + ' kr';
     const discountText = document.querySelector('.discount_amount');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
