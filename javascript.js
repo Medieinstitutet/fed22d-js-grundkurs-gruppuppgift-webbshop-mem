@@ -3,6 +3,7 @@ const menuLinks = document.getElementsByClassName('menu_links')[0];
 
 let menuOpen = false; //Menyn är stängd som default
 
+//Funktion för menyn
 function toggleMenu() {
   menuOpen = !menuOpen; //Gör att menyn får värdet true
   if (!menuOpen) {
