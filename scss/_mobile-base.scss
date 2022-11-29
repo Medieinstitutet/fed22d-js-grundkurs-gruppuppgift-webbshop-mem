@@ -172,7 +172,7 @@ span.menu_bar {
     cursor: pointer;
     align-self: center;
     border-radius: 4px;
-    border: 3px solid #8e8e8e;
+    border: 2px solid var.$btnBorderColor;
 
     a {
       text-decoration: none;
@@ -409,8 +409,17 @@ input[type='number'] {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+
   button {
     margin-right: 10px;
+    padding: 7px;
+
+    &:hover {
+      background-color: var.$btnHoverBgColor;
+      border: 2px solid var.$btnBorderColor;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   }
 
   button:nth-child(3) {
@@ -424,7 +433,8 @@ input[type='number'] {
 
 //Formulär för betalning
 form#paymentForm,
-form#cardPaymentForm {
+form#cardPaymentForm,
+form#invoicePaymentForm {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -492,8 +502,62 @@ form#cardPaymentForm {
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
+
+    &:hover {
+      background-color: var.$btnHoverBgColor;
+      border: 2px solid var.$btnBorderColor;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   }
 }
+
+.flex_payment_button {
+  display: flex;
+  justify-content: center;
+
+  button#cardPaymentBtn,
+  button#invoicePaymentBtn {
+    min-width: 5em;
+    height: 1.8em;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-right: 20px;
+
+    &:hover {
+      background-color: var.$btnHoverBgColor;
+      border: 2px solid var.$btnBorderColor;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
+
+button#cardPaymentBtn.active,
+button#invoicePaymentBtn.active {
+  background-color: blue; //Ändra css när detta funkar
+}
+
+form#cardPaymentForm,
+form#invoicePaymentForm{ 
+  button#cardOrderButton,
+  button#invoiceOrderButton {
+    min-width: 8em;
+    height: 2.3em;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: var.$btnHoverBgColor;
+      border: 2px solid var.$btnBorderColor;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
+
 .selectedOrder div {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 0.5fr;

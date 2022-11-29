@@ -6,7 +6,8 @@ const menuLinks = document.getElementsByClassName('menu_links')[0];
 
 let menuOpen = false; //Menyn är stängd som default
 
-menuButton.addEventListener('click', () => {
+//Funktion för menyn
+function toggleMenu() {
   menuOpen = !menuOpen; //Gör att menyn får värdet true
   if (!menuOpen) {
     menuButton.blur(); // Tar bort fokus från knappen
@@ -19,7 +20,9 @@ menuButton.addEventListener('click', () => {
     menuLinks.classList.remove('active');
   }
   menuButton.setAttribute('aria-expanded', true);
-});
+}
+
+menuButton.addEventListener('click', toggleMenu);
 
 //Stänger menyn
 const listItemLinks = document.querySelectorAll('.list_item');
@@ -55,7 +58,6 @@ class Donut {
     this.aspect = aspect;
     this.selectCounter = 0;
     this.picSrc = picSrc;
-    
   }
 
 }
@@ -134,7 +136,6 @@ function displayDonut1() {
   }
 
   // Variabler till bildspel
-  
   const nextBtns = document.querySelectorAll('.next');
   nextBtns.forEach((btn) => {
     btn.addEventListener('click', nextImage);
@@ -310,9 +311,7 @@ function clearCart() {
 }
 
 function onSortSelect() {
-
   // Sorterings funktion, sorterar när använderan gör ett val i select inputen
-
 
   switch (sortSelect.value) {
     case 'pricefalling':
@@ -327,8 +326,7 @@ function onSortSelect() {
       donuts.sort((a, b) => a.name > b.name);
       displayDonut1();
       break;
-    case 'reviewsorting':
-    
+    case 'reviewsorting':  
       donuts.sort((a, b) => b.review - a.review);
       displayDonut1();
       break;
@@ -448,9 +446,6 @@ function toggleFilter(e) {
       break;
   }
 }
-
-
-
 displayDonut1();
 
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
@@ -478,8 +473,6 @@ for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
 }
 
-
-
 //Funktion för måndagsrabatt
 function mondayDecrease() {
   const date = new Date();
@@ -495,7 +488,6 @@ function mondayDecrease() {
 }
 
 //Kod för betalningsformulär
-
 const paymentForm = document.querySelector('form');
 const firstName = document.querySelector('#first_name');
 const lastName = document.querySelector('#last_name');
@@ -507,12 +499,59 @@ const doorCode = document.querySelector('#doorcode'); //Ordna så det inte kräv
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
 
+
+function clearForm() {
+  const formController = document.querySelectorAll('.form_control');
+  formController.forEach((div) => {
+    div.classList.remove('success', 'error');
+  });
+  console.log(formController);
+}
+
 paymentForm.addEventListener('submit', (e) => {
   // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
+  
+  if (controlForm >= 7) {
+    document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentBtn')
+      .classList.remove('toggle-hidden');
+  }
 });
+
+let controlForm = 0;
+
+const cardOptionBtn = document.querySelector('#cardPaymentBtn');
+const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
+
+function pickPaymentOption(e) {
+  if (e.currentTarget.id == 'cardPaymentBtn') {
+    document
+      .querySelector('#cardPaymentForm')
+      .classList.remove('toggle-hidden');
+    cardOptionBtn.classList.add('active');
+
+    console.log(cardOptionBtn);
+
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.add('toggle-hidden');
+  } else if (e.currentTarget.id == 'invoicePaymentBtn') {
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.remove('toggle-hidden');
+    invoiceOptionBtn.classList.add('active');
+    console.log(invoiceOptionBtn);
+
+    document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
+  }
+}
+
+cardOptionBtn.addEventListener('click', pickPaymentOption);
+invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
 function checkInputs() {
   const firstnameValue = firstName.value.trim(); //Trim tar bort eventuellt whitespace
@@ -531,6 +570,7 @@ function checkInputs() {
     setErrorFor(firstName, 'Ditt namn måste var längre än 3 bokstäver');
   } else {
     setSuccessFor(firstName);
+    controlForm++;
   }
 
   if (lastnameValue === '') {
@@ -539,6 +579,7 @@ function checkInputs() {
     setErrorFor(lastName, 'Ditt namn måste var längre än 2 bokstäver');
   } else {
     setSuccessFor(lastName);
+    controlForm++;
   }
 
   if (emailValue === '') {
@@ -547,6 +588,7 @@ function checkInputs() {
     setErrorFor(email, 'Du måste ange en giltig E-mail');
   } else {
     setSuccessFor(email);
+    controlForm++;
   }
 
   if (adressValue === '') {
@@ -555,16 +597,16 @@ function checkInputs() {
     setErrorFor(adress, 'Fältet måste vara längre än 6 bokstäver');
   } else {
     setSuccessFor(adress);
+    controlForm++;
   }
 
   if (zipcodeValue === '') {
     setErrorFor(zipcode, 'Du måste fylla i fältet');
-  } else if (zipcodeValue.length < 4) {
-    setErrorFor(zipcode, 'Fältet måste bestå av 4 siffror');
-  } else if (zipcodeValue.length > 4) {
-    setErrorFor(zipcode, 'Du får inte ange mer än 4 siffror');
-  } else if (zipcodeValue.length == 4) {
+  } else if (!isZipcode(zipcodeValue)) {
+    setErrorFor(zipcode, 'Du måste ange ett giltigt postnummer');
+  } else {
     setSuccessFor(zipcode);
+    controlForm++;
   }
 
   if (postalAdressValue === '') {
@@ -573,9 +615,10 @@ function checkInputs() {
     setErrorFor(postalAdress, 'Fältet måste vara längre än 4 bokstäver');
   } else {
     setSuccessFor(postalAdress);
+    controlForm++;
   }
 
-  if (doorcodeValue.length < 4) {
+  if (doorcodeValue.length > 0) {
     setErrorFor(doorCode, 'Fältet måste bestå av 4 siffror');
   } else if (doorcodeValue.length > 4) {
     setErrorFor(doorCode, 'Du får inte ange mer än 4 siffror');
@@ -585,14 +628,12 @@ function checkInputs() {
 
   if (telValue === '') {
     setErrorFor(tel, 'Du måste fylla i fältet');
-  } else if (telValue.length < 10) {
-    setErrorFor(tel, 'Fältet måste bestå av 10 siffror');
-  } else if (telValue.length > 10) {
-    setErrorFor(telValue, 'Du får inte ange mer än 10 siffror');
-  } else if (telValue.length == 10) {
+  } else if (!isPhoneNumber(telValue)) {
+    setErrorFor(tel, 'Du måste ange ett giltigt mobilnummer');
+  } else {
     setSuccessFor(tel);
+    controlForm++;
   }
-}
 
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
@@ -617,7 +658,106 @@ function setSuccessFor(input) {
 }
 
 function isEmail(email) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(email);
+}
+
+function isPhoneNumber(tel) {
+  return /^07(0|2|3|6|9)\d{7}$/g.test(tel);
+}
+
+function isZipcode(zipcode) {
+  return /^[0-9]{3}\s?[0-9]{2}$/g.test(zipcode);
+}
+
+//Validering för kortbetalningsformulär
+const cardPaymentForm = document.querySelector('#cardPaymentForm');
+const orderBtn = document.querySelector('#orderButton');
+const cardNumber = document.querySelector('#cardnr');
+const cardMonth = document.querySelector('#date');
+const cardYear = document.querySelector('#year');
+const cvc = document.querySelector('#cvc');
+
+const lowestYear = 1900;
+const highestYear = 2022;
+
+cardPaymentForm.addEventListener('submit', (e) => {
+  // e står för event
+  e.preventDefault(); //Förhindrar att skicka formuläret
+
+  checkCardPaymentInputs();
+});
+
+function checkCardPaymentInputs() {
+  const cardNumberValue = cardNumber.value.trim();
+  const cardMonthValue = cardMonth.value.trim();
+  const cardYearValue = cardYear.value.trim();
+  const cvcValue = cvc.value.trim();
+
+  if (cardNumberValue === '') {
+    setErrorFor(cardNumber, 'Du måste fylla i fältet');
+  } else if (cardNumberValue.length < 16) {
+    setErrorFor(cardNumber, 'Fältet måste bestå av 16 siffror');
+  } else if (cardNumberValue.length > 16) {
+    setErrorFor(cardNumber, 'Fältet får inte bestå av mer än 16 siffror');
+  } else {
+    setSuccessFor(cardNumber);
+  }
+
+  if (cardMonthValue === '') {
+    setErrorFor(cardMonth, 'Du måste fylla i fältet');
+  } else if (cardMonthValue.length < 2) {
+    setErrorFor(cardMonth, 'Du måste ange 2 siffror');
+  } else if (cardMonthValue.length > 2) {
+    setErrorFor(cardMonth, 'Du får inte ange mer än 2 siffror');
+  } else {
+    setSuccessFor(cardMonth);
+  }
+
+  if (cardYearValue === '') {
+    //Funkar inte med length. Annan lösning?
+    setErrorFor(cardYear, 'Du måste fylla i fältet');
+  } else if (cardYearValue <= lowestYear) {
+    setErrorFor(cardYear, 'Du måste ange ett högre tal än 1900');
+  } else if (cardYearValue >= highestYear) {
+    setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2022');
+  } else {
+    setSuccessFor(cardYear);
+  }
+
+  if (cvcValue === '') {
+    setErrorFor(cvc, 'Du måste fylla i fältet');
+  } else if (cvcValue.length < 3) {
+    setErrorFor(cvc, 'Du måste ange 3 siffror');
+  } else if (cvcValue.length > 3) {
+    setErrorFor(cvc, 'Du får inte ange mer än 3 siffror');
+  } else {
+    setSuccessFor(cvc);
+  }
+}
+
+//Validering för fakturaformulär
+const invoicePaymentForm = document.querySelector('#invoicePaymentForm');
+const personalIdentity = document.querySelector('#idnr');
+
+invoicePaymentForm.addEventListener('submit', (e) => {
+    // e står för event
+    e.preventDefault(); //Förhindrar att skicka formuläret
+  
+    checkInvoicePaymentInputs();
+});
+
+function checkInvoicePaymentInputs(){
+    const personalIdentityValue = personalIdentity.value.trim();
+
+    if(personalIdentityValue === ''){
+        setErrorFor(personalIdentity, 'Du måste fylla i fältet');
+    }else if(personalIdentityValue.length < 10){
+        setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
+    }else if(personalIdentityValue.length > 10){
+        setErrorFor(personalIdentity, 'Fältet får inte innehålla mer än 10 siffror');
+    }else{
+        setSuccessFor(personalIdentity);
+    }
 }
 
 /**
@@ -637,6 +777,3 @@ function isEmail(email) {
  * Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
  * Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
  */
-
-
-
