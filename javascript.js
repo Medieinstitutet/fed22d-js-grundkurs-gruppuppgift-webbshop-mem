@@ -635,6 +635,8 @@ function checkInputs() {
     controlForm++;
   }
 
+}
+
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
