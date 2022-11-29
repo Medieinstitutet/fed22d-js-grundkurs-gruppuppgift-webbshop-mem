@@ -104,9 +104,9 @@ const donuts = [
 ];
 
 // Funktion för att skriva ut alla våra munkar till sidan
+const donutPlacement = document.querySelectorAll('.donut_article');
 
 function displayDonut1() {
-  const donutPlacement = document.querySelectorAll('.donut_article');
   let shopCartBtnUp = '';
   let shopCartBtnDown = '';
   for (let i = 0; i < donuts.length; i++) {
@@ -367,27 +367,27 @@ function toggleFilterOptions() {
            </div> `; // Denna är grund html till donutsen som skrivs ut
       if (bar) {
         // Dessa if satser skriver ut donutsen som har ett true värde på dess aspekt.
-        if (donuts[i].aspect.includes('bär')) {
+        if (donuts[i].aspect.includes('Bär')) {
           donutPlacement[i].innerHTML = donutMarkup;
         }
       }
       if (glasyr) {
-        if (donuts[i].aspect.includes('glasyr')) {
+        if (donuts[i].aspect.includes('Glasyr')) {
           donutPlacement[i].innerHTML = donutMarkup;
         }
       }
       if (choklad) {
-        if (donuts[i].aspect.includes('choklad')) {
+        if (donuts[i].aspect.includes('Choklad')) {
           donutPlacement[i].innerHTML = donutMarkup;
         }
       }
       if (socker) {
-        if (donuts[i].aspect.includes('socker')) {
+        if (donuts[i].aspect.includes('Socker')) {
           donutPlacement[i].innerHTML = donutMarkup;
         }
       }
       if (strossel) {
-        if (donuts[i].aspect.includes('strössel')) {
+        if (donuts[i].aspect.includes('Strössel')) {
           donutPlacement[i].innerHTML = donutMarkup;
         }
       }
