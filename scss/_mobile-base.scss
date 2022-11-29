@@ -249,11 +249,9 @@ input[type='number'] {
     }
   }
 }
-.highLighted{
+.highLighted {
   background-color: darkblue !important;
 }
-
-
 
 .material-symbols-outlined {
   display: inline-block;
@@ -383,9 +381,14 @@ input[type='number'] {
   label {
     margin-bottom: 1rem;
   }
+  
+}
+.discount_amount {
+  display: flex;
+  justify-content: center;
 
-  .discount_amount {
-    margin-right: 10.8em;
+  span{
+    margin-right: 8em;
   }
 }
 
@@ -420,7 +423,8 @@ input[type='number'] {
 }
 
 //Formulär för betalning
-form#paymentForm, form#cardPaymentForm {
+form#paymentForm,
+form#cardPaymentForm {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
