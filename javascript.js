@@ -454,8 +454,17 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 function pickPaymentOption(e){
     if(e.currentTarget.id == 'cardPaymentBtn'){
         document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
+        cardOptionBtn.classList.add('active');
+
+        console.log(cardOptionBtn);
+
+        document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
     }else if(e.currentTarget.id == 'invoicePaymentBtn'){
         document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+        invoiceOptionBtn.classList.add('active');
+        console.log(invoiceOptionBtn);
+
+        document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
     }
 }
 
@@ -588,6 +597,9 @@ const cardMonth = document.querySelector('#date');
 const cardYear = document.querySelector('#year');
 const cvc = document.querySelector('#cvc');
 
+const lowestYear = 1900;
+const highestYear = 2022;
+
 cardPaymentForm.addEventListener('submit', (e) => { // e står för event
     e.preventDefault(); //Förhindrar att skicka formuläret
 
@@ -607,7 +619,7 @@ function checkCardPaymentInputs(){
         setErrorFor(cardNumber, 'Fältet måste bestå av 16 siffror');
     }else if(cardNumberValue.length > 16){
         setErrorFor(cardNumber, 'Fältet får inte bestå av mer än 16 siffror');
-    }else if(cardNumberValue.length == 16){
+    }else{
         setSuccessFor(cardNumber);
     }
 
@@ -624,15 +636,25 @@ function checkCardPaymentInputs(){
 
     if(cardYearValue === ''){ //Funkar inte med length. Annan lösning?
         setErrorFor(cardYear, 'Du måste fylla i fältet');
-    }else if(cardYear.length < 1900){
+    }else if(cardYearValue <= lowestYear){
         setErrorFor(cardYear, 'Du måste ange ett högre tal än 1900');
     }
-    else if(cardYearValue.length > 2022){
+    else if(cardYearValue >= highestYear){
         setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2022');
     }else{
         setSuccessFor(cardYear);
     }
 
+    if(cvcValue === ''){
+        setErrorFor(cvc, 'Du måste fylla i fältet');
+    }else if(cvcValue.length < 3){
+        setErrorFor(cvc, 'Du måste ange 3 siffror');
+    }
+    else if(cvcValue.length > 3){
+        setErrorFor(cvc, 'Du får inte ange mer än 3 siffror');
+    }else{
+        setSuccessFor(cvc);
+    }
 }
 
 

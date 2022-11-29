@@ -509,6 +509,7 @@ form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm {
    
   }
 }
+
 .flex_payment_button{
     display: flex;
     justify-content: center;
@@ -530,10 +531,14 @@ form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm {
     }
 }
 
+button#cardPaymentBtn.active, button#invoicePaymentBtn.active{
+  background-color: blue;
+}
+
 .center_button{
     width: 80%;
     margin: 0 auto;
-    button#orderButton{
+    button#cardOrderButton, button#invoiceOrderButton{
         justify-content: center;
         min-width: 8em;
         height: 2.3em;
