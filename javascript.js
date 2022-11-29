@@ -1,3 +1,6 @@
+/***************************************************************************************
+ *                             Funktioner för meny
+*************************************************************************************** */
 const menuButton = document.getElementsByClassName('toggle_menu')[0];
 const menuLinks = document.getElementsByClassName('menu_links')[0];
 
@@ -46,8 +49,6 @@ returnToShoppingCartBtn.addEventListener('click', toggleOrderPage);
  *                  Funktioner för orderpage
  ****************************************************************************/
 
-// For Donut order page
-
 class Donut {
   // Template till våra donuts
   constructor(name, price, review, aspect, picSrc) {
@@ -58,61 +59,58 @@ class Donut {
     this.selectCounter = 0;
     this.picSrc = picSrc;
   }
-}
 
+}
 // Donuts-array
 const donuts = [
-  new Donut('Blåbärsmunk', 20, 8, 'bär glasyr', [
+  new Donut('Blåbärsmunk', 20, 8, 'Bär, Glasyr', [
     'images/small/blabarsmunk_liten.jpg',
     'images/small/blabarsmunk2_liten.jpg',
   ]),
-  new Donut('Chokladmunk', 22, 6, 'choklad', [
+  new Donut('Chokladmunk', 22, 6, 'Choklad', [
     'images/small/chokladmunk_liten.jpg',
     'images/small/chokladmunk2_liten.jpg',
   ]),
-  new Donut('Dubbel chokladmunk', 25, 9, 'choklad', [
+  new Donut('Dubbel chokladmunk', 25, 9, 'Choklad', [
     'images/small/dubbelchoklad_liten.jpg',
     'images/small/dubbelchoklad2_liten.jpg',
   ]),
-  new Donut('Glasyrmunk', 15, 7, 'glasyr', [
+  new Donut('Glasyrmunk', 15, 7, 'Glasyr', [
     'images/small/glasymunk2_liten.jpg',
     'images/small/glasymunk2_liten.jpg',
   ]),
-  new Donut('Sockermunk, glutenfri', 30, 5, 'socker glutenfri', [
+  new Donut('Sockermunk, glutenfri', 30, 5, 'Socker, Glutenfri', [
     'images/small/sockermunk_liten.jpg',
     'images/small/sockermunk2_liten.jpg',
   ]),
-  new Donut('Strösselmunk', 32, 4, 'strössel glasyr', [
+  new Donut('Strösselmunk', 32, 4, 'Strössel, Glasyr', [
     'images/small/strosselmunk_liten.jpg',
     'images/small/strosselmunk2_liten.jpg',
   ]),
-  new Donut('Syltmunk, glutenfri', 32, 4, 'socker glutenfri', [
+  new Donut('Syltmunk, glutenfri', 32, 4, 'Socker, Glutenfri', [
     'images/small/syltmunk_liten.jpg',
     'images/small/syltmunk2_liten.jpg',
   ]),
-  new Donut('Toppingmunk', 32, 6, 'strössel glasyr', [
+  new Donut('Toppingmunk', 32, 6, 'Strössel, Glasyr', [
     'images/small/toppingmunk_liten.jpg',
     'images/small/toppingmunk2_liten.jpg',
   ]),
-  new Donut('Vaniljmunk', 32, 6, 'vaniljkräm glasyr', [
+  new Donut('Vaniljmunk', 32, 6, 'Vaniljkräm, Glasyr', [
     'images/small/vaniljmunk_liten.jpg',
     'images/small/vaniljmunk2_liten.jpg',
   ]),
-  new Donut('Violmunk', 32, 6, 'strössel glasyr', [
+  new Donut('Violmunk', 32, 6, 'Strössel, Glasyr', [
     'images/small/violmunk_liten.jpg',
     'images/small/violmunk2_liten.jpg',
   ]),
 ];
 
+// Funktion för att skriva ut alla våra munkar till sidan
 const donutPlacement = document.querySelectorAll('.donut_article');
 
-let shopCartBtnUp = '';
-let shopCartBtnDown = '';
-
-// Funktion lista nedan
-
-// Denna skriver ut alla våra donuts på orderpage
 function displayDonut1() {
+  let shopCartBtnUp = '';
+  let shopCartBtnDown = '';
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
     const donutMarkup = `
@@ -121,11 +119,11 @@ function displayDonut1() {
                 <button id="prev-${i}" class='prev'> &#10094; </button>
                 <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
                 <button id="next-${i}" class='next'> &#10095; </button>
-                <!--<figcaption>${donuts[i].review}/10</figcaption>-->
+                <figcaption>${donuts[i].review}/10</figcaption>
              </figure>
             <h4>${donuts[i].name}</h4>
             <ul>
-              <li>${donuts[i].price}kr</li>
+              <li class="price">${donuts[i].price}kr</li>
               <li>Innehåller: ${donuts[i].aspect}</li>
             </ul>
             <div class="selectcounter">${donuts[i].selectCounter}</div>
@@ -137,7 +135,7 @@ function displayDonut1() {
     donutPlacement[i].innerHTML = donutMarkup;
   }
 
-  // Bild spel relaterat
+  // Variabler till bildspel
   const nextBtns = document.querySelectorAll('.next');
   nextBtns.forEach((btn) => {
     btn.addEventListener('click', nextImage);
@@ -148,37 +146,57 @@ function displayDonut1() {
   });
 }
 displayDonut1();
-let currentImageIndex = 0;
+
+//Funktion för prisökning fredag 15.00 - måndag 03.00 
+
+function fridayIncrease() {
+  const date = new Date();
+  console.log(date);
+  const friday = date.getDay() === 5;
+  const monday = date.getDay() === 1;
+  const time = date.getHours();
+
+  if ((friday && time > 15) || (monday && time <= 3)) {
+    for (let i = 0; i < donuts.length; i++) {
+      donuts[i].price = Math.floor(donuts[i].price * 1.15);
+    }
+  }
+}
+fridayIncrease();
+
+//Funktioner för bildspel
 
 function nextImage(btn) {
-  const donutIndex = btn.currentTarget.id.replace('next-', ''); //donutIndex = donutsens placering i arrayen
-  let i = 0;
-  if (currentImageIndex + 1 > donuts[i].picSrc[0].length - 1) {
-    currentImageIndex = 0;
+  const donutIndex = btn.currentTarget.id.replace('next-', '');
+  const imageArray = donuts[donutIndex].picSrc;
+  const currentImage = document.querySelector(`#img-${donutIndex}`);
+  const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src');
+  console.log(currentImageSrc);
+
+  //Byter bild beroende på bildens placering i arrayen
+  if (currentImageSrc === imageArray[0]) {
+    currentImage.setAttribute('src', imageArray[1]);
   } else {
-    currentImageIndex += 1;
+    currentImage.setAttribute('src', imageArray[0]);
   }
-  document
-    .querySelector(`#img-${donutIndex}`)
-    .setAttribute('src', donuts[donutIndex].picSrc[1]); //plockar upp bild
 }
 
 function prevImage(btn) {
   const donutIndex = btn.currentTarget.id.replace('prev-', '');
-  let i = 0;
-  if (currentImageIndex - 1 < 0) {
-    currentImageIndex = donuts[i].picSrc[1].length - 1;
-  } else {
-    currentImageIndex -= 1;
-  }
-  document
-    .querySelector(`#img-${donutIndex}`)
-    .setAttribute('src', donuts[donutIndex].picSrc[0]);
-}
+  const imageArray = donuts[donutIndex].picSrc;
+  const currentImage = document.querySelector(`#img-${donutIndex}`);
+  const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src');
+  console.log(currentImageSrc);
 
+  if (currentImageSrc === imageArray[0]) {
+    currentImage.setAttribute('src', imageArray[1]);
+  } else {
+    currentImage.setAttribute('src', imageArray[0]);
+  }
+}
 /****************************************************************************
  *                  Funktioner för shopping-basket
- ****************************************************************************/
+ ***************************************************************************/
 function displayDonutCart() {
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
@@ -202,9 +220,9 @@ function displayDonutCart() {
     }
   }
 }
+let totalAmount = 0;
+const totalAmountPlacement = document.querySelector('.total_amount');
 function calcTotalorder() {
-  const totalAmountPlacement = document.querySelector('.total_amount');
-  let totalAmount = 0;
   for (let i = 0; i < donuts.length; i++) {
     if (donuts[i].selectCounter > 0) {
       let combinedAmount = 0;
@@ -213,6 +231,7 @@ function calcTotalorder() {
     }
   }
   totalAmountPlacement.innerHTML = totalAmount + 'kr';
+  mondayDecrease();
 }
 
 function countUp(e) {
@@ -292,7 +311,7 @@ function clearCart() {
 }
 
 function onSortSelect() {
-  // Sorterings funktion
+  // Sorterings funktion, sorterar när använderan gör ett val i select inputen
 
   switch (sortSelect.value) {
     case 'pricefalling':
@@ -307,82 +326,126 @@ function onSortSelect() {
       donuts.sort((a, b) => a.name > b.name);
       displayDonut1();
       break;
-    case 'reviewsorting':
-      donuts.sort((a, b) => a.review - b.review);
+    case 'reviewsorting':  
+      donuts.sort((a, b) => b.review - a.review);
       displayDonut1();
       break;
   }
 }
 
-//Kommentera tillbaka detta innan push
- function toggleFilterOptions() {
+function toggleFilterOptions() {
+  // Visar toggle menyn när man trcker på Filter knappen, filterar sedan när man trycker igen och stänger den.
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
+
   if (open) {
-    for (let i = 0; i < donuts.length;i++) {
-      //if()
+    open = false;
+    for (let i = 0; i < donuts.length; i++) {
+      donutPlacement[i].innerHTML = ''; // Tar bort donutsen som redan visas
+      let donutNr = 'nr' + i;
+      const donutMarkup = ` 
+        <div class="${donutNr} donuts">
+             <figure id="img-slide" >
+                <button id="prev-${i}" class='prev'> &#10094; </button>
+                <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
+                <button id="next-${i}" class='next'> &#10095; </button>
+                <figcaption>${donuts[i].review}/10</figcaption>
+             </figure>
+            <h4>${donuts[i].name}</h4>
+            <ul>
+              <li>${donuts[i].price}kr</li>
+              <li>Innehåller: ${donuts[i].aspect}</li>
+            </ul>
+            <div class="selectcounter">${donuts[i].selectCounter}</div>
+            <div class="plus_minusBtn">
+                <button data-operator="plus">+</button>
+                <button data-operator="minus">-</button>
+            </div>
+           </div> `; // Denna är grund html till donutsen som skrivs ut
+      if (bar) {
+        // Dessa if satser skriver ut donutsen som har ett true värde på dess aspekt.
+        if (donuts[i].aspect.includes('Bär')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (glasyr) {
+        if (donuts[i].aspect.includes('Glasyr')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (choklad) {
+        if (donuts[i].aspect.includes('Choklad')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (socker) {
+        if (donuts[i].aspect.includes('Socker')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
+      if (strossel) {
+        if (donuts[i].aspect.includes('Strössel')) {
+          donutPlacement[i].innerHTML = donutMarkup;
+        }
+      }
     }
   }
-  open = true; 
-
+  open = true; // Så koden triggas ändas när man stänger filter menyn
+  if (!bar && !glasyr && !choklad && !socker && !strossel) {
+    // Om man inte valt något alternativ så skrivs donutsen ut som vanligt
+    displayDonut1();
+  }
 }
 
+function toggleFilter(e) {
+  // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
   const selectedFilter = e.currentTarget;
-
-  switch (selectedFilter.innerHTML) {
+  switch (
+    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+  ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
       if (bar) {
         bar = false;
-        console.log(bar);
         break;
-      } 
+      }
       bar = true;
-      console.log(bar);
       break;
     case 'Glasyr':
       selectedFilter.classList.toggle('highLighted');
       if (glasyr) {
         glasyr = false;
-        console.log(glasyr);
         break;
-      } 
+      }
       glasyr = true;
-      console.log(glasyr);
       break;
     case 'Choklad':
       selectedFilter.classList.toggle('highLighted');
       if (choklad) {
         choklad = false;
-        console.log(choklad);
         break;
-      } 
+      }
       choklad = true;
-      console.log(choklad);
       break;
     case 'Socker':
       selectedFilter.classList.toggle('highLighted');
       if (socker) {
         socker = false;
-        console.log(socker);
         break;
-      } 
+      }
       socker = true;
-      console.log(socker);
       break;
     case 'Strössel':
       selectedFilter.classList.toggle('highLighted');
       if (strossel) {
         strossel = false;
-        console.log(strossel);
         break;
-      } 
+      }
       strossel = true;
-      console.log(strossel);
       break;
-    }
-// Functioner anges ovan ----------------------------
+  }
+}
 displayDonut1();
 
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
@@ -390,27 +453,38 @@ let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
 let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let bar = false;
 let glasyr = false;
-let choklad = false;
+let choklad = false; // Alla alternativ till filter funktionen 
 let socker = false;
 let strossel = false;
 let open = false;
 for (let i = 0; i < plusbtn.length; i++) {
-    plusbtn[i].addEventListener('click', countUp);
-    minusbtn[i].addEventListener('click', countDown);
+  plusbtn[i].addEventListener('click', countUp);
+  minusbtn[i].addEventListener('click', countDown);
 }
 
 document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
 const sortSelect = document.querySelector('#sorting');
 sortSelect.addEventListener('input', onSortSelect);
 document
-    .querySelector('#mainFilterBtn')
-    .addEventListener('click', toggleFilterOptions);
+  .querySelector('#mainFilterBtn')
+  .addEventListener('click', toggleFilterOptions);
 const filterButtons = document.querySelector('.filterOptions').children;
-
-
-// Filter alternativ nedan
 for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
+}
+
+//Funktion för måndagsrabatt
+function mondayDecrease() {
+  const date = new Date();
+  console.log(date);
+  const monday = date.getDay() ===1;
+  if (monday) {
+    console.log(totalAmount * 0.9);
+    totalAmountPlacement.innerHTML = totalAmount * 0.9 + 'kr';
+    const discountText = document.querySelector('.discount_amount');
+    const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
+    discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
+  }
 }
 
 //Kod för betalningsformulär
@@ -425,6 +499,7 @@ const doorCode = document.querySelector('#doorcode'); //Ordna så det inte kräv
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
 
+
 function clearForm() {
   const formController = document.querySelectorAll('.form_control');
   formController.forEach((div) => {
@@ -438,6 +513,7 @@ paymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
+  
   if (controlForm >= 7) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
     document
@@ -558,7 +634,6 @@ function checkInputs() {
     setSuccessFor(tel);
     controlForm++;
   }
-}
 
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
@@ -691,4 +766,14 @@ function checkInvoicePaymentInputs(){
  - Knapp för att gå tillbaka om man vill byta betalningssätt?
  - Validering för formuläret
  - När allt är godkänt ska en ruta dyka upp som berättar att betalning är godkänd + övrig info.
+ */
+
+/**
+ * KLAR Måndagar 10% rabatt på hela summan - Detta visas i
+ * varukorgssammanställningen som en rad med texten "Måndagsrabatt: 10 % på hela beställningen".
+ *
+ * KLAR Fredag kl 15 - mån kl 03.00 15% högre pris på alla munkar
+ * 10 munkar av samma sort = 10% rabatt för just denna sort
+ * Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
+ * Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
  */
