@@ -314,13 +314,13 @@ function onSortSelect() {
 }
 
 //Kommentera tillbaka detta innan push
-/* function toggleFilterOptions() {
+ function toggleFilterOptions() {
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
   if (open) {
     for (let i = 0; i < donuts.length;i++) {
-      if()
+      //if()
     }
   }
   open = true; 
@@ -381,9 +381,7 @@ function onSortSelect() {
       console.log(strossel);
       break;
     }
-*/
 // Functioner anges ovan ----------------------------
-/*
 displayDonut1();
 
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
@@ -413,7 +411,6 @@ const filterButtons = document.querySelector('.filterOptions').children;
 for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
 }
-*/
 
 //Kod för betalningsformulär
 const paymentForm = document.querySelector('form');
