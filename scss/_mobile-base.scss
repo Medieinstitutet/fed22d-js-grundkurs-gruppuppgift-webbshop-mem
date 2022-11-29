@@ -534,12 +534,10 @@ button#invoicePaymentBtn.active {
   background-color: blue; //Ändra css när detta funkar
 }
 
-.center_button {
-  width: 80%;
-  margin: 0 auto;
+form#cardPaymentForm,
+form#invoicePaymentForm{ 
   button#cardOrderButton,
   button#invoiceOrderButton {
-    justify-content: center;
     min-width: 8em;
     height: 2.3em;
     font-size: 1.2rem;

@@ -662,6 +662,31 @@ function checkCardPaymentInputs() {
   }
 }
 
+//Validering för fakturaformulär
+const invoicePaymentForm = document.querySelector('#invoicePaymentForm');
+const personalIdentity = document.querySelector('#idnr');
+
+invoicePaymentForm.addEventListener('submit', (e) => {
+    // e står för event
+    e.preventDefault(); //Förhindrar att skicka formuläret
+  
+    checkInvoicePaymentInputs();
+});
+
+function checkInvoicePaymentInputs(){
+    const personalIdentityValue = personalIdentity.value.trim();
+
+    if(personalIdentityValue === ''){
+        setErrorFor(personalIdentity, 'Du måste fylla i fältet');
+    }else if(personalIdentityValue.length < 10){
+        setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
+    }else if(personalIdentityValue.length > 10){
+        setErrorFor(personalIdentity, 'Fältet får inte innehålla mer än 10 siffror');
+    }else{
+        setSuccessFor(personalIdentity);
+    }
+}
+
 /**
  - När formuläret är godkänt ska betalningsalternativen dyka upp när man klickar på Betalning
  - Möjlighet att välja kort eller faktura
