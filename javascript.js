@@ -222,6 +222,7 @@ function displayDonutCart() {
 }
 let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
+
 function calcTotalorder() {
   for (let i = 0; i < donuts.length; i++) {
     if (donuts[i].selectCounter > 0) {
@@ -231,8 +232,43 @@ function calcTotalorder() {
     }
   }
   totalAmountPlacement.innerHTML = totalAmount + 'kr';
-  mondayDecrease();
+  mondayDiscount();
+  tuesdayDiscount();
 }
+//Funktion för måndagsrabatt
+function mondayDiscount() {
+  const date = new Date();
+  console.log(date);
+  const monday = date.getDay() === 1;
+  if (monday) {
+    console.log(totalAmount * 0.9);
+    totalAmountPlacement.innerHTML = totalAmount * 0.9 + 'kr';
+    const discountText = document.querySelector('.discount_amount');
+    const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
+    discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
+  }
+}
+//Funktion för tisdagsrabatt
+
+function tuesdayDiscount() {
+  currentDate = new Date();
+  startDate = new Date(currentDate.getFullYear(), 0, 1);
+  let days = Math.floor((currentDate - startDate) /
+    (24 * 60 * 60 * 1000));
+  let weekNumber = Math.ceil(days / 7);
+  const tuesday = currentDate.getDay() === 2
+
+  if ((weekNumber % 2 == 0) && (tuesday) && totalAmount > 25) {
+    console.log(totalAmount * 0.75)
+    totalAmountPlacement.innerHTML = totalAmount * 0.75 + 'kr';
+    const discountText = document.querySelector('.discount_amount');
+    const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
+    discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
+  } 
+  
+}
+
+tuesdayDiscount()
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
@@ -326,7 +362,7 @@ function onSortSelect() {
       donuts.sort((a, b) => a.name > b.name);
       displayDonut1();
       break;
-    case 'reviewsorting':  
+    case 'reviewsorting':
       donuts.sort((a, b) => b.review - a.review);
       displayDonut1();
       break;
@@ -402,7 +438,7 @@ function toggleFilter(e) {
   // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
   const selectedFilter = e.currentTarget;
   switch (
-    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+  selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
   ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
@@ -473,19 +509,7 @@ for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
 }
 
-//Funktion för måndagsrabatt
-function mondayDecrease() {
-  const date = new Date();
-  console.log(date);
-  const monday = date.getDay() ===1;
-  if (monday) {
-    console.log(totalAmount * 0.9);
-    totalAmountPlacement.innerHTML = totalAmount * 0.9 + 'kr';
-    const discountText = document.querySelector('.discount_amount');
-    const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
-    discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
-  }
-}
+
 
 //Kod för betalningsformulär
 const paymentForm = document.querySelector('form');
@@ -513,7 +537,7 @@ paymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
-  
+
   if (controlForm >= 7) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
     document
@@ -634,7 +658,7 @@ function checkInputs() {
     setSuccessFor(tel);
     controlForm++;
   }
-
+}
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
@@ -740,24 +764,24 @@ const invoicePaymentForm = document.querySelector('#invoicePaymentForm');
 const personalIdentity = document.querySelector('#idnr');
 
 invoicePaymentForm.addEventListener('submit', (e) => {
-    // e står för event
-    e.preventDefault(); //Förhindrar att skicka formuläret
-  
-    checkInvoicePaymentInputs();
+  // e står för event
+  e.preventDefault(); //Förhindrar att skicka formuläret
+
+  checkInvoicePaymentInputs();
 });
 
-function checkInvoicePaymentInputs(){
-    const personalIdentityValue = personalIdentity.value.trim();
+function checkInvoicePaymentInputs() {
+  const personalIdentityValue = personalIdentity.value.trim();
 
-    if(personalIdentityValue === ''){
-        setErrorFor(personalIdentity, 'Du måste fylla i fältet');
-    }else if(personalIdentityValue.length < 10){
-        setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
-    }else if(personalIdentityValue.length > 10){
-        setErrorFor(personalIdentity, 'Fältet får inte innehålla mer än 10 siffror');
-    }else{
-        setSuccessFor(personalIdentity);
-    }
+  if (personalIdentityValue === '') {
+    setErrorFor(personalIdentity, 'Du måste fylla i fältet');
+  } else if (personalIdentityValue.length < 10) {
+    setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
+  } else if (personalIdentityValue.length > 10) {
+    setErrorFor(personalIdentity, 'Fältet får inte innehålla mer än 10 siffror');
+  } else {
+    setSuccessFor(personalIdentity);
+  }
 }
 
 /**
@@ -775,5 +799,6 @@ function checkInvoicePaymentInputs(){
  * KLAR Fredag kl 15 - mån kl 03.00 15% högre pris på alla munkar
  * 10 munkar av samma sort = 10% rabatt för just denna sort
  * Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
- * Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
+ * KLAR Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
  */
+
