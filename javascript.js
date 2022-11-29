@@ -226,6 +226,7 @@ function calcTotalorder() {
   for (let i = 0; i < donuts.length; i++) {
     if (donuts[i].selectCounter > 0) {
       let combinedAmount = 0;
+      let totalAmount = 0;  
       combinedAmount = donuts[i].price * donuts[i].selectCounter;
       totalAmount = totalAmount + combinedAmount;
     }
@@ -505,7 +506,7 @@ function clearForm() {
   formController.forEach((div) => {
     div.classList.remove('success', 'error');
   });
-  console.log(formController);
+  document.querySelector('small').classList.add('toggle-hidden');
 }
 
 paymentForm.addEventListener('submit', (e) => {
@@ -516,9 +517,7 @@ paymentForm.addEventListener('submit', (e) => {
   
   if (controlForm >= 7) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
-    document
-      .querySelector('#invoicePaymentBtn')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
@@ -529,21 +528,19 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 
 function pickPaymentOption(e) {
   if (e.currentTarget.id == 'cardPaymentBtn') {
-    document
-      .querySelector('#cardPaymentForm')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
+
     cardOptionBtn.classList.add('active');
+    invoiceOptionBtn.classList.remove('active');
 
     console.log(cardOptionBtn);
 
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.add('toggle-hidden');
+    document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+
     invoiceOptionBtn.classList.add('active');
+    cardOptionBtn.classList.remove('active');
     console.log(invoiceOptionBtn);
 
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
@@ -634,6 +631,7 @@ function checkInputs() {
     setSuccessFor(tel);
     controlForm++;
   }
+}
 
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
@@ -677,15 +675,25 @@ const cardMonth = document.querySelector('#date');
 const cardYear = document.querySelector('#year');
 const cvc = document.querySelector('#cvc');
 
-const lowestYear = 1900;
-const highestYear = 2022;
+const lowestMonth = 0;
+const highestMonth = 12;
+const lowestYear = 2021;
+const highestYear = 2030;
+
 
 cardPaymentForm.addEventListener('submit', (e) => {
   // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
-
   checkCardPaymentInputs();
+
+  if(controlCardForm >= 4){
+    setSuccessFor(cardNumber);  
+    clearForm();
+    alert('Du har lagt en beställning');
+  }
 });
+
+let controlCardForm = 0;
 
 function checkCardPaymentInputs() {
   const cardNumberValue = cardNumber.value.trim();
@@ -701,27 +709,30 @@ function checkCardPaymentInputs() {
     setErrorFor(cardNumber, 'Fältet får inte bestå av mer än 16 siffror');
   } else {
     setSuccessFor(cardNumber);
+    controlCardForm++;
   }
+
 
   if (cardMonthValue === '') {
     setErrorFor(cardMonth, 'Du måste fylla i fältet');
-  } else if (cardMonthValue.length < 2) {
-    setErrorFor(cardMonth, 'Du måste ange 2 siffror');
-  } else if (cardMonthValue.length > 2) {
-    setErrorFor(cardMonth, 'Du får inte ange mer än 2 siffror');
+  } else if (cardMonthValue <= lowestMonth) {
+    setErrorFor(cardMonth, 'Du måste ange en tal högre än 1');
+  } else if (cardMonthValue > highestMonth) {
+    setErrorFor(cardMonth, 'Du får inte ange ett tal över 12');
   } else {
     setSuccessFor(cardMonth);
+    controlCardForm++;
   }
 
   if (cardYearValue === '') {
-    //Funkar inte med length. Annan lösning?
     setErrorFor(cardYear, 'Du måste fylla i fältet');
   } else if (cardYearValue <= lowestYear) {
-    setErrorFor(cardYear, 'Du måste ange ett högre tal än 1900');
+    setErrorFor(cardYear, 'Du måste ange ett högre tal än 2021');
   } else if (cardYearValue >= highestYear) {
-    setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2022');
+    setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2030');
   } else {
     setSuccessFor(cardYear);
+    controlCardForm++;
   }
 
   if (cvcValue === '') {
@@ -732,7 +743,9 @@ function checkCardPaymentInputs() {
     setErrorFor(cvc, 'Du får inte ange mer än 3 siffror');
   } else {
     setSuccessFor(cvc);
+    controlCardForm++;
   }
+
 }
 
 //Validering för fakturaformulär

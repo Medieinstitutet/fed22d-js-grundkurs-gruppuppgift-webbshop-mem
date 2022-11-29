@@ -536,7 +536,9 @@ form#invoicePaymentForm {
 
 button#cardPaymentBtn.active,
 button#invoicePaymentBtn.active {
-  background-color: blue; //Ändra css när detta funkar
+  background-color: var.$btnHoverBgColor;
+  border: 2px solid var.$btnBorderColor;
+  border-radius: 4px; //Ändra css när detta funkar
 }
 
 form#cardPaymentForm,
@@ -561,7 +563,7 @@ form#invoicePaymentForm{
 .selectedOrder div {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
-  background-color: whitesmoke;
+  background-color: var.$whiteBgColor;
   display: flex;
   justify-content: space-between;
   align-items: center;
