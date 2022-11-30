@@ -419,6 +419,10 @@ input[type='number'] {
   .centerDonuts{
     width: 75%;
     margin: 0 auto;
+
+    .selectedOrder{
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -438,7 +442,7 @@ input[type='number'] {
     justify-content: center;
   }
   .discount_alert span {
-  margin-right: 8em;
+    margin-right: 8em;
 }
 }
 
@@ -451,7 +455,6 @@ input[type='number'] {
   margin-bottom: 1rem;
 
   .amount_text {
-    
     margin-right: 10em;
   }
 }
@@ -509,7 +512,6 @@ form#invoicePaymentForm {
 
     label {
       display: inline-block;
-      // margin-bottom: 3px; Kolla upp denna
     }
 
     input {

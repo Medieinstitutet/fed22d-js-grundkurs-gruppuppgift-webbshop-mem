@@ -629,15 +629,12 @@ function pickPaymentOption(e) {
     cardOptionBtn.classList.add('active');
     invoiceOptionBtn.classList.remove('active');
 
-    console.log(cardOptionBtn);
-
     document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
     document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
 
     invoiceOptionBtn.classList.add('active');
     cardOptionBtn.classList.remove('active');
-    console.log(invoiceOptionBtn);
 
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
   }
@@ -782,6 +779,7 @@ cardPaymentForm.addEventListener('submit', (e) => {
   checkCardPaymentInputs();
 
   if(controlCardForm >= 4){
+    console.log('Betalning godkänd');   
     setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
     clearCart();  
     clearForm();
