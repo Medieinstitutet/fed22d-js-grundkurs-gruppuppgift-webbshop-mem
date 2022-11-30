@@ -421,7 +421,11 @@ input[type='number'] {
     margin: 0 auto;
   }
 }
-
+.luciaOrder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .price_discount {
   display: flex;
   flex-direction: column;
