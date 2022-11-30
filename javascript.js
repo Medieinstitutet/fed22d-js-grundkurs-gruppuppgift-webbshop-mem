@@ -299,8 +299,9 @@ function tuesdayDiscount() {
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
   }
-tuesdayDiscount();
+
 }
+tuesdayDiscount();
 
 function inputDiscount() {
   const discountInput = document.querySelector('.discount_text')
