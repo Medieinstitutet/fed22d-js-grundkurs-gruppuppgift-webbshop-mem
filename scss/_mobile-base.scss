@@ -382,13 +382,14 @@ input[type='number'] {
     display:inline-flex;
     justify-content: center;
   }
+
   .discount_alert {
     display: inline-flex;
     justify-content: center;
   }
   .discount_alert span {
-    margin-right: 8em;
-  }
+  margin-right: 8em;
+}
 }
 
 
@@ -430,6 +431,16 @@ input[type='number'] {
 .current_donuts_order {
   display: flex;
   flex-direction: column;
+}
+
+.timerClear {
+  font-size: xx-large;
+  background-color: darkgrey;
+  text-align: center;
+  width: 400px;
+  border-radius: 50px;
+  padding: 10px 10px;
+  margin: 0 auto;
 }
 
 //Formulär för betalning
@@ -541,7 +552,7 @@ button#invoicePaymentBtn.active {
 }
 
 form#cardPaymentForm,
-form#invoicePaymentForm{ 
+form#invoicePaymentForm {
   button#cardOrderButton,
   button#invoiceOrderButton {
     min-width: 8em;

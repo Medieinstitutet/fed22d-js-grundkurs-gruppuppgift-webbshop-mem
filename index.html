@@ -75,7 +75,7 @@
                     <button id="mainFilterBtn" aria-label="öppna menyn till filtering" ><span>Filtrera</span><span class="material-symbols-outlined">
                     tune
                     </span></button>
-                        <div class="filterOptions toggle-hidden">
+                        <div id="filterOptions" class="filterOptions toggle-hidden">
                             <button>Bär</button>
                             <button>Glasyr</button>
                             <button>Choklad</button>
@@ -111,7 +111,7 @@
             </section>
             <section class="shopping_basket toggle-hidden">
                 <h2>Varukorg</h2>
-
+                <div id="forTimerClear"></div>
                 <div class="current_donuts_order">
                    <!-- Här landar donutsen-->
                     <div class="selectedOrder"></div>
@@ -290,6 +290,7 @@
                 </article>
             </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="javascript.js"></script>
 </body>
 

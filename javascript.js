@@ -1,6 +1,6 @@
 /***************************************************************************************
  *                             Funktioner för meny
-*************************************************************************************** */
+ *************************************************************************************** */
 const menuButton = document.getElementsByClassName('toggle_menu')[0];
 const menuLinks = document.getElementsByClassName('menu_links')[0];
 
@@ -59,7 +59,6 @@ class Donut {
     this.selectCounter = 0;
     this.picSrc = picSrc;
   }
-
 }
 // Donuts-array
 const donuts = [
@@ -109,8 +108,6 @@ const donuts = [
 const donutPlacement = document.querySelectorAll('.donut_article');
 
 function displayDonut1() {
-  let shopCartBtnUp = '';
-  let shopCartBtnDown = '';
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
     const donutMarkup = `
@@ -144,8 +141,37 @@ function displayDonut1() {
   prevBtns.forEach((btn) => {
     btn.addEventListener('click', prevImage);
   });
+  resetCounterBtns();
 }
-displayDonut1();
+function resetCounterBtns() {
+  let plusbtn = '';
+  let minusbtn = '';
+  plusbtn = document.querySelectorAll('button[data-operator="plus"]');
+  minusbtn = document.querySelectorAll('button[data-operator="minus"]');
+  for (let i = 0; i < plusbtn.length; i++) {
+    plusbtn[i].addEventListener('click', countUp);
+    minusbtn[i].addEventListener('click', countDown);
+  }
+}
+
+
+//Funktion för prisökning fredag 15.00 - måndag 03.00
+
+function fridayIncrease() {
+  const date = new Date();
+
+  const friday = date.getDay() === 5;
+  const monday = date.getDay() === 1;
+  const time = date.getHours();
+
+  if ((friday && time > 15) || (monday && time <= 3)) {
+    for (let i = 0; i < donuts.length; i++) {
+      donuts[i].price = Math.floor(donuts[i].price * 1.15);
+    }
+  }
+}
+fridayIncrease();
+
 
 //Funktioner för bildspel
 
@@ -153,8 +179,9 @@ function nextImage(btn) {
   const donutIndex = btn.currentTarget.id.replace('next-', '');
   const imageArray = donuts[donutIndex].picSrc;
   const currentImage = document.querySelector(`#img-${donutIndex}`);
-  const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src');
-  console.log(currentImageSrc);
+  const currentImageSrc = document
+    .querySelector(`#img-${donutIndex}`)
+    .getAttribute('src');
 
   //Byter bild beroende på bildens placering i arrayen
   if (currentImageSrc === imageArray[0]) {
@@ -168,8 +195,9 @@ function prevImage(btn) {
   const donutIndex = btn.currentTarget.id.replace('prev-', '');
   const imageArray = donuts[donutIndex].picSrc;
   const currentImage = document.querySelector(`#img-${donutIndex}`);
-  const currentImageSrc = document.querySelector(`#img-${donutIndex}`).getAttribute('src');
-  console.log(currentImageSrc);
+  const currentImageSrc = document
+    .querySelector(`#img-${donutIndex}`)
+    .getAttribute('src');
 
   if (currentImageSrc === imageArray[0]) {
     currentImage.setAttribute('src', imageArray[1]);
@@ -225,11 +253,17 @@ let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
 
 function calcTotalorder() {
+  totalAmount = 0;
   for (let i = 0; i < donuts.length; i++) {
     if (donuts[i].selectCounter > 0) {
       let combinedAmount = 0;
+      console.log(`BEFORE: Total: ${totalAmount}  Combined:${combinedAmount}`);
       combinedAmount = donuts[i].price * donuts[i].selectCounter;
+      console.log(
+        `DURING Price: ${donuts[i].price} selectCounter: ${donuts[i].selectCounter}`
+      );
       totalAmount = totalAmount + combinedAmount;
+      console.log(`AFTER: Total: ${totalAmount}  Combined:${combinedAmount}`);
     }
   }
   totalAmountPlacement.innerHTML = totalAmount + 'kr';
@@ -253,10 +287,10 @@ function mondayDiscount() {
 function tuesdayDiscount() {
   currentDate = new Date();
   startDate = new Date(currentDate.getFullYear(), 0, 1);
-  let days = Math.floor((currentDate - startDate) /
-    (24 * 60 * 60 * 1000));
+  let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
   let weekNumber = Math.ceil(days / 7);
-  const tuesday = currentDate.getDay() === 2
+  const tuesday = currentDate.getDay() === 2;
+
 
   if ((weekNumber % 2 == 0) && (tuesday) && totalAmount > 25) {
     console.log(totalAmount * 0.75)
@@ -265,14 +299,9 @@ function tuesdayDiscount() {
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
   }
-
+tuesdayDiscount();
 }
-//Funktion för rabattkod
-/**
- * Jag behöver
- * en variabel som läser av inputfältet
- * en regel som säger att om strängen är lika så ska priset bli 0kr
- */
+
 function inputDiscount() {
   const discountInput = document.querySelector('.discount_text')
   const discountButton = document.querySelector('.discount_button')
@@ -291,42 +320,44 @@ function inputDiscount() {
     console.log('nix')
   }
 
+
 }
 inputDiscount()
-/*const discountButton = document.querySelector('.discount_button');
-discountButton.addEventListenerget('click', inputDiscount);
-console.log(discountButton)
-
-function inputDiscount (){
-  discountButton
-
-}*/
-
-
 
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
-  const updateCounter = document.querySelectorAll('.selectcounter');
-  for (let i = 0; i < donuts.length; i++) {
-    if (controll.value == 'nr' + i + ' donuts') {
-      donuts[i].selectCounter++;
-      updateCounter[i].innerHTML = donuts[i].selectCounter;
-    }
-  }
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[3];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  donuts[controlValueNumber].selectCounter++;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
+
+function countUpCart(e) {
+  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[2].children[1];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  donuts[controlValueNumber].selectCounter++;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
+  calcTotalorder();
+}
+
 function countDown(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
-  const updateCounter = document.querySelectorAll('.selectcounter');
-  for (let i = 0; i < donuts.length; i++) {
-    if (controll.value == 'nr' + i + ' donuts') {
-      if (donuts[i].selectCounter <= 0) {
-        return;
-      }
-      donuts[i].selectCounter--;
-      updateCounter[i].innerHTML = donuts[i].selectCounter;
-    }
-  }
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[3];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  if (donuts[controlValueNumber].selectCounter == 0) return;
+  donuts[controlValueNumber].selectCounter--;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
 
 function toggleOrderPage() {
@@ -340,6 +371,14 @@ function toggleOrderPage() {
     shopCartBtnUp[i].addEventListener('click', countUpCart);
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
+  setTimeout(cartTimerClear, 9000000); // rensar efter 15min
+}
+function cartTimerClear() {
+  clearCart();
+  calcTotalorder();
+  const timeClearNotice = document.querySelector('#forTimerClear');
+  timeClearNotice.innerHTML = 'Du är för långsam...';
+  timeClearNotice.classList.toggle('timerClear');
 }
 
 function countUpCart(e) {
@@ -461,19 +500,23 @@ function toggleFilterOptions() {
         }
       }
     }
+    resetCounterBtns();
   }
   open = true; // Så koden triggas ändas när man stänger filter menyn
   if (!bar && !glasyr && !choklad && !socker && !strossel) {
     // Om man inte valt något alternativ så skrivs donutsen ut som vanligt
     displayDonut1();
   }
+  // Animationer
+  // gsap.from('#filterOptions', {x: 500, duration: 0.3})
+  gsap.from('.filterOptions>button', { x: 400, duration: 0.4, stagger: 0.1 });
 }
 
 function toggleFilter(e) {
   // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
   const selectedFilter = e.currentTarget;
   switch (
-  selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
   ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
@@ -518,20 +561,13 @@ function toggleFilter(e) {
   }
 }
 displayDonut1();
-
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
-let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
-let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let bar = false;
 let glasyr = false;
-let choklad = false; // Alla alternativ till filter funktionen 
+let choklad = false; // Alla alternativ till filter funktionen
 let socker = false;
 let strossel = false;
 let open = false;
-for (let i = 0; i < plusbtn.length; i++) {
-  plusbtn[i].addEventListener('click', countUp);
-  minusbtn[i].addEventListener('click', countDown);
-}
 
 document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
 const sortSelect = document.querySelector('#sorting');
@@ -544,8 +580,6 @@ for (let i = 0; i < filterButtons.length; i++) {
   filterButtons[i].addEventListener('click', toggleFilter);
 }
 
-
-
 //Kod för betalningsformulär
 const paymentForm = document.querySelector('form');
 const firstName = document.querySelector('#first_name');
@@ -557,7 +591,6 @@ const postalAdress = document.querySelector('#postalAdress');
 const doorCode = document.querySelector('#doorcode'); //Ordna så det inte krävs att fylla i portkod
 const tel = document.querySelector('#tel');
 const paymentBtn = document.querySelector('#paymentBtn');
-
 
 function clearForm() {
   const formController = document.querySelectorAll('.form_control');
@@ -593,8 +626,6 @@ function pickPaymentOption(e) {
       .classList.remove('toggle-hidden');
     cardOptionBtn.classList.add('active');
 
-    console.log(cardOptionBtn);
-
     document
       .querySelector('#invoicePaymentForm')
       .classList.add('toggle-hidden');
@@ -603,7 +634,6 @@ function pickPaymentOption(e) {
       .querySelector('#invoicePaymentForm')
       .classList.remove('toggle-hidden');
     invoiceOptionBtn.classList.add('active');
-    console.log(invoiceOptionBtn);
 
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
   }
@@ -813,7 +843,10 @@ function checkInvoicePaymentInputs() {
   } else if (personalIdentityValue.length < 10) {
     setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
   } else if (personalIdentityValue.length > 10) {
-    setErrorFor(personalIdentity, 'Fältet får inte innehålla mer än 10 siffror');
+    setErrorFor(
+      personalIdentity,
+      'Fältet får inte innehålla mer än 10 siffror'
+    );
   } else {
     setSuccessFor(personalIdentity);
   }
@@ -836,4 +869,3 @@ function checkInvoicePaymentInputs() {
  * Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
  * KLAR Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
  */
-
