@@ -38,6 +38,11 @@ function closeMenu() {
   menuButton.setAttribute('aria-expanded', false);
 }
 
+function toggleDarkMode(){
+    const body = document.body;
+    body.classList.toggle('darkMode');
+}
+
 // Shoppingcart page toggle ----
 const toggleShoppingCartBtn = document.querySelector('.shopping_cart');
 const shoppingCartPage = document.querySelector('.shopping_basket');
@@ -510,7 +515,6 @@ function clearForm() {
 }
 
 paymentForm.addEventListener('submit', (e) => {
-  // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
@@ -682,14 +686,14 @@ const highestYear = 2030;
 
 
 cardPaymentForm.addEventListener('submit', (e) => {
-  // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
   if(controlCardForm >= 4){
-    setSuccessFor(cardNumber);  
+    setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
+    clearCart();  
     clearForm();
-    alert('Du har lagt en beställning');
+    //alert('Du har lagt en beställning');
   }
 });
 

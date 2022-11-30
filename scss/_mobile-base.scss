@@ -44,12 +44,62 @@ html {
   scroll-behavior: smooth;
 }
 
+body{
+  background-color: var.$whiteBgColor;
+  color: var.$blackTextColor;
+  font-family: var.$rubikFont;
+
+  nav{
+    li{
+      &:hover{
+        background-color: #dcdcdc;
+      }
+    }
+
+    a{
+      color: var.$menuColor;
+    }
+
+    span.menu_bar{
+      background-color: var.$menuColor;
+    }
+  }
+
+  .shopping_basket, .selectedOrder div{
+    background-color: var.$whiteBgColor;
+  }
+}
+
+.darkMode{
+  background-color: var.$dmBgColor;
+  color: var.$dmTextColor;
+
+  nav{
+
+    li{
+      &:hover{
+        background-color: #262626;
+      }
+    }
+    
+    a{
+      color: var.$dmTextColor;
+    }
+
+    span.menu_bar{
+      background-color: var.$dmTextColor;
+    }
+  }
+
+  .shopping_basket, .selectedOrder div{
+    background-color: var.$dmBgColor;
+  }
+}
+
 /* ------------------------Regler för startpage ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------*/
 
 header {
-  background-color: var.$whiteBgColor;
-
   nav {
     padding: 0.5rem;
     /*position: fixed;
@@ -64,12 +114,7 @@ header {
         list-style-type: none;
         text-align: center;
 
-        &:hover {
-          background-color: #dcdcdc;
-        }
-
         a {
-          color: var.$menuColor;
           text-decoration: none;
           padding: 0.5rem 1rem;
           display: block;
@@ -101,6 +146,7 @@ header {
   top: 2px;
   right: 0.5rem;
   border: none;
+  cursor: pointer;
 }
 
 span.menu_bar {
@@ -128,7 +174,6 @@ span.menu_bar {
 
 .start_page {
   min-height: 100vh;
-  background-color: var.$whiteBgColor;
 
   .header_image {
     display: flex;
@@ -155,16 +200,13 @@ span.menu_bar {
     justify-content: center;
 
     p {
-      color: var.$blackTextColor;
-      font-family: var.$rubikFont;
       text-align: center;
       line-height: 1.3rem;
     }
   }
 
-  .orderbutton {
-    background-color: #bebebe;
-    font-family: var.$rubikFont;
+  .orderbutton, #toggleDarkMode {
+    background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;
     min-height: 40px;
@@ -173,6 +215,11 @@ span.menu_bar {
     align-self: center;
     border-radius: 4px;
     border: 2px solid var.$btnBorderColor;
+
+    &:hover{
+      background-color: #939191;
+      border: 2px solid #616161;
+    }
 
     a {
       text-decoration: none;
@@ -349,19 +396,17 @@ input[type='number'] {
   top: 60px; // Lämnar plats till header - Döljer just nu menyn
   width: 100%;
   min-height: 110vh;
-  background-color: var.$whiteBgColor;
   z-index: 5;
   display: flex;
   flex-direction: column;
-  font-family: var.$rubikFont;
   padding-bottom: 3em;
+
   h2,
   h3 {
     text-align: center;
     text-transform: uppercase;
     width: 80%;
     margin: 15px auto;
-    font-family: var.$rubikFont;
   }
   h2 {
     font-size: 1.6rem;
@@ -538,7 +583,7 @@ button#cardPaymentBtn.active,
 button#invoicePaymentBtn.active {
   background-color: var.$btnHoverBgColor;
   border: 2px solid var.$btnBorderColor;
-  border-radius: 4px; //Ändra css när detta funkar
+  border-radius: 2px;
 }
 
 form#cardPaymentForm,
@@ -563,7 +608,6 @@ form#invoicePaymentForm{
 .selectedOrder div {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
-  background-color: var.$whiteBgColor;
   display: flex;
   justify-content: space-between;
   align-items: center;
