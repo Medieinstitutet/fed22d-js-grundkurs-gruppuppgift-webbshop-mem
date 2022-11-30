@@ -415,6 +415,11 @@ input[type='number'] {
   h3 {
     font-size: 1.3rem;
   }
+
+  .centerDonuts{
+    width: 75%;
+    margin: 0 auto;
+  }
 }
 
 .price_discount {
@@ -500,7 +505,7 @@ form#invoicePaymentForm {
       border: 1px solid #656565;
       border-radius: 4px;
       padding: 3px;
-      width: 100%;
+      width: 15em;
       height: 23px;
       position: relative;
       margin-bottom: 10px;
@@ -508,7 +513,7 @@ form#invoicePaymentForm {
 
     i {
       position: absolute;
-      right: -3px;
+      right: 7px;
       top: 34px;
       visibility: hidden;
     }
