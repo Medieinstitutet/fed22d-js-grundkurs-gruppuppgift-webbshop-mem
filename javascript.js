@@ -38,6 +38,11 @@ function closeMenu() {
   menuButton.setAttribute('aria-expanded', false);
 }
 
+function toggleDarkMode(){
+    const body = document.body;
+    body.classList.toggle('darkMode');
+}
+
 // Shoppingcart page toggle ----
 const toggleShoppingCartBtn = document.querySelector('.shopping_cart');
 const shoppingCartPage = document.querySelector('.shopping_basket');
@@ -155,6 +160,7 @@ function resetCounterBtns() {
   }
 }
 
+
 //Funktion för prisökning fredag 15.00 - måndag 03.00
 
 function fridayIncrease() {
@@ -171,6 +177,7 @@ function fridayIncrease() {
   }
 }
 fridayIncrease();
+
 
 //Funktioner för bildspel
 
@@ -204,6 +211,23 @@ function prevImage(btn) {
     currentImage.setAttribute('src', imageArray[0]);
   }
 }
+
+//Funktion för prisökning fredag 15.00 - måndag 03.00 
+
+function fridayIncrease() {
+  const date = new Date();
+  console.log(date);
+  const friday = date.getDay() === 5;
+  const monday = date.getDay() === 1;
+  const time = date.getHours();
+  console.log(monday)
+  if ((friday && time > 15) || (monday && time <= 3)) {
+    for (let i = 0; i < donuts.length; i++) {
+      donuts[i].price = Math.floor(donuts[i].price * 1.15);
+    }
+  }
+}
+fridayIncrease();
 /****************************************************************************
  *                  Funktioner för shopping-basket
  ***************************************************************************/
@@ -236,6 +260,7 @@ function displayDonutCart() {
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
 }
+
 let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
 
@@ -282,6 +307,7 @@ function mondayDiscount() {
   const date = new Date();
   const monday = date.getDay() === 1;
   if (monday) {
+
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.9) + 'kr';
     const discountText = document.querySelector('.discount_amount');
     const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
@@ -297,15 +323,39 @@ function tuesdayDiscount() {
   let weekNumber = Math.ceil(days / 7);
   const tuesday = currentDate.getDay() === 2;
 
+
   if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
-    const discountText = document.querySelector('.discount_amount');
+    const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
   }
-}
 
+}
 tuesdayDiscount();
+
+function inputDiscount() {
+  const discountInput = document.querySelector('.discount_text')
+  const discountButton = document.querySelector('.discount_button')
+    .addEventListener('click', inputDiscount);
+  console.log(discountInput.value)
+
+  if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
+    console.log('japp')
+    totalAmountPlacement.innerHTML = totalAmount-totalAmount + ' kr';
+    const discountText = document.querySelector('.discount_alert');
+    const inputDiscountText = 'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
+    discountText.innerHTML =  inputDiscountText;
+    discountInput.value=''
+
+  } else {
+    console.log('nix')
+  }
+
+
+}
+inputDiscount()
+
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
@@ -573,19 +623,18 @@ function clearForm() {
   formController.forEach((div) => {
     div.classList.remove('success', 'error');
   });
+
+  document.querySelector('small').classList.add('toggle-hidden');
 }
 
 paymentForm.addEventListener('submit', (e) => {
-  // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
 
   checkInputs();
 
   if (controlForm >= 7) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
-    document
-      .querySelector('#invoicePaymentBtn')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
@@ -596,19 +645,21 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 
 function pickPaymentOption(e) {
   if (e.currentTarget.id == 'cardPaymentBtn') {
-    document
-      .querySelector('#cardPaymentForm')
-      .classList.remove('toggle-hidden');
-    cardOptionBtn.classList.add('active');
+    document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
 
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.add('toggle-hidden');
+    cardOptionBtn.classList.add('active');
+    invoiceOptionBtn.classList.remove('active');
+
+    console.log(cardOptionBtn);
+
+    document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+
     invoiceOptionBtn.classList.add('active');
+
+    cardOptionBtn.classList.remove('active');
+    console.log(invoiceOptionBtn);
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
   }
 }
@@ -698,6 +749,7 @@ function checkInputs() {
     controlForm++;
   }
 }
+
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
@@ -740,15 +792,25 @@ const cardMonth = document.querySelector('#date');
 const cardYear = document.querySelector('#year');
 const cvc = document.querySelector('#cvc');
 
-const lowestYear = 1900;
-const highestYear = 2022;
+const lowestMonth = 0;
+const highestMonth = 12;
+const lowestYear = 2021;
+const highestYear = 2030;
+
 
 cardPaymentForm.addEventListener('submit', (e) => {
-  // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
-
   checkCardPaymentInputs();
+
+  if(controlCardForm >= 4){
+    setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
+    clearCart();  
+    clearForm();
+    //alert('Du har lagt en beställning');
+  }
 });
+
+let controlCardForm = 0;
 
 function checkCardPaymentInputs() {
   const cardNumberValue = cardNumber.value.trim();
@@ -764,27 +826,30 @@ function checkCardPaymentInputs() {
     setErrorFor(cardNumber, 'Fältet får inte bestå av mer än 16 siffror');
   } else {
     setSuccessFor(cardNumber);
+    controlCardForm++;
   }
+
 
   if (cardMonthValue === '') {
     setErrorFor(cardMonth, 'Du måste fylla i fältet');
-  } else if (cardMonthValue.length < 2) {
-    setErrorFor(cardMonth, 'Du måste ange 2 siffror');
-  } else if (cardMonthValue.length > 2) {
-    setErrorFor(cardMonth, 'Du får inte ange mer än 2 siffror');
+  } else if (cardMonthValue <= lowestMonth) {
+    setErrorFor(cardMonth, 'Du måste ange en tal högre än 1');
+  } else if (cardMonthValue > highestMonth) {
+    setErrorFor(cardMonth, 'Du får inte ange ett tal över 12');
   } else {
     setSuccessFor(cardMonth);
+    controlCardForm++;
   }
 
   if (cardYearValue === '') {
-    //Funkar inte med length. Annan lösning?
     setErrorFor(cardYear, 'Du måste fylla i fältet');
   } else if (cardYearValue <= lowestYear) {
-    setErrorFor(cardYear, 'Du måste ange ett högre tal än 1900');
+    setErrorFor(cardYear, 'Du måste ange ett högre tal än 2021');
   } else if (cardYearValue >= highestYear) {
-    setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2022');
+    setErrorFor(cardYear, 'Du får inte ange ett högre årtal än 2030');
   } else {
     setSuccessFor(cardYear);
+    controlCardForm++;
   }
 
   if (cvcValue === '') {
@@ -795,7 +860,9 @@ function checkCardPaymentInputs() {
     setErrorFor(cvc, 'Du får inte ange mer än 3 siffror');
   } else {
     setSuccessFor(cvc);
+    controlCardForm++;
   }
+
 }
 
 //Validering för fakturaformulär

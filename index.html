@@ -52,6 +52,7 @@
                     commodo.
                 </p>
                 
+                <button id="toggleDarkMode" onclick="toggleDarkMode()">Mörkt/Ljust Läge</button>
                 <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ Här</a></button>
             </article>
 
@@ -114,25 +115,31 @@
                 <div id="forTimerClear"></div>
                 <div class="current_donuts_order">
                    <!-- Här landar donutsen-->
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
+                   <div class="centerDonuts">
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                   </div>
+                    
                 </div>
 
                 <div class="price_discount"> <!--Används ej under test-->
                     <label>
                         <span>Rabattkod:</span>
                         <input type="text" class="discount_text" >
+                        <input type="submit" class="discount_button"value="Lös in din kod">
                     </label>
-                    <div class="discount_amount">
+                    
+                    <div class="discount_alert">
                         <span>Tillämpad rabattkod:</span>
+                        <span></span>
                     </div>
                     <div class="fraktSelector"></div>              
                     <div class="total_sum">
@@ -222,7 +229,7 @@
                             </label>
                         </div>
                         <div class="form_control">
-                            <button id="paymentButton">Betalning</button> 
+                            <button id="paymentButton">Betalning</button>
                         </div>
                     </form>
                     <div class="flex_payment_button">
@@ -233,7 +240,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Kortnummer:</span>
-                                <input type="number" id="cardnr" name="cardnr">
+                                <input type="number" id="cardnr" name="cardnr" value="1234567890123456">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -242,7 +249,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Månad:</span>
-                                <input type="number" id="date" name="date">
+                                <input type="number" id="date" name="date" value="7">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -251,7 +258,7 @@
                         <div class="form_control">
                             <label>
                                 <span>År:</span>
-                                <input type="number" id="year" name="year">
+                                <input type="number" id="year" name="year" value ="2026">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -260,11 +267,14 @@
                         <div class="form_control">
                             <label>
                                 <span>CVC:</span>
-                                <input type="number" id="cvc" name="cvc">
+                                <input type="number" id="cvc" name="cvc" value="682">
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
                             </label>
+                        </div>
+                        <div class="form_control">
+                            <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
                         </div>
                         <div class="form_control">
                             <button id="cardOrderButton">Beställ</button>
@@ -281,8 +291,11 @@
                             </label>
                         </div>
                         <div class="form_control">
-                            <button id="invoiceOrderButton">Beställ</button>
-                        </div>  
+                            <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
+                        </div>
+                        <div class="form_control">
+                            <button id="cardOrderButton">Beställ</button>
+                        </div>
                     </form>
                 </article>
             </section>

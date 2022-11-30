@@ -59,7 +59,7 @@ nav {
             height: 2.7px;
             bottom: 6px;
             left: 0;
-            background-color: var.$blackTextColor;
+            background-color: var.$blackTextColor; //Fixa detta för darkmode
             transform-origin: bottom right;
             transition: transform 0.3s ease-out;
           }
