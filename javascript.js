@@ -154,6 +154,7 @@ function resetCounterBtns() {
   }
 }
 
+
 //Funktion för prisökning fredag 15.00 - måndag 03.00
 
 function fridayIncrease() {
@@ -170,6 +171,7 @@ function fridayIncrease() {
   }
 }
 fridayIncrease();
+
 
 //Funktioner för bildspel
 
@@ -203,6 +205,23 @@ function prevImage(btn) {
     currentImage.setAttribute('src', imageArray[0]);
   }
 }
+
+//Funktion för prisökning fredag 15.00 - måndag 03.00 
+
+function fridayIncrease() {
+  const date = new Date();
+  console.log(date);
+  const friday = date.getDay() === 5;
+  const monday = date.getDay() === 1;
+  const time = date.getHours();
+  console.log(monday)
+  if ((friday && time > 15) || (monday && time <= 3)) {
+    for (let i = 0; i < donuts.length; i++) {
+      donuts[i].price = Math.floor(donuts[i].price * 1.15);
+    }
+  }
+}
+fridayIncrease();
 /****************************************************************************
  *                  Funktioner för shopping-basket
  ***************************************************************************/
@@ -229,6 +248,7 @@ function displayDonutCart() {
     }
   }
 }
+
 let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
 
@@ -253,12 +273,11 @@ function calcTotalorder() {
 //Funktion för måndagsrabatt
 function mondayDiscount() {
   const date = new Date();
-  console.log(date);
   const monday = date.getDay() === 1;
   if (monday) {
     console.log(totalAmount * 0.9);
     totalAmountPlacement.innerHTML = totalAmount * 0.9 + 'kr';
-    const discountText = document.querySelector('.discount_amount');
+    const discountText = document.querySelector('.discount_alert');
     const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
   }
@@ -272,16 +291,39 @@ function tuesdayDiscount() {
   let weekNumber = Math.ceil(days / 7);
   const tuesday = currentDate.getDay() === 2;
 
-  if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
-    console.log(totalAmount * 0.75);
+
+  if ((weekNumber % 2 == 0) && (tuesday) && totalAmount > 25) {
+    console.log(totalAmount * 0.75)
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
-    const discountText = document.querySelector('.discount_amount');
+    const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
   }
+tuesdayDiscount();
 }
 
-tuesdayDiscount();
+function inputDiscount() {
+  const discountInput = document.querySelector('.discount_text')
+  const discountButton = document.querySelector('.discount_button')
+    .addEventListener('click', inputDiscount);
+  console.log(discountInput.value)
+
+  if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
+    console.log('japp')
+    totalAmountPlacement.innerHTML = totalAmount-totalAmount + ' kr';
+    const discountText = document.querySelector('.discount_alert');
+    const inputDiscountText = 'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
+    discountText.innerHTML =  inputDiscountText;
+    discountInput.value=''
+
+  } else {
+    console.log('nix')
+  }
+
+
+}
+inputDiscount()
+
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
