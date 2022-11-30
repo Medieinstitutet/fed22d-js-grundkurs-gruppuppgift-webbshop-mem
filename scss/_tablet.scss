@@ -11,13 +11,34 @@
   }
 }
 
-form#paymentForm {
-  flex-direction: row;
-  justify-content: center;
-  max-width: 70%;
-  margin: 0 auto;
+
+form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm{
+  .row{
+    flex-direction: unset;
+    flex-wrap: unset;
+    justify-content: center;
+  }
+
+  .row.row_button{
+    justify-content: center;
+  }
 
   .form_control {
     margin-right: 30px;
+
+    span.form_info{
+      font-size: 1rem;
+    }
+  }
+}
+
+form#paymentForm {
+
+  input[type=checkbox]{
+    margin-top: 5px;
+  }
+
+  input#confirmUseOfData{
+    margin-left: 1.5em;
   }
 }
