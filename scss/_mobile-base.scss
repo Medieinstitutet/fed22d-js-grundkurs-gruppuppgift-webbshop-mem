@@ -383,13 +383,10 @@ input[type='number'] {
   }
   
 }
-.discount_amount {
-  display: flex;
-  justify-content: center;
+.discount_alert {
+  margin-right: 16em;
 
-  span{
-    margin-right: 8em;
-  }
+
 }
 
 .total_sum {
@@ -400,6 +397,7 @@ input[type='number'] {
   margin-bottom: 1rem;
 
   .amount_text {
+    
     margin-right: 10em;
   }
 }
