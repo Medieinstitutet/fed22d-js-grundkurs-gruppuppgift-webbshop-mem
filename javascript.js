@@ -1,13 +1,33 @@
-/***************************************************************************************
- *                             Funktioner för meny
- *************************************************************************************** */
+/**************************************************************
+ *                       GLOBALA VARIBALER
+ **************************************************************/
+// Variabler för meny
 const menuButton = document.getElementsByClassName('toggle_menu')[0];
 const menuLinks = document.getElementsByClassName('menu_links')[0];
-
 let menuOpen = false; //Menyn är stängd som default
 
-//Funktion för menyn
+
+// Variabler för Shoppingcart page toggle ----
+const toggleShoppingCartBtn = document.querySelector('.shopping_cart');
+const shoppingCartPage = document.querySelector('.shopping_basket');
+const returnToShoppingCartBtn = document.querySelector('#toggle_shopping_cart');
+toggleShoppingCartBtn.addEventListener('click', toggleOrderPage);
+returnToShoppingCartBtn.addEventListener('click', toggleOrderPage);
+
+//Varibaler för munkar
+const donutPlacement = document.querySelectorAll('.donut_article');
+
+//Variabler för varukorgen
+let totalAmount = 0;
+const totalAmountPlacement = document.querySelector('.total_amount');
+
+/******************************************************************
+ *                      FUNKTIONER
+ *******************************************************************/
+//Funktioner för menyn---------------------------------------------
+
 function toggleMenu() {
+  
   menuOpen = !menuOpen; //Gör att menyn får värdet true
   if (!menuOpen) {
     menuButton.blur(); // Tar bort fokus från knappen
@@ -38,24 +58,16 @@ function closeMenu() {
   menuButton.setAttribute('aria-expanded', false);
 }
 
-function toggleDarkMode(){
-    const body = document.body;
-    body.classList.toggle('darkMode');
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle('darkMode');
 }
 
-// Shoppingcart page toggle ----
-const toggleShoppingCartBtn = document.querySelector('.shopping_cart');
-const shoppingCartPage = document.querySelector('.shopping_basket');
-const returnToShoppingCartBtn = document.querySelector('#toggle_shopping_cart');
-toggleShoppingCartBtn.addEventListener('click', toggleOrderPage);
-returnToShoppingCartBtn.addEventListener('click', toggleOrderPage);
-
-/****************************************************************************
+/***********************************************************
  *                  Funktioner för orderpage
- ****************************************************************************/
-
+ ************************************************************/
+// Template till våra donuts ---------------------------------
 class Donut {
-  // Template till våra donuts
   constructor(name, price, review, aspect, picSrc) {
     this.name = name;
     this.price = price;
@@ -66,7 +78,7 @@ class Donut {
     this.calcHasHappend = false;
   }
 }
-// Donuts-array
+// Donuts-array ---------------------------------------------
 const donuts = [
   new Donut('Blåbärsmunk', 20, 8, 'Bär, Glasyr', [
     'images/small/blabarsmunk_liten.jpg',
@@ -110,9 +122,7 @@ const donuts = [
   ]),
 ];
 
-// Funktion för att skriva ut alla våra munkar till sidan
-const donutPlacement = document.querySelectorAll('.donut_article');
-
+// Funktion för att skriva ut alla våra munkar till sidan ----------------
 function displayDonut1() {
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
@@ -149,6 +159,8 @@ function displayDonut1() {
   });
   resetCounterBtns();
 }
+
+// Funktion för
 function resetCounterBtns() {
   let plusbtn = '';
   let minusbtn = '';
@@ -161,11 +173,10 @@ function resetCounterBtns() {
 }
 
 
-//Funktion för prisökning fredag 15.00 - måndag 03.00
-
+//Funktion för prisökning fredag 15.00 - måndag 03.00 ------
 function fridayIncrease() {
   const date = new Date();
-
+  console.log(date)
   const friday = date.getDay() === 5;
   const monday = date.getDay() === 1;
   const time = date.getHours();
@@ -178,9 +189,7 @@ function fridayIncrease() {
 }
 fridayIncrease();
 
-
-//Funktioner för bildspel
-
+//Funktioner för bildspel -------------------------------------
 function nextImage(btn) {
   const donutIndex = btn.currentTarget.id.replace('next-', '');
   const imageArray = donuts[donutIndex].picSrc;
@@ -212,25 +221,10 @@ function prevImage(btn) {
   }
 }
 
-//Funktion för prisökning fredag 15.00 - måndag 03.00 
-
-function fridayIncrease() {
-  const date = new Date();
-  console.log(date);
-  const friday = date.getDay() === 5;
-  const monday = date.getDay() === 1;
-  const time = date.getHours();
-  console.log(monday)
-  if ((friday && time > 15) || (monday && time <= 3)) {
-    for (let i = 0; i < donuts.length; i++) {
-      donuts[i].price = Math.floor(donuts[i].price * 1.15);
-    }
-  }
-}
-fridayIncrease();
 /****************************************************************************
  *                  Funktioner för shopping-basket
  ***************************************************************************/
+// Funktion för att skriva ut munkar till varukorg ---------------------
 function displayDonutCart() {
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
@@ -261,14 +255,13 @@ function displayDonutCart() {
   }
 }
 
-let totalAmount = 0;
-const totalAmountPlacement = document.querySelector('.total_amount');
-
+// Funktion för uträkning av totalpris ------------------------------------
 function calcTotalorder() {
   totalAmount = 0;
   let totalDonutAmount = 0;
   const fraktSelector = document.querySelector('.fraktSelector');
   for (let i = 0; i < donuts.length; i++) {
+    
     // Kollar om mer än 10 av samma sort valts och ändrar priset därefter. Ändar tillbaka utifall de är mindre än 10.
     if (!donuts[i].calcHasHappend && donuts[i].selectCounter === 10) {
       donuts[i].calcHasHappend = true; // Säkerställer att de inte händer mer än en gång
@@ -302,20 +295,19 @@ function calcTotalorder() {
   tuesdayDiscount();
 }
 
-//Funktion för måndagsrabatt
+//Funktion för måndagsrabatt -----------------------------------------------
 function mondayDiscount() {
   const date = new Date();
   const monday = date.getDay() === 1;
   if (monday) {
 
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.9) + 'kr';
-    const discountText = document.querySelector('.discount_amount');
+    const discountText = document.querySelector('.discount_alert');
     const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + mondayDiscountText;
   }
 }
-//Funktion för tisdagsrabatt
-
+//Funktion för tisdagsrabatt --------------------------------------------
 function tuesdayDiscount() {
   currentDate = new Date();
   startDate = new Date(currentDate.getFullYear(), 0, 1);
@@ -334,29 +326,58 @@ function tuesdayDiscount() {
 }
 tuesdayDiscount();
 
+// Funktion för inmatad rabattkod -----------------------------------
 function inputDiscount() {
   const discountInput = document.querySelector('.discount_text')
   const discountButton = document.querySelector('.discount_button')
     .addEventListener('click', inputDiscount);
-  console.log(discountInput.value)
 
   if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
     console.log('japp')
-    totalAmountPlacement.innerHTML = totalAmount-totalAmount + ' kr';
+    totalAmountPlacement.innerHTML = totalAmount - totalAmount + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const inputDiscountText = 'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
-    discountText.innerHTML =  inputDiscountText;
-    discountInput.value=''
+    discountText.innerHTML = inputDiscountText;
+    discountInput.value = ''
 
-  } else {
-    console.log('nix')
   }
-
-
 }
 inputDiscount()
 
+// Funktion för att lägga till gratis munk på Lucia -----------
+function addLuciaDonut() {
+  const date = new Date()
+  const lucia = date.getDate() === 13;
+  const december = date.getMonth() === 11
+  const luciaMunk = {
+    name: 'Luciamunk',
+    price: 0,
+    image: 'images/small/luciamunk.jpg',
+  }
+  const luciaPlacement =  document.querySelector('.luciaOrder')
+  const luciaDonutMarkup =`
+        <img src=${luciaMunk.image} width="150" height="150 loading=" lazy">
+          <h4>${luciaMunk.name}</h4 >
+                <ul>
+                    <li>${luciaMunk.price} kr</li>
+                </ul>
+                <div class="plus_minusBtn">
+                        <button class="btn_cart_plus">+</button>
+                        <button class="btn_cart_minus">-</button>
+                </div>
+            </div >
+`;
+  if (lucia && december) {
+    console.log('japp')
+    luciaPlacement.innerHTML = luciaDonutMarkup
+    const discountText = document.querySelector('.discount_alert');
+    const luciaDiscountText = 'Gratis munk på Lucia!';
+    discountText.innerHTML = 'Tillämpad rabatt: ' + luciaDiscountText;
+}
+}
+addLuciaDonut()
 
+// Funktioner för 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
   const currentAmountSelected =
@@ -391,14 +412,15 @@ function countDown(e) {
   donuts[controlValueNumber].selectCounter--;
   currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
-
+// Togglar synligheten på varukorgen + placerar ut donuts med mer än 0 i antal + räknar ut totalen
 function toggleOrderPage() {
-  // Togglar synligheten på varukorgen + placerar ut donuts med mer än 0 i antal + räknar ut totalen
   shoppingCartPage.classList.toggle('toggle-hidden');
   displayDonutCart();
   calcTotalorder();
   setTimeout(cartTimerClear, 9000000); // rensar efter 15min
 }
+
+//Funktion för timer i varukorgen -----------------------
 function cartTimerClear() {
   clearCart();
   calcTotalorder();
@@ -436,7 +458,7 @@ function countDownCart(e) {
   currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
   calcTotalorder();
 }
-
+//Funktion för att rensa varukorgen ---------------------------
 function clearCart() {
   for (let i = 0; i < donuts.length; i++) {
     donuts[i].selectCounter = 0;
@@ -445,10 +467,8 @@ function clearCart() {
   }
   calcTotalorder();
 }
-
+// Sorterings funktion, sorterar när använderan gör ett val i select inputen
 function onSortSelect() {
-  // Sorterings funktion, sorterar när använderan gör ett val i select inputen
-
   switch (sortSelect.value) {
     case 'pricefalling':
       donuts.sort((a, b) => b.price - a.price);
@@ -468,9 +488,8 @@ function onSortSelect() {
       break;
   }
 }
-
+// Visar toggle menyn när man trcker på Filter knappen, filterar sedan när man trycker igen och stänger den.
 function toggleFilterOptions() {
-  // Visar toggle menyn när man trcker på Filter knappen, filterar sedan när man trycker igen och stänger den.
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
@@ -537,12 +556,11 @@ function toggleFilterOptions() {
   // gsap.from('#filterOptions', {x: 500, duration: 0.3})
   gsap.from('.filterOptions>button', { x: 400, duration: 0.6, stagger: 0.2 });
 }
-
+ // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
 function toggleFilter(e) {
-  // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
   const selectedFilter = e.currentTarget;
   switch (
-    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+  selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
   ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
@@ -802,9 +820,9 @@ cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if(controlCardForm >= 4){
-    setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
-    clearCart();  
+  if (controlCardForm >= 4) {
+    setSuccessFor(cardNumber, cardMonth, cardYear, cvc);
+    clearCart();
     clearForm();
     //alert('Du har lagt en beställning');
   }
@@ -904,9 +922,9 @@ function checkInvoicePaymentInputs() {
 /**
  * KLAR Måndagar 10% rabatt på hela summan - Detta visas i
  * varukorgssammanställningen som en rad med texten "Måndagsrabatt: 10 % på hela beställningen".
- *
+ *KLAR Gratis munk på lucia
  * KLAR Fredag kl 15 - mån kl 03.00 15% högre pris på alla munkar
- * 10 munkar av samma sort = 10% rabatt för just denna sort
- * Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
+ * KLAR 10 munkar av samma sort = 10% rabatt för just denna sort
+ * KLAR Om rabattkod a_damn_fine-cup_of-coffee matas in blir hela beställningen gratis
  * KLAR Om det är jämn vecka och tisdag, så får man 25 kr rabatt på beställningen förutsatt att totalsumman överstiger 25 kr.
  */
