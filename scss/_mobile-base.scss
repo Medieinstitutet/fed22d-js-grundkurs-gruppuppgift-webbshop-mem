@@ -596,6 +596,10 @@ form#invoicePaymentForm {
       cursor: pointer;
     }
   }
+
+  small.errorMsg{
+    margin-top: 10px;
+  }
 }
 
 button#cardPaymentBtn.active,

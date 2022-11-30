@@ -620,12 +620,17 @@ function clearForm() {
 
 paymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
+  const maxInvoiceSum = 800;
 
   checkInputs();
 
-  if (controlForm >= 7) {
+
+  if (controlForm >= 7 && totalAmount >= maxInvoiceSum) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
+    document.querySelector('.errorMsg').classList.remove('toggle-hidden');
+  }else if(totalAmount < maxInvoiceSum){
     document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
+    document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
@@ -791,9 +796,7 @@ cardPaymentForm.addEventListener('submit', (e) => {
   checkCardPaymentInputs();
 
 
-  if(controlCardForm >= 4){
-    console.log('Betalning godkänd');   
-    alert('Du har lagt en beställning');
+  if(controlCardForm >= 4){ 
     clearCart();  
     clearForm();
     alert('Du har lagt en beställning');
