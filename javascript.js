@@ -418,11 +418,23 @@ function countDownCart(e) {
 }
 
 function clearCart() {
-  for (let i = 0; i < donuts.length; i++) {
-    donuts[i].selectCounter = 0;
-    document.querySelector('.current_donuts_order').children[i].innerHTML = '';
-    document.querySelectorAll('.selectcounter')[i].innerHTML = '';
+  // current_donuts_order och selectcounter har olika "längd" (vet ej varför?)
+  // så därför blir det error när båda försöker loopas igenom - därav två separata loopar
+  const currentDonutsOrder = document.querySelectorAll('.current_donuts_order');
+  if (currentDonutsOrder !== null) {
+    currentDonutsOrder.forEach((child) => {
+      child.innerHTML = '';
+    });
   }
+
+  const selectCounter = document.querySelectorAll('.selectcounter');
+  if (selectCounter !== null) {
+    selectCounter.forEach((sc) => { // forEach = for-loop, men bara "kortare" syntax
+      sc.innerHTML = '';
+    });
+  }
+  
+  document.querySelector('.shopping_basket').style.opacity = 0; // TODO
   calcTotalorder();
 }
 
@@ -785,7 +797,7 @@ cardPaymentForm.addEventListener('submit', (e) => {
     setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
     clearCart();  
     clearForm();
-    //alert('Du har lagt en beställning');
+    alert('Du har lagt en beställning');
   }
 });
 
