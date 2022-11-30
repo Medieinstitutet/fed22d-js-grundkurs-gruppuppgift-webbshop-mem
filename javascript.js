@@ -108,8 +108,6 @@ const donuts = [
 const donutPlacement = document.querySelectorAll('.donut_article');
 
 function displayDonut1() {
-  let shopCartBtnUp = '';
-  let shopCartBtnDown = '';
   for (let i = 0; i < donuts.length; i++) {
     let donutNr = 'nr' + i;
     const donutMarkup = `
@@ -143,8 +141,18 @@ function displayDonut1() {
   prevBtns.forEach((btn) => {
     btn.addEventListener('click', prevImage);
   });
+  resetCounterBtns();
 }
-displayDonut1();
+function resetCounterBtns() {
+  let plusbtn = '';
+  let minusbtn = '';
+  plusbtn = document.querySelectorAll('button[data-operator="plus"]');
+  minusbtn = document.querySelectorAll('button[data-operator="minus"]');
+  for (let i = 0; i < plusbtn.length; i++) {
+    plusbtn[i].addEventListener('click', countUp);
+    minusbtn[i].addEventListener('click', countDown);
+  }
+}
 
 //Funktion för prisökning fredag 15.00 - måndag 03.00
 
@@ -277,26 +285,37 @@ tuesdayDiscount();
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
-  const updateCounter = document.querySelectorAll('.selectcounter');
-  for (let i = 0; i < donuts.length; i++) {
-    if (controll.value == 'nr' + i + ' donuts') {
-      donuts[i].selectCounter++;
-      updateCounter[i].innerHTML = donuts[i].selectCounter;
-    }
-  }
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[3];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  donuts[controlValueNumber].selectCounter++;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
+
+function countUpCart(e) {
+  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[2].children[1];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  donuts[controlValueNumber].selectCounter++;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
+  calcTotalorder();
+}
+
 function countDown(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
-  const updateCounter = document.querySelectorAll('.selectcounter');
-  for (let i = 0; i < donuts.length; i++) {
-    if (controll.value == 'nr' + i + ' donuts') {
-      if (donuts[i].selectCounter <= 0) {
-        return;
-      }
-      donuts[i].selectCounter--;
-      updateCounter[i].innerHTML = donuts[i].selectCounter;
-    }
-  }
+  const currentAmountSelected =
+    e.currentTarget.parentElement.parentElement.children[3];
+  const controlValueNumber = controll.value
+    .replace('nr', '')
+    .replace(' donuts', '');
+  if (donuts[controlValueNumber].selectCounter == 0) return;
+  donuts[controlValueNumber].selectCounter--;
+  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
 
 function toggleOrderPage() {
@@ -310,6 +329,14 @@ function toggleOrderPage() {
     shopCartBtnUp[i].addEventListener('click', countUpCart);
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
+  setTimeout(cartTimerClear, 9000000); // rensar efter 15min
+}
+function cartTimerClear() {
+  clearCart();
+  calcTotalorder();
+  const timeClearNotice = document.querySelector('#forTimerClear');
+  timeClearNotice.innerHTML = 'Du är för långsam...';
+  timeClearNotice.classList.toggle('timerClear');
 }
 
 function countUpCart(e) {
@@ -431,12 +458,16 @@ function toggleFilterOptions() {
         }
       }
     }
+    resetCounterBtns();
   }
   open = true; // Så koden triggas ändas när man stänger filter menyn
   if (!bar && !glasyr && !choklad && !socker && !strossel) {
     // Om man inte valt något alternativ så skrivs donutsen ut som vanligt
     displayDonut1();
   }
+  // Animationer
+  // gsap.from('#filterOptions', {x: 500, duration: 0.3})
+  gsap.from('.filterOptions>button', { x: 400, duration: 0.4, stagger: 0.1 });
 }
 
 function toggleFilter(e) {
@@ -488,20 +519,13 @@ function toggleFilter(e) {
   }
 }
 displayDonut1();
-
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
-let plusbtn = document.querySelectorAll('button[data-operator="plus"]');
-let minusbtn = document.querySelectorAll('button[data-operator="minus"]');
 let bar = false;
 let glasyr = false;
 let choklad = false; // Alla alternativ till filter funktionen
 let socker = false;
 let strossel = false;
 let open = false;
-for (let i = 0; i < plusbtn.length; i++) {
-  plusbtn[i].addEventListener('click', countUp);
-  minusbtn[i].addEventListener('click', countDown);
-}
 
 document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
 const sortSelect = document.querySelector('#sorting');
