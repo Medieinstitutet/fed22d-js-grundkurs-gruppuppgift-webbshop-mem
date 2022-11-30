@@ -159,7 +159,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Förnamn:</span>
-                                <input type="text" id="first_name" name="first_name" value="Emilia">
+                                <input type="text" id="first_name" name="first_name" value="Emilia" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -168,7 +168,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Efternamn:</span>
-                                <input type="text" id="last_name" name="last_name" value="Mässing">
+                                <input type="text" id="last_name" name="last_name" value="Mässing" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -177,7 +177,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Email:</span>
-                                <input type="text" id="email" name="email" value="emiliamassing@gmail.com">
+                                <input type="text" id="email" name="email" value="emiliamassing@gmail.com" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -186,7 +186,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Adress:</span>
-                                <input type="text" id="adress" name="adress" value="Ränngruvevägen 7B">
+                                <input type="text" id="adress" name="adress" value="Ränngruvevägen 7B" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -195,7 +195,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postnummer:</span>
-                                <input type="number" id="zipcode" name="zipcode" value="77240">
+                                <input type="number" id="zipcode" name="zipcode" value="77240" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -204,7 +204,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Postort:</span>
-                                <input type="text" id="postalAdress" name="postal_adress" value="Grängesberg">
+                                <input type="text" id="postalAdress" name="postal_adress" value="Grängesberg" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -222,10 +222,22 @@
                         <div class="form_control">
                             <label>
                                 <span>Telefonnummer:</span>
-                                <input type="tel" id="tel" name="tel" value="0722290469">
+                                <input type="tel" id="tel" name="tel" value="0722290469" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Godkänn användning av personuppgifter</span>
+                                <input type="checkbox" id="confirmUseOfData" name="confirmUseOfData" required>
+                            </label>
+                        </div>
+                        <div class="form_control">
+                            <label>
+                                <span>Prenumerera på vårat nyhetsbrev</span>
+                                <input type="checkbox" id="subscribeNewsletter" name="subscribeNewsletter" required checked>
                             </label>
                         </div>
                         <div class="form_control">
@@ -240,7 +252,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Kortnummer:</span>
-                                <input type="number" id="cardnr" name="cardnr" value="1234567890123456">
+                                <input type="number" id="cardnr" name="cardnr" value="1234567890123456" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -249,7 +261,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Månad:</span>
-                                <input type="number" id="date" name="date" value="7">
+                                <input type="number" id="date" name="date" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -258,7 +270,7 @@
                         <div class="form_control">
                             <label>
                                 <span>År:</span>
-                                <input type="number" id="year" name="year" value ="2026">
+                                <input type="number" id="year" name="year" value ="2026" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -267,7 +279,7 @@
                         <div class="form_control">
                             <label>
                                 <span>CVC:</span>
-                                <input type="number" id="cvc" name="cvc" value="682">
+                                <input type="number" id="cvc" name="cvc" value="682" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>
@@ -284,7 +296,7 @@
                         <div class="form_control">
                             <label>
                                 <span>Personnummer:</span>
-                                <input type="number" id="idnr" name="idnr">
+                                <input type="number" id="idnr" name="idnr" required>
                                 <i class="fa-regular fa-circle-xmark fa-lg"></i>
                                 <i class="fa-regular fa-circle-check fa-lg"></i>
                                 <small class="toggle-hidden">Error</small>

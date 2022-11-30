@@ -420,8 +420,12 @@ function countDownCart(e) {
 function clearCart() {
   for (let i = 0; i < donuts.length; i++) {
     donuts[i].selectCounter = 0;
-    document.querySelector('.current_donuts_order').children[i].innerHTML = '';
-    document.querySelectorAll('.selectcounter')[i].innerHTML = '';
+    const a = document.querySelector('.current_donuts_order');
+    /*if(a != null){
+        a.children[i].innerHTML = '';
+    }*/
+    //document.querySelector('.current_donuts_order').children[i].innerHTML = '';
+    //document.querySelectorAll('.selectcounter')[i].innerHTML = '';
   }
   calcTotalorder();
 }
@@ -778,12 +782,13 @@ cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
+
   if(controlCardForm >= 4){
     console.log('Betalning godkänd');   
-    setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
+    alert('Du har lagt en beställning');
     clearCart();  
     clearForm();
-    //alert('Du har lagt en beställning');
+    
   }
 });
 
