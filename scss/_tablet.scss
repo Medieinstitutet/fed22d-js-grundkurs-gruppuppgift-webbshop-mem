@@ -11,13 +11,60 @@
   }
 }
 
-form#paymentForm {
-  flex-direction: row;
-  justify-content: center;
-  max-width: 70%;
-  margin: 0 auto;
+.shopping_basket h2{
+  font-size: 1.8rem;
+  margin-top: 1rem;
+}
+
+.price_discount{
+  .row{
+    flex-direction: unset;
+  }
+
+  .discount_button{
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  .discount_alert span {
+    margin-right: 6em;
+  }
+}
+
+.total_sum{
+  .amount_text{
+    margin-right: 16em;
+  }
+}
+
+
+form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm{
+  .row{
+    flex-direction: unset;
+    flex-wrap: unset;
+    justify-content: center;
+  }
+
+  .row.row_button{
+    justify-content: center;
+  }
 
   .form_control {
-    margin-right: 30px;
+    margin-right: 20px;
+
+    span.form_info{
+      font-size: 1rem;
+    }
+  }
+}
+
+form#paymentForm {
+
+  input[type=checkbox]{
+    margin-top: 5px;
+  }
+
+  input#confirmUseOfData{
+    margin-left: 1.5em;
   }
 }

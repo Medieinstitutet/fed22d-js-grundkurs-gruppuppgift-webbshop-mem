@@ -53,10 +53,9 @@
                     vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
                     commodo.
                 </p>
-
-                <button id="toggleDarkMode" onclick="toggleDarkMode()">Mörkt/Ljust Läge</button>
-                <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ
-                        Här</a></button>
+                
+                <button id="toggleDarkMode" onclick="toggleDarkMode()">Välj mörkt/ljust Läge</button>
+                <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ Här</a></button>
             </article>
 
         </section>
@@ -113,198 +112,242 @@
                 </article>
                 <footer></footer>
             </section>
-        </section>
-        <section class="shopping_basket toggle-hidden">
-            <h2>Varukorg</h2>
-            <div id="forTimerClear"></div>
-            <div class="current_donuts_order">
-                <!-- Här landar donutsen-->
-                <div class="centerDonuts">
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="selectedOrder"></div>
-                    <div class="luciaOrder"></div>
+            <section class="shopping_basket toggle-hidden">
+                <h2>Varukorg</h2>
+                <div id="forTimerClear"></div>
+                <div class="current_donuts_order">
+                   <!-- Här landar donutsen-->
+                   <div class="centerDonuts">
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                        <div class="selectedOrder"></div>
+                   </div>
                 </div>
-
-            </div>
-
-            <div class="price_discount">
-                <!--Används ej under test-->
-                <label class="discount">
-                    <span>Rabattkod:</span>
-                    <input type="text" class="discount_text">
-                    <input type="submit" class="discount_button" value="Lös in din kod">
-                </label>
-
-                <div class="discount_alert">
-                    <span>Tillämpad rabattkod:</span>
-                    <span></span>
-                </div>
-                <div class="fraktSelector"></div>
-                <div class="total_sum">
-                    <div class="amount_text">Totalt:</div>
-                    <div class="total_amount"></div>
-                </div>
-            </div>
-            <h3>Dina Uppgifter</h3>
-            <article>
-                <form action="" id="paymentForm">
-                    <div class="form_control">
-                        <div class="order_clear_buttons">
-                            <button id="toggle_shopping_cart">Tillbaka</button>
-                            <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
+                <div class="price_discount">
+                    <div class="row">
+                        <div class="form_control">
+                            <label>
+                                <span>Rabattkod:</span>
+                                <input type="text" class="discount_text" >
+                            </label>
+                        </div>
+                        <span>
+                            <input type="submit" class="discount_button" value="Lös in kod">
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="discount_alert">
+                            <span>Tillämpad rabattkod:</span>
+                            <span></span>
                         </div>
                     </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Förnamn:</span>
-                            <input type="text" id="first_name" name="first_name" value="Emilia">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Efternamn:</span>
-                            <input type="text" id="last_name" name="last_name" value="Mässing">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Email:</span>
-                            <input type="text" id="email" name="email" value="emiliamassing@gmail.com">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Adress:</span>
-                            <input type="text" id="adress" name="adress" value="Ränngruvevägen 7B">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Postnummer:</span>
-                            <input type="number" id="zipcode" name="zipcode" value="77240">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Postort:</span>
-                            <input type="text" id="postalAdress" name="postal_adress" value="Grängesberg">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Ev. Portkod:</span>
-                            <input type="number" id="doorcode" name="doorcode">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Telefonnummer:</span>
-                            <input type="tel" id="tel" name="tel" value="0722290469">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <button id="paymentButton">Betalning</button>
-                    </div>
-                </form>
-                <div class="flex_payment_button">
-                    <button id="cardPaymentBtn" class="toggle-hidden">Kortbetalning</button>
-                    <button id="invoicePaymentBtn" class="toggle-hidden">Faktura</button>
+                    <div class="total_sum">
+                        <div class="amount_text">Totalt:</div>
+                        <div class="total_amount"></div>
+                    </div>  
                 </div>
-                <form action="" id="cardPaymentForm" class="toggle-hidden">
-                    <div class="form_control">
-                        <label>
-                            <span>Kortnummer:</span>
-                            <input type="number" id="cardnr" name="cardnr" value="1234567890123456">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
+                <h3>Dina Uppgifter</h3>
+                <article>
+                    <form action="" id="paymentForm">
+                        <div class="row row_button">
+                            <div class="form_control">
+                                <div class="order_clear_buttons">
+                                    <button id="toggle_shopping_cart">Tillbaka</button>
+                                    <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Förnamn:</span>
+                                    <input type="text" id="first_name" name="first_name" value="Emilia" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>Efternamn:</span>
+                                    <input type="text" id="last_name" name="last_name" value="Mässing" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Email:</span>
+                                    <input type="text" id="email" name="email" value="emiliamassing@gmail.com" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>Adress:</span>
+                                    <input type="text" id="adress" name="adress" value="Ränngruvevägen 7B" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Postnummer:</span>
+                                    <input type="number" id="zipcode" name="zipcode" value="77240" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>Postort:</span>
+                                    <input type="text" id="postalAdress" name="postal_adress" value="Grängesberg" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Ev. Portkod:</span>
+                                    <input type="number" id="doorcode" name="doorcode">
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>Telefonnummer:</span>
+                                    <input type="tel" id="tel" name="tel" value="0722290469" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span class="form_info">Godkänn användning av personuppgifter</span>
+                                    <input type="checkbox" id="confirmUseOfData" name="confirmUseOfData" required>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span class="form_info">Prenumerera på vårat nyhetsbrev</span>
+                                    <input type="checkbox" id="subscribeNewsletter" name="subscribeNewsletter" required checked>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <button id="paymentButton">Betalning</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="flex_payment_button">
+                        <button id="cardPaymentBtn" class="toggle-hidden">Kortbetalning</button>
+                        <button id="invoicePaymentBtn" class="toggle-hidden">Faktura</button>
+                        <small class="errorMsg toggle-hidden">Faktura kan inte väljas när beloppet överskider 800kr</small>
                     </div>
-                    <div class="form_control">
-                        <label>
-                            <span>Månad:</span>
-                            <input type="number" id="date" name="date" value="7">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>År:</span>
-                            <input type="number" id="year" name="year" value="2026">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <label>
-                            <span>CVC:</span>
-                            <input type="number" id="cvc" name="cvc" value="682">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
-                    </div>
-                    <div class="form_control">
-                        <button id="cardOrderButton">Beställ</button>
-                    </div>
-                </form>
-                <form action="" id="invoicePaymentForm" class="toggle-hidden">
-                    <div class="form_control">
-                        <label>
-                            <span>Personnummer:</span>
-                            <input type="number" id="idnr" name="idnr">
-                            <i class="fa-regular fa-circle-xmark fa-lg"></i>
-                            <i class="fa-regular fa-circle-check fa-lg"></i>
-                            <small class="toggle-hidden">Error</small>
-                        </label>
-                    </div>
-                    <div class="form_control">
-                        <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
-                    </div>
-                    <div class="form_control">
-                        <button id="cardOrderButton">Beställ</button>
-                    </div>
-                </form>
-            </article>
-        </section>
+                    <form action="" id="cardPaymentForm" class="toggle-hidden">
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Kortnummer:</span>
+                                    <input type="number" id="cardnr" name="cardnr" value="1234567890123456" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>Månad:</span>
+                                    <input type="number" id="date" name="date" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>År:</span>
+                                    <input type="number" id="year" name="year" value ="2026" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                            <div class="form_control">
+                                <label>
+                                    <span>CVC:</span>
+                                    <input type="number" id="cvc" name="cvc" value="682" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <button id="cardOrderButton">Beställ</button>
+                            </div>
+                        </form>
+                        </div>
+                    <form action="" id="invoicePaymentForm" class="toggle-hidden">
+                        <div class="row">
+                            <div class="form_control">
+                                <label>
+                                    <span>Personnummer:</span>
+                                    <input type="number" id="idnr" name="idnr" required>
+                                    <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                    <i class="fa-regular fa-circle-check fa-lg"></i>
+                                    <small class="toggle-hidden">Error</small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form_control">
+                                <button id="cardOrderButton">Beställ</button>
+                            </div>
+                        </div>
+                    </form>
+                </article>
+            </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="javascript.js"></script>

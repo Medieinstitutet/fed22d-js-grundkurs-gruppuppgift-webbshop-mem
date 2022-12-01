@@ -455,11 +455,23 @@ function countDownCart(e) {
 }
 //Funktion för att rensa varukorgen ---------------------------
 function clearCart() {
-  for (let i = 0; i < donuts.length; i++) {
-    donuts[i].selectCounter = 0;
-    document.querySelector('.current_donuts_order').children[i].innerHTML = '';
-    document.querySelectorAll('.selectcounter')[i].innerHTML = '';
+  // current_donuts_order och selectcounter har olika "längd" (vet ej varför?)
+  // så därför blir det error när båda försöker loopas igenom - därav två separata loopar
+  const currentDonutsOrder = document.querySelectorAll('.current_donuts_order');
+  if (currentDonutsOrder !== null) {
+    currentDonutsOrder.forEach((child) => {
+      child.innerHTML = '';
+    });
   }
+
+  const selectCounter = document.querySelectorAll('.selectcounter');
+  if (selectCounter !== null) {
+    selectCounter.forEach((sc) => { // forEach = for-loop, men bara "kortare" syntax
+      sc.innerHTML = '';
+    });
+  }
+  
+  document.querySelector('.shopping_basket').style.opacity = 0; // TODO
   calcTotalorder();
 }
 // Sorterings funktion, sorterar när använderan gör ett val i select inputen
@@ -642,14 +654,18 @@ function clearForm() {
 
 paymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
+  const maxInvoiceSum = 800;
 
   checkInputs();
 
-  if (controlForm >= 7) {
+
+  if (controlForm >= 7 && totalAmount >= maxInvoiceSum) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
-    document
-      .querySelector('#invoicePaymentBtn')
-      .classList.remove('toggle-hidden');
+
+    document.querySelector('.errorMsg').classList.remove('toggle-hidden');
+  }else if(totalAmount < maxInvoiceSum){
+    document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
+    document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
@@ -667,20 +683,17 @@ function pickPaymentOption(e) {
     cardOptionBtn.classList.add('active');
     invoiceOptionBtn.classList.remove('active');
 
-    console.log(cardOptionBtn);
 
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.add('toggle-hidden');
+    document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
+    
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
     document
       .querySelector('#invoicePaymentForm')
       .classList.remove('toggle-hidden');
 
     invoiceOptionBtn.classList.add('active');
-
     cardOptionBtn.classList.remove('active');
-    console.log(invoiceOptionBtn);
+
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
   }
 }
@@ -822,11 +835,10 @@ cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if (controlCardForm >= 4) {
-    setSuccessFor(cardNumber, cardMonth, cardYear, cvc);
-    clearCart();
+  if(controlCardForm >= 4){ 
+    clearCart();  
     clearForm();
-    //alert('Du har lagt en beställning');
+    alert('Du har lagt en beställning');
   }
 });
 
