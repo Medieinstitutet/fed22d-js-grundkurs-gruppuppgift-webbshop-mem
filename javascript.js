@@ -919,21 +919,15 @@ function checkInvoicePaymentInputs() {
  - När allt är godkänt ska en ruta dyka upp som berättar att betalning är godkänd + övrig info.
  */
 
-//Jultema
-/**
- * Jag behöver:
- * en regel som säger när det är jul
- * en funktion som byter css-klass
- */
 
- const date = new Date('2022-12-24');
- console.log(date)
- const christmas = date.getDate() === 24;
- const december = date.getMonth() === 11;
+
+
  
  function christmasMode() {
   const priceText = document.querySelectorAll('.price')
-  
+  const date = new Date();
+  const christmas = date.getDate() === 24;
+  const december = date.getMonth() === 11;
  
   if (christmas && december) {
     for (let i = 0; i < priceText.length; i++) {
