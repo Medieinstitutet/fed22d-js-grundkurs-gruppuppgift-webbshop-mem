@@ -452,15 +452,7 @@ input[type='number'] {
   align-items: center;
   margin-top: 1em;
 
-  //Dubbelkolla om detta behövs
-  label { 
-    /*display:inline-flex;
-    justify-content: center;*/
-  }
-
   .discount_alert {
-    /*display: inline-flex;
-    justify-content: center;*/
     align-self: center;
   }
 
@@ -482,7 +474,7 @@ input[type='number'] {
   margin-bottom: 1rem;
 
   .amount_text {
-    margin-right: 10em;
+    margin-right: 11.5em;
   }
 }
 
