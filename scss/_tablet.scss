@@ -16,6 +16,12 @@
   margin-top: 1rem;
 }
 
+.cart_plus_minusBtn{
+  button{
+    padding: 4px;
+  }
+}
+
 .price_discount{
   .row{
     flex-direction: unset;
