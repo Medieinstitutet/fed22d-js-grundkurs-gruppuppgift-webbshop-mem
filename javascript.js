@@ -64,7 +64,6 @@ function closeMenu() {
   menuOpen = false;
   menuButton.blur();
   menuButton.classList.remove('active');
-  menuButton.classList.remove('active');
   menuButton.setAttribute('aria-expanded', false);
 }
 
@@ -673,9 +672,7 @@ paymentForm.addEventListener('submit', (e) => {
 function pickPaymentOption(e) {
 
   if (e.currentTarget.id == 'cardPaymentBtn') {
-    document
-      .querySelector('#cardPaymentForm')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
 
     cardOptionBtn.classList.add('active');
     invoiceOptionBtn.classList.remove('active');
@@ -684,9 +681,7 @@ function pickPaymentOption(e) {
     document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
 
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
-    document
-      .querySelector('#invoicePaymentForm')
-      .classList.remove('toggle-hidden');
+    document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
 
     invoiceOptionBtn.classList.add('active');
     cardOptionBtn.classList.remove('active');
@@ -918,10 +913,7 @@ function checkInvoicePaymentInputs() {
   } else if (personalIdentityValue.length < 10) {
     setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
   } else if (personalIdentityValue.length > 10) {
-    setErrorFor(
-      personalIdentity,
-      'Fältet får inte innehålla mer än 10 siffror'
-    );
+    setErrorFor(personalIdentity,'Fältet får inte innehålla mer än 10 siffror');
   } else {
     setSuccessFor(personalIdentity);
   }
