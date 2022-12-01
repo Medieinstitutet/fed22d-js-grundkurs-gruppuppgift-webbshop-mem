@@ -20,6 +20,18 @@ const donutPlacement = document.querySelectorAll('.donut_article');
 let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
 
+//Variabler för betalningsformulär
+let controlForm = 0;
+
+const cardOptionBtn = document.querySelector('#cardPaymentBtn');
+const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
+cardOptionBtn.addEventListener('click', pickPaymentOption);
+invoiceOptionBtn.addEventListener('click', pickPaymentOption);
+
+let controlCardForm = 0;
+
+
+
 /******************************************************************
  *                      FUNKTIONER
  *******************************************************************/
@@ -58,7 +70,7 @@ function closeMenu() {
 function toggleDarkMode() {
   const body = document.body;
   body.classList.toggle('darkMode');
-  
+
 }
 
 /***********************************************************
@@ -158,7 +170,7 @@ function displayDonut1() {
   resetCounterBtns();
 }
 
-// Funktion för
+// Funktion för plus & minusknappar -------------------------------
 function resetCounterBtns() {
   let plusbtn = '';
   let minusbtn = '';
@@ -249,14 +261,14 @@ function displayDonutCart() {
     shopCartBtnUp[i].addEventListener('click', countUpCart);
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
-  
+
 }
 
 // Funktion för uträkning av totalpris ------------------------------------
 function calcTotalorder() {
   totalAmount = 0;
   let totalDonutAmount = 0;
-  const fraktSelector = document.querySelector('.fraktSelector');
+  const fraktSelector = document.querySelector('.shipping_amount');
   for (let i = 0; i < donuts.length; i++) {
     // Kollar om mer än 10 av samma sort valts och ändrar priset därefter. Ändar tillbaka utifall de är mindre än 10.
     if (!donuts[i].calcHasHappend && donuts[i].selectCounter === 10) {
@@ -281,9 +293,9 @@ function calcTotalorder() {
     totalDonutAmount += donuts[i].selectCounter;
   }
   if (totalDonutAmount > 15) {
-    fraktSelector.innerHTML = 'Frakt: GRATIS';
+    fraktSelector.innerHTML = 'GRATIS';
   } else {
-    fraktSelector.innerHTML = 'Frakt: 25kr';
+    fraktSelector.innerHTML = '25kr';
     totalAmount += 25;
   }
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
@@ -371,7 +383,7 @@ function addLuciaDonut() {
 }
 addLuciaDonut();
 
-// Funktioner för
+
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
   const currentAmountSelected =
@@ -469,7 +481,7 @@ function clearCart() {
       sc.innerHTML = '';
     });
   }
-  
+
   document.querySelector('.shopping_basket').style.opacity = 0; // TODO
   calcTotalorder();
 }
@@ -566,7 +578,7 @@ function toggleFilterOptions() {
 function toggleFilter(e) {
   const selectedFilter = e.currentTarget;
   switch (
-    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+  selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
   ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
@@ -611,6 +623,7 @@ function toggleFilter(e) {
   }
 }
 displayDonut1();
+
 const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
 let bar = false;
 let glasyr = false;
@@ -631,17 +644,6 @@ for (let i = 0; i < filterButtons.length; i++) {
 }
 
 //Kod för betalningsformulär
-const paymentForm = document.querySelector('form');
-const firstName = document.querySelector('#first_name');
-const lastName = document.querySelector('#last_name');
-const email = document.querySelector('#email');
-const adress = document.querySelector('#adress');
-const zipcode = document.querySelector('#zipcode');
-const postalAdress = document.querySelector('#postalAdress');
-const doorCode = document.querySelector('#doorcode'); //Ordna så det inte krävs att fylla i portkod
-const tel = document.querySelector('#tel');
-const paymentBtn = document.querySelector('#paymentBtn');
-
 function clearForm() {
   const formController = document.querySelectorAll('.form_control');
   formController.forEach((div) => {
@@ -661,18 +663,14 @@ paymentForm.addEventListener('submit', (e) => {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
 
     document.querySelector('.errorMsg').classList.remove('toggle-hidden');
-  }else if(totalAmount < maxInvoiceSum){
+  } else if (totalAmount < maxInvoiceSum) {
     document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
-let controlForm = 0;
-
-const cardOptionBtn = document.querySelector('#cardPaymentBtn');
-const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
-
 function pickPaymentOption(e) {
+
   if (e.currentTarget.id == 'cardPaymentBtn') {
     document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
 
@@ -681,7 +679,7 @@ function pickPaymentOption(e) {
 
 
     document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
-    
+
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
     document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
 
@@ -691,11 +689,19 @@ function pickPaymentOption(e) {
     document.querySelector('#cardPaymentForm').classList.add('toggle-hidden');
   }
 }
-
-cardOptionBtn.addEventListener('click', pickPaymentOption);
-invoiceOptionBtn.addEventListener('click', pickPaymentOption);
-
+// Funktion för att kolla av formulär ---------------------------
 function checkInputs() {
+  const paymentForm = document.querySelector('form');
+  const firstName = document.querySelector('#first_name');
+  const lastName = document.querySelector('#last_name');
+  const email = document.querySelector('#email');
+  const adress = document.querySelector('#adress');
+  const zipcode = document.querySelector('#zipcode');
+  const postalAdress = document.querySelector('#postalAdress');
+  const doorCode = document.querySelector('#doorcode'); //Ordna så det inte krävs att fylla i portkod
+  const tel = document.querySelector('#tel');
+  const paymentBtn = document.querySelector('#paymentBtn');
+
   const firstnameValue = firstName.value.trim(); //Trim tar bort eventuellt whitespace
   const lastnameValue = lastName.value.trim();
   const emailValue = email.value.trim();
@@ -777,7 +783,7 @@ function checkInputs() {
     controlForm++;
   }
 }
-
+//Funktioner för rätt & felmeddelanden---------
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
@@ -829,14 +835,14 @@ cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if(controlCardForm >= 4){ 
-    clearCart();  
+  if (controlCardForm >= 4) {
+    clearCart();
     clearForm();
     alert('Du har lagt en beställning');
   }
 });
 
-let controlCardForm = 0;
+
 
 function checkCardPaymentInputs() {
   const cardNumberValue = cardNumber.value.trim();
@@ -890,8 +896,7 @@ function checkCardPaymentInputs() {
 }
 
 //Validering för fakturaformulär
-const invoicePaymentForm = document.querySelector('#invoicePaymentForm');
-const personalIdentity = document.querySelector('#idnr');
+
 
 invoicePaymentForm.addEventListener('submit', (e) => {
   // e står för event
@@ -925,13 +930,13 @@ function checkInvoicePaymentInputs() {
 
 
 
- 
- function christmasMode() {
+
+function christmasMode() {
   const priceText = document.querySelectorAll('.price')
   const date = new Date();
   const christmas = date.getDate() === 24;
   const december = date.getMonth() === 11;
- 
+
   if (christmas && december) {
     for (let i = 0; i < priceText.length; i++) {
       priceText[i].style.color = "red";
@@ -940,5 +945,5 @@ function checkInvoicePaymentInputs() {
     const darkModeButton = document.querySelector('#toggleDarkMode');
     darkModeButton.classList.add('toggle-hidden');
   }
- } 
- christmasMode()
+}
+christmasMode()
