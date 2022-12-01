@@ -59,6 +59,7 @@ function closeMenu() {
 function toggleDarkMode() {
   const body = document.body;
   body.classList.toggle('darkMode');
+  
 }
 
 /***********************************************************
@@ -91,8 +92,8 @@ const donuts = [
     'images/small/dubbelchoklad2_liten.jpg',
   ]),
   new Donut('Glasyrmunk', 15, 7, 'Glasyr', [
-    'images/small/glasymunk_liten.jpg',
-    'images/small/glasymunk2_liten.jpg',
+    'images/small/glasyrmunk_liten.jpg',
+    'images/small/glasyrmunk2_liten.jpg',
   ]),
   new Donut('Sockermunk, glutenfri', 30, 5, 'Socker, Glutenfri', [
     'images/small/sockermunk_liten.jpg',
@@ -249,6 +250,7 @@ function displayDonutCart() {
     shopCartBtnUp[i].addEventListener('click', countUpCart);
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
+  
 }
 
 // Funktion för uträkning av totalpris ------------------------------------
@@ -928,16 +930,18 @@ function checkInvoicePaymentInputs() {
  console.log(date)
  const christmas = date.getDate() === 24;
  const december = date.getMonth() === 11;
- console.log(christmas);
- console.log(december)
-
+ 
  function christmasMode() {
+  const priceText = document.querySelectorAll('.price')
   
-  
+ 
   if (christmas && december) {
-    console.log('japp');
-    document.body.style.backgroundImage = "url('images/small/wallpaper_christmas_small.jpg')"
-    console.log(document.body.style.backgroundImage)
+    for (let i = 0; i < priceText.length; i++) {
+      priceText[i].style.color = "red";
+    }
+    document.body.classList.add("christmas")
+    const darkModeButton = document.querySelector('#toggleDarkMode');
+    darkModeButton.classList.add('toggle-hidden');
   }
-} 
-christmasMode()
+ } 
+ christmasMode()
