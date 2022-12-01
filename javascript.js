@@ -244,7 +244,7 @@ function displayDonutCart() {
                     <li>${donuts[i].price}kr</li>
                     <li>${donuts[i].selectCounter}</li>
                 </ul>
-                <div class="plus_minusBtn">
+                <div class="cart_plus_minusBtn">
                         <button class="btn_cart_plus">+</button>
                         <button class="btn_cart_minus">-</button>
                 </div>
