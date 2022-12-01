@@ -38,9 +38,9 @@ function closeMenu() {
   menuButton.setAttribute('aria-expanded', false);
 }
 
-function toggleDarkMode(){
-    const body = document.body;
-    body.classList.toggle('darkMode');
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle('darkMode');
 }
 
 // Shoppingcart page toggle ----
@@ -160,7 +160,6 @@ function resetCounterBtns() {
   }
 }
 
-
 //Funktion för prisökning fredag 15.00 - måndag 03.00
 
 function fridayIncrease() {
@@ -177,7 +176,6 @@ function fridayIncrease() {
   }
 }
 fridayIncrease();
-
 
 //Funktioner för bildspel
 
@@ -212,7 +210,7 @@ function prevImage(btn) {
   }
 }
 
-//Funktion för prisökning fredag 15.00 - måndag 03.00 
+//Funktion för prisökning fredag 15.00 - måndag 03.00
 
 function fridayIncrease() {
   const date = new Date();
@@ -220,7 +218,7 @@ function fridayIncrease() {
   const friday = date.getDay() === 5;
   const monday = date.getDay() === 1;
   const time = date.getHours();
-  console.log(monday)
+  console.log(monday);
   if ((friday && time > 15) || (monday && time <= 3)) {
     for (let i = 0; i < donuts.length; i++) {
       donuts[i].price = Math.floor(donuts[i].price * 1.15);
@@ -300,14 +298,17 @@ function calcTotalorder() {
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
   mondayDiscount();
   tuesdayDiscount();
+  if (totalDonutAmount > 0)
+    // Stänger av betala knappen om beställningen är tom
+    document.querySelector('#paymentButton').disabled = false;
+  else document.querySelector('#paymentButton').disabled = true;
 }
-
+console.log(document.querySelector('#paymentButton'));
 //Funktion för måndagsrabatt
 function mondayDiscount() {
   const date = new Date();
   const monday = date.getDay() === 1;
   if (monday) {
-
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.9) + 'kr';
     const discountText = document.querySelector('.discount_amount');
     const mondayDiscountText = 'Måndagsrabatt: 10 % på hela beställningen';
@@ -323,39 +324,35 @@ function tuesdayDiscount() {
   let weekNumber = Math.ceil(days / 7);
   const tuesday = currentDate.getDay() === 2;
 
-
   if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
     discountText.innerHTML = 'Tillämpad rabatt: ' + tuesdayDiscountText;
   }
-
 }
 tuesdayDiscount();
 
 function inputDiscount() {
-  const discountInput = document.querySelector('.discount_text')
-  const discountButton = document.querySelector('.discount_button')
+  const discountInput = document.querySelector('.discount_text');
+  const discountButton = document
+    .querySelector('.discount_button')
     .addEventListener('click', inputDiscount);
-  console.log(discountInput.value)
+  console.log(discountInput.value);
 
   if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
-    console.log('japp')
-    totalAmountPlacement.innerHTML = totalAmount-totalAmount + ' kr';
+    console.log('japp');
+    totalAmountPlacement.innerHTML = totalAmount - totalAmount + ' kr';
     const discountText = document.querySelector('.discount_alert');
-    const inputDiscountText = 'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
-    discountText.innerHTML =  inputDiscountText;
-    discountInput.value=''
-
+    const inputDiscountText =
+      'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
+    discountText.innerHTML = inputDiscountText;
+    discountInput.value = '';
   } else {
-    console.log('nix')
+    console.log('nix');
   }
-
-
 }
-inputDiscount()
-
+inputDiscount();
 
 function countUp(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
@@ -535,7 +532,7 @@ function toggleFilterOptions() {
   }
   // Animationer
   // gsap.from('#filterOptions', {x: 500, duration: 0.3})
-  gsap.from('.filterOptions>button', { x: 400, duration: 0.6, stagger: 0.2 });
+  gsap.from('.filterOptions>button', { x: '400', duration: '0.6' });
 }
 
 function toggleFilter(e) {
@@ -634,7 +631,9 @@ paymentForm.addEventListener('submit', (e) => {
 
   if (controlForm >= 7) {
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
-    document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentBtn')
+      .classList.remove('toggle-hidden');
   }
 });
 
@@ -645,16 +644,22 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 
 function pickPaymentOption(e) {
   if (e.currentTarget.id == 'cardPaymentBtn') {
-    document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
+    document
+      .querySelector('#cardPaymentForm')
+      .classList.remove('toggle-hidden');
 
     cardOptionBtn.classList.add('active');
     invoiceOptionBtn.classList.remove('active');
 
     console.log(cardOptionBtn);
 
-    document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.add('toggle-hidden');
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
-    document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.remove('toggle-hidden');
 
     invoiceOptionBtn.classList.add('active');
 
@@ -797,14 +802,13 @@ const highestMonth = 12;
 const lowestYear = 2021;
 const highestYear = 2030;
 
-
 cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if(controlCardForm >= 4){
-    setSuccessFor(cardNumber,cardMonth,cardYear,cvc);
-    clearCart();  
+  if (controlCardForm >= 4) {
+    setSuccessFor(cardNumber, cardMonth, cardYear, cvc);
+    clearCart();
     clearForm();
     //alert('Du har lagt en beställning');
   }
@@ -828,7 +832,6 @@ function checkCardPaymentInputs() {
     setSuccessFor(cardNumber);
     controlCardForm++;
   }
-
 
   if (cardMonthValue === '') {
     setErrorFor(cardMonth, 'Du måste fylla i fältet');
@@ -862,7 +865,6 @@ function checkCardPaymentInputs() {
     setSuccessFor(cvc);
     controlCardForm++;
   }
-
 }
 
 //Validering för fakturaformulär
