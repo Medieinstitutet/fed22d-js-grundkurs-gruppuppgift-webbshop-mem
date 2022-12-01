@@ -65,6 +65,14 @@ body {
     }
   }
 
+  .filtering_buttons{
+    background-color: var.$blueDetailColor;
+  }
+
+  .shopping_cart{
+    color: var.$blackTextColor;
+  }
+
   .shopping_basket,
   .selectedOrder div {
     background-color: var.$whiteBgColor;
@@ -89,6 +97,15 @@ body {
     span.menu_bar {
       background-color: var.$dmTextColor;
     }
+  }
+
+  .filtering_buttons{
+    background-color: var.$dmBlueColor;
+  }
+
+
+  .shopping_cart{
+    color: var.$dmTextColor;
   }
 
   .shopping_basket,
@@ -272,18 +289,22 @@ input[type='number'] {
   height: 60px;
   margin: 0 auto;
   align-items: center;
-  background-color: #ed9e70;
+
   gap: 10px;
 
   .shopping_cart {
     position: absolute;
     left: 20px;
-    border-radius: 100%;
+    cursor: pointer;
   }
 
   .material-symbols-outlined {
     display: inline-block;
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+
+  select#sorting{
+    cursor: pointer;
   }
 
   .filter {
@@ -391,6 +412,7 @@ input[type='number'] {
     height: 50px;
     width: 50px;
   }
+
   .plus_minusBtn {
     display: flex !important;
     flex-direction: column;
@@ -399,6 +421,7 @@ input[type='number'] {
       min-width: 50px;
       width: 100%;
       height: 100%;
+      cursor: pointer;
     }
   }
 }
@@ -440,11 +463,13 @@ input[type='number'] {
     }
   }
 }
+
 .luciaOrder {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .price_discount {
   display: flex;
   flex-wrap: wrap;
