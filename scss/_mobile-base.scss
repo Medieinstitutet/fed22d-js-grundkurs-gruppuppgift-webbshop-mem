@@ -44,57 +44,69 @@ html {
   scroll-behavior: smooth;
 }
 
-body{
+body {
   background-color: var.$whiteBgColor;
   color: var.$blackTextColor;
   font-family: var.$rubikFont;
 
-  nav{
-    li{
-      &:hover{
+  nav {
+    li {
+      &:hover {
         background-color: #dcdcdc;
       }
     }
 
-    a{
+    a {
       color: var.$menuColor;
     }
 
-    span.menu_bar{
+    span.menu_bar {
       background-color: var.$menuColor;
     }
   }
 
-  .shopping_basket, .selectedOrder div{
+  .shopping_basket,
+  .selectedOrder div {
     background-color: var.$whiteBgColor;
   }
 }
 
-.darkMode{
+.darkMode {
   background-color: var.$dmBgColor;
   color: var.$dmTextColor;
 
-  nav{
-
-    li{
-      &:hover{
+  nav {
+    li {
+      &:hover {
         background-color: #262626;
       }
     }
-    
-    a{
+
+    a {
       color: var.$dmTextColor;
     }
 
-    span.menu_bar{
+    span.menu_bar {
       background-color: var.$dmTextColor;
     }
   }
 
-  .shopping_basket, .selectedOrder div{
+  .shopping_basket,
+  .selectedOrder div {
     background-color: var.$dmBgColor;
   }
 }
+.christmas {
+  background-image: url("images/small/wallpaper_christmas_small.jpg");
+
+  .shopping_basket{
+    background-image: url("images/small/wallpaper_christmas_small.jpg");
+
+  }
+  .current_donuts_order div {
+    background-color: rgba($color: #ffffff00, $alpha: 0);
+  }
+ } 
 
 /* ------------------------Regler för startpage ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------*/
@@ -205,7 +217,8 @@ span.menu_bar {
     }
   }
 
-  .orderbutton, #toggleDarkMode {
+  .orderbutton,
+  #toggleDarkMode {
     background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;
@@ -216,7 +229,7 @@ span.menu_bar {
     border-radius: 4px;
     border: 2px solid var.$btnBorderColor;
 
-    &:hover{
+    &:hover {
       background-color: #939191;
       border: 2px solid #616161;
     }
@@ -247,7 +260,9 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
-
+.shopping_basket{
+  height: 200vh;
+}
 .filtering_buttons {
   position: relative;
   display: flex;
@@ -416,7 +431,7 @@ input[type='number'] {
     font-size: 1.3rem;
   }
 
-  .centerDonuts{
+  .centerDonuts {
     width: 75%;
     margin: 0 auto;
   }
@@ -433,7 +448,7 @@ input[type='number'] {
   margin-top: 1em;
 
   label {
-    display:inline-flex;
+    display: inline-flex;
     justify-content: center;
   }
 
@@ -442,10 +457,9 @@ input[type='number'] {
     justify-content: center;
   }
   .discount_alert span {
-  margin-right: 8em;
+    margin-right: 8em;
+  }
 }
-}
-
 
 .total_sum {
   display: flex;
@@ -455,7 +469,6 @@ input[type='number'] {
   margin-bottom: 1rem;
 
   .amount_text {
-    
     margin-right: 10em;
   }
 }
