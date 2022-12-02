@@ -559,24 +559,26 @@ function toggleFilterOptions() {
       donutPlacement[i].innerHTML = ''; // Tar bort donutsen som redan visas
       let donutNr = 'nr' + i;
       const donutMarkup = ` 
-        <div class="${donutNr} donuts">
-             <figure id="img-slide" >
-                <button id="prev-${i}" class='prev'> &#10094; </button>
-                <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
-                <button id="next-${i}" class='next'> &#10095; </button>
-                <figcaption>${donuts[i].review}/10</figcaption>
-             </figure>
-            <h4>${donuts[i].name}</h4>
-            <ul>
-              <li>${donuts[i].price}kr</li>
-              <li>Innehåller: ${donuts[i].aspect}</li>
-            </ul>
-            <div class="selectcounter">${donuts[i].selectCounter}</div>
+          <div class="${donutNr} donuts">
+          <figure id="img-slide" >
+            <button id="prev-${i}" class='prev'> &#10094; </button>
+            <img id="img-${i}" src="${donuts[i].picSrc[0]}" alt="" width="130" height="130">
+            <button id="next-${i}" class='next'> &#10095; </button>
+            <figcaption>${donuts[i].review}/10</figcaption>
+          </figure>
+        <h4>${donuts[i].name}</h4>
+        <ul>
+          <li class="price">${donuts[i].price}kr</li>
+          <li>Innehåller: ${donuts[i].aspect}</li>
+        </ul>
+        <div class="counterAndBtns">
+          <div class="selectcounter">${donuts[i].selectCounter}</div>
             <div class="plus_minusBtn">
-                <button data-operator="plus">+</button>
-                <button data-operator="minus">-</button>
+              <button data-operator="plus">+</button>
+              <button data-operator="minus">-</button>
             </div>
-           </div> `; // Denna är grund html till donutsen som skrivs ut
+           </div>
+        </div> `; // Denna är grund html till donutsen som skrivs ut
       if (bar) {
         // Dessa if satser skriver ut donutsen som har ett true värde på dess aspekt.
         if (donuts[i].aspect.includes('Bär')) {
