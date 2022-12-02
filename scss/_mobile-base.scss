@@ -474,6 +474,10 @@ input[type='number'] {
     font-size: 1.3rem;
   }
 
+  h4{
+    margin: 0;
+  }
+
   .centerDonuts {
     width: 85%;
     margin: 0 auto;
@@ -508,15 +512,18 @@ input[type='number'] {
 
   .discount_alert {
     align-self: center;
+    max-width: 18em;
   }
 
   .discount_alert span {
-    margin-right: 4.1em;
+    margin-right: 6.3em;
   }
 
   .discount_button{
     padding: 7px;
     margin-bottom: 15px;
+    margin-top: 15px;
+    cursor: pointer;
   }  
 }
 
