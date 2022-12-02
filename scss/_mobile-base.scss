@@ -506,11 +506,14 @@ input[type='number'] {
   h4{
     margin: 0;
   }
+  }
+  }
+
 
   .centerDonuts {
     width: 85%;
     margin: 0 auto;
-
+  }
     .selectedOrder {
       margin-bottom: 10px;
 
@@ -523,9 +526,6 @@ input[type='number'] {
         margin-right: 4em;
       }
     }
-  }
-}
-
 .luciaOrder {
   display: flex;
   justify-content: space-between;
