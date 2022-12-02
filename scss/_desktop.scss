@@ -74,6 +74,13 @@ nav {
   }
 }
 
+
+
+.shopping_basket h2 {
+  font-size: 1.9rem;
+  margin-top: 2rem;
+}
+
 button.toggle_menu {
   @include visuallyHidden();
 }

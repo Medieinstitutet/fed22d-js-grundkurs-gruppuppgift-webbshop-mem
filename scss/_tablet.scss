@@ -11,7 +11,39 @@
   }
 }
 
-.shopping_basket h2{
+
+.order_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  .filtering_buttons {
+    width: 100%;
+    max-width: unset;
+  }
+  #donut-articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid purple;
+    background-color: #406063;
+    gap: 10px;
+  }
+  article {
+    width: 400px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    padding: 5px;
+    div {
+      border-style: none;
+      figure > img{
+          border-radius: 15px;
+      }    
+    }
+  }
+}
+
+.shopping_basket h2 {
   font-size: 1.8rem;
   margin-top: 1rem;
 }
@@ -56,34 +88,34 @@
   }
 }
 
-
-form#paymentForm, form#cardPaymentForm, form#invoicePaymentForm{
-  .row{
+form#paymentForm,
+form#cardPaymentForm,
+form#invoicePaymentForm {
+  .row {
     flex-direction: unset;
     flex-wrap: unset;
     justify-content: center;
   }
 
-  .row.row_button{
+  .row.row_button {
     justify-content: center;
   }
 
   .form_control {
     margin-right: 20px;
 
-    span.form_info{
+    span.form_info {
       font-size: 1rem;
     }
   }
 }
 
 form#paymentForm {
-
-  input[type=checkbox]{
+  input[type='checkbox'] {
     margin-top: 5px;
   }
 
-  input#confirmUseOfData{
+  input#confirmUseOfData {
     margin-left: 1.5em;
   }
 }

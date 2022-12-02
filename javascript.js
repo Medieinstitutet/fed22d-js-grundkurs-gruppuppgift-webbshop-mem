@@ -70,7 +70,12 @@ invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 let controlCardForm = 0;
 
 
-
+//Återanvändbara datumvariabler
+const date = new Date();
+console.log(date)
+const friday = date.getDay() === 5;
+const monday = date.getDay() === 1;
+const time = date.getHours();
 /******************************************************************
  *                      FUNKTIONER
  *******************************************************************/
@@ -101,7 +106,6 @@ function closeMenu() {
 function toggleDarkMode() {
   const body = document.body;
   body.classList.toggle('darkMode');
-
 }
 
 /***********************************************************
@@ -180,10 +184,12 @@ function displayDonut1() {
               <li class="price">${donuts[i].price}kr</li>
               <li>Innehåller: ${donuts[i].aspect}</li>
             </ul>
-            <div class="selectcounter">${donuts[i].selectCounter}</div>
-            <div class="plus_minusBtn">
+            <div class="counterAndBtns">
+              <div class="selectcounter">${donuts[i].selectCounter}</div>
+              <div class="plus_minusBtn">
                 <button data-operator="plus">+</button>
                 <button data-operator="minus">-</button>
+              </div>
             </div>
            </div> `;
     donutPlacement[i].innerHTML = donutMarkup;
@@ -215,12 +221,7 @@ function resetCounterBtns() {
 
 //Funktion för prisökning fredag 15.00 - måndag 03.00 ------
 function fridayIncrease() {
-  const date = new Date();
-  const friday = date.getDay() === 5;
-  const monday = date.getDay() === 1;
-  const time = date.getHours();
-
-  if ((friday && time > 15) || (monday && time <= 3)) {
+  if ((friday && time <= 15) || (monday && time >= 3)) {
     for (let i = 0; i < donuts.length; i++) {
       donuts[i].price = Math.floor(donuts[i].price * 1.15);
     }
@@ -266,6 +267,7 @@ function prevImage(btn) {
 // Funktion för att skriva ut munkar till varukorg ---------------------
 function displayDonutCart() {
   for (let i = 0; i < donuts.length; i++) {
+    selectedOrderplacment[i].innerHTML = '';
     let donutNr = 'nr' + i;
     const cartOrderMarkup = `
             <div class="${donutNr} donuts">
@@ -292,7 +294,6 @@ function displayDonutCart() {
     shopCartBtnUp[i].addEventListener('click', countUpCart);
     shopCartBtnDown[i].addEventListener('click', countDownCart);
   }
-
 }
 
 // Funktion för uträkning av totalpris ------------------------------------
@@ -331,10 +332,10 @@ function calcTotalorder() {
   }
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
 
-  if (totalDonutAmount > 0)// Stänger av betala knappen om beställningen är tom
+  if (totalDonutAmount > 0)
+    // Stänger av betala knappen om beställningen är tom
 
     document.querySelector('#paymentButton').disabled = false;
-
   else document.querySelector('#paymentButton').disabled = true;
 
   mondayDiscount();
@@ -343,8 +344,6 @@ function calcTotalorder() {
 
 //Funktion för måndagsrabatt -----------------------------------------------
 function mondayDiscount() {
-  const date = new Date();
-  const monday = date.getDay() === 1;
   if (monday) {
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.9) + 'kr';
     const discountText = document.querySelector('.discount_alert');
@@ -354,13 +353,15 @@ function mondayDiscount() {
 }
 //Funktion för tisdagsrabatt --------------------------------------------
 function tuesdayDiscount() {
-  currentDate = new Date();
-  startDate = new Date(currentDate.getFullYear(), 0, 1);
-  let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+  const tuesday = date.getDay() === 2;
+  startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
   let weekNumber = Math.ceil(days / 7);
-  const tuesday = currentDate.getDay() === 2;
+  console.log(weekNumber)
 
-  if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
+  if (
+    (weekNumber % 2 == 0) && (tuesday && totalAmount > 25)) {
+    console.log('japp')
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
@@ -391,7 +392,6 @@ inputDiscount();
 
 // Funktion för att lägga till gratis munk på Lucia -----------
 function addLuciaDonut() {
-  const date = new Date();
   const lucia = date.getDate() === 13;
   const december = date.getMonth() === 11;
   const luciaMunk = {
@@ -406,10 +406,6 @@ function addLuciaDonut() {
                 <ul>
                     <li>${luciaMunk.price} kr</li>
                 </ul>
-                <div class="plus_minusBtn">
-                        <button class="btn_cart_plus">+</button>
-                        <button class="btn_cart_minus">-</button>
-                </div>
             </div >
 `;
   if (lucia && december) {
@@ -422,11 +418,11 @@ function addLuciaDonut() {
 }
 addLuciaDonut();
 
-
 function countUp(e) {
-  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
+  const controll =
+    e.currentTarget.parentElement.parentElement.parentElement.attributes.class;
   const currentAmountSelected =
-    e.currentTarget.parentElement.parentElement.children[3];
+    e.currentTarget.parentElement.parentElement.children[0];
   const controlValueNumber = controll.value
     .replace('nr', '')
     .replace(' donuts', '');
@@ -435,9 +431,10 @@ function countUp(e) {
 }
 
 function countDown(e) {
-  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
+  const controll =
+    e.currentTarget.parentElement.parentElement.parentElement.attributes.class;
   const currentAmountSelected =
-    e.currentTarget.parentElement.parentElement.children[3];
+    e.currentTarget.parentElement.parentElement.children[0];
   const controlValueNumber = controll.value
     .replace('nr', '')
     .replace(' donuts', '');
@@ -451,6 +448,8 @@ function toggleOrderPage() {
   displayDonutCart();
   calcTotalorder();
   setTimeout(cartTimerClear, 9000000); // rensar efter 15min
+  displayDonut1();
+  document.querySelector('.order_page').classList.toggle('toggle-hidden');
 }
 
 //Funktion för timer i varukorgen -----------------------
@@ -492,6 +491,7 @@ function countDownCart(e) {
   calcTotalorder();
 }
 //Funktion för att rensa varukorgen ---------------------------
+/*
 function clearCart() {
   // current_donuts_order och selectcounter har olika "längd" (vet ej varför?)
   // så därför blir det error när båda försöker loopas igenom - därav två separata loopar
@@ -504,17 +504,27 @@ function clearCart() {
 
   const selectCounter = document.querySelectorAll('.selectcounter');
   if (selectCounter !== null) {
-    selectCounter.forEach((sc) => { // forEach = for-loop, men bara "kortare" syntax
+    selectCounter.forEach((sc) => {
+      // forEach = for-loop, men bara "kortare" syntax
       sc.innerHTML = '';
     });
   }
 
   document.querySelector('.shopping_basket').style.opacity = 0; // TODO
   calcTotalorder();
+ */
 
-  displayDonut1();
-  resetCounterBtns();
+
+// Ny clear version igen. 
+function clearCart() {
+  donuts.forEach((donut) => {
+    donut.selectCounter = 0;
+  });
+  displayDonutCart();
+  calcTotalorder();
 }
+
+
 // Sorterings funktion, sorterar när använderan gör ett val i select inputen
 function onSortSelect() {
   switch (sortSelect.value) {
@@ -608,7 +618,7 @@ function toggleFilterOptions() {
 function toggleFilter(e) {
   const selectedFilter = e.currentTarget;
   switch (
-  selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
+    selectedFilter.innerHTML // Kanske kan skrivas om för att minska mängden kod
   ) {
     case 'Bär':
       selectedFilter.classList.toggle('highLighted');
@@ -675,24 +685,29 @@ paymentForm.addEventListener('submit', (e) => {
 
     document.querySelector('.errorMsg').classList.remove('toggle-hidden');
   } else if (totalAmount < maxInvoiceSum) {
-    document.querySelector('#invoicePaymentBtn').classList.remove('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentBtn')
+      .classList.remove('toggle-hidden');
     document.querySelector('#cardPaymentBtn').classList.remove('toggle-hidden');
   }
 });
 
 function pickPaymentOption(e) {
-
   if (e.currentTarget.id == 'cardPaymentBtn') {
-    document.querySelector('#cardPaymentForm').classList.remove('toggle-hidden');
+    document
+      .querySelector('#cardPaymentForm')
+      .classList.remove('toggle-hidden');
 
     cardOptionBtn.classList.add('active');
     invoiceOptionBtn.classList.remove('active');
 
-
-    document.querySelector('#invoicePaymentForm').classList.add('toggle-hidden');
-
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.add('toggle-hidden');
   } else if (e.currentTarget.id == 'invoicePaymentBtn') {
-    document.querySelector('#invoicePaymentForm').classList.remove('toggle-hidden');
+    document
+      .querySelector('#invoicePaymentForm')
+      .classList.remove('toggle-hidden');
 
     invoiceOptionBtn.classList.add('active');
     cardOptionBtn.classList.remove('active');
@@ -831,7 +846,6 @@ function isZipcode(zipcode) {
 
 //Validering för kortbetalningsformulär
 
-
 cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
@@ -911,7 +925,10 @@ function checkInvoicePaymentInputs() {
   } else if (personalIdentityValue.length < 10) {
     setErrorFor(personalIdentity, 'Fältet måste innehålla 10 siffror');
   } else if (personalIdentityValue.length > 10) {
-    setErrorFor(personalIdentity,'Fältet får inte innehålla mer än 10 siffror');
+    setErrorFor(
+      personalIdentity,
+      'Fältet får inte innehålla mer än 10 siffror'
+    );
   } else {
     setSuccessFor(personalIdentity);
   }
@@ -939,18 +956,44 @@ function checkDiscountInput(){
  */
 
 function christmasMode() {
+
   const priceText = document.querySelectorAll('.price')
-  const date = new Date();
   const christmas = date.getDate() === 24;
   const december = date.getMonth() === 11;
 
   if (christmas && december) {
     for (let i = 0; i < priceText.length; i++) {
-      priceText[i].style.color = "red";
+      priceText[i].style.color = 'red';
     }
-    document.body.classList.add("christmas")
+    document.body.classList.add('christmas');
     const darkModeButton = document.querySelector('#toggleDarkMode');
     darkModeButton.classList.add('toggle-hidden');
   }
 }
 christmasMode()
+
+/**
+ * Leveransregler
+Generellt levereras beställningar 30 minuter från då beställningen läggs, med följande undantag:
+Om det är helg så levereras munkarna istället om 1,5 h
+Om det är mitt i natten, så sker leverans om 45 min
+Om beställningen läggs någon gång på fredag mellan kl. 11 och 13 (då har personalen veckomöte) så är leveranstiden kl. 15.
+ * 
+ *Helg:
+ const saturday = date.getDay() === 6;
+ const sunday = date.GetDay() === 0;
+ if (saturday && sunday){
+
+ }
+
+ Fredag:
+ 
+ if ((friday && time >= 11) && (time <=13)){
+
+ }
+
+ if (time >= 24 && time <= 6){
+  
+ }
+ *
+ */
