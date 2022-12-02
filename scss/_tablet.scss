@@ -16,6 +16,12 @@
   margin-top: 1rem;
 }
 
+.cart_plus_minusBtn{
+  button{
+    padding: 4px;
+  }
+}
+
 .price_discount{
   .row{
     flex-direction: unset;
@@ -27,13 +33,17 @@
   }
 
   .discount_alert span {
-    margin-right: 6em;
+    margin-right: 7em;
   }
+}
+
+.shipping .shipping_text{
+  margin-right: 17.3em;
 }
 
 .total_sum{
   .amount_text{
-    margin-right: 16em;
+    margin-right: 17.3em;
   }
 }
 

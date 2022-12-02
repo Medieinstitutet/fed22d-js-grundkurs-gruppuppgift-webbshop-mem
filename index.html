@@ -133,15 +133,20 @@
                         <div class="selectedOrder"></div>
                     </div>
                 </div>
-                <div class="price_discount">
+                <form action="" class="price_discount" id="discountForm">
                     <div class="row">
                         <div class="form_control">
                             <label class="discount_code">
                                 <span>Rabattkod:</span>
-                                <input type="text" class="discount_text">
+                                <input type="text" class="discount_text" id="discount_text" name="discount_text">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
-                        <button class="discount_button">Lös in din kod</button>
+                        <div class="form_control">
+                            <button class="discount_button">Lös in din kod</button>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="discount_alert">
@@ -149,7 +154,7 @@
                             <span></span>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="shipping">
                     <div class="shipping_text">Frakt:</div>
                     <div class="shipping_amount"></div>

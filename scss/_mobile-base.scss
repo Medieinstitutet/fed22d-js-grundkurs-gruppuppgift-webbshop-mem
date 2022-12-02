@@ -340,6 +340,7 @@ input[type='number'] {
     }
   }
 }
+
 .highLighted {
   background-color: darkblue !important;
 }
@@ -430,9 +431,8 @@ input[type='number'] {
     width: 50%;
   }
 
-  .plus_minusBtn {
+  .plus_minusBtn, .cart_plus_minusBtn {
     display: flex !important;
-    flex-direction: column;
     button {
       min-width: 50px;
       min-width: 50px;
@@ -440,6 +440,14 @@ input[type='number'] {
       height: 100%;
       cursor: pointer;
     }
+  }
+
+  .plus_minusBtn{
+    flex-direction: column;
+  }
+
+  .cart_plus_minusBtn{
+    flex-direction: row !important;
   }
 
 
@@ -471,12 +479,25 @@ input[type='number'] {
     font-size: 1.3rem;
   }
 
+  h4{
+    margin: 0;
+  }
+
   .centerDonuts {
-    width: 75%;
+    width: 85%;
     margin: 0 auto;
 
     .selectedOrder{
       margin-bottom: 10px;
+
+      img{
+        height: 100px;
+        width: 100px;
+      }
+
+      ul{
+        margin-right: 4em;
+      }
     }
   }
 }
@@ -496,17 +517,21 @@ input[type='number'] {
 
   .discount_alert {
     align-self: center;
+    max-width: 18em;
   }
 
   .discount_alert span {
-    margin-right: 3em;
+    margin-right: 6.3em;
   }
 
   .discount_button{
     padding: 7px;
     margin-bottom: 15px;
+    margin-top: 15px;
+    cursor: pointer;
   }  
 }
+
 .shipping {
   display: flex;
   justify-content: center;
@@ -518,6 +543,7 @@ input[type='number'] {
     margin-right: 11.5em;
   }
 }
+
 .total_sum {
   display: flex;
   justify-content: center;
@@ -720,4 +746,5 @@ form#cardPaymentForm, form#invoicePaymentForm{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
