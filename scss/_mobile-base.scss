@@ -233,9 +233,14 @@ span.menu_bar {
       line-height: 1.3rem;
     }
   }
-
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .orderbutton,
   #toggleDarkMode {
+    
     background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;

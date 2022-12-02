@@ -433,18 +433,6 @@ function countUp(e) {
   currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
 }
 
-function countUpCart(e) {
-  const controll = e.currentTarget.parentElement.parentElement.attributes.class;
-  const currentAmountSelected =
-    e.currentTarget.parentElement.parentElement.children[2].children[1];
-  const controlValueNumber = controll.value
-    .replace('nr', '')
-    .replace(' donuts', '');
-  donuts[controlValueNumber].selectCounter++;
-  currentAmountSelected.innerHTML = donuts[controlValueNumber].selectCounter;
-  calcTotalorder();
-}
-
 function countDown(e) {
   const controll = e.currentTarget.parentElement.parentElement.attributes.class;
   const currentAmountSelected =
@@ -522,6 +510,9 @@ function clearCart() {
 
   document.querySelector('.shopping_basket').style.opacity = 0; // TODO
   calcTotalorder();
+
+  displayDonut1();
+  resetCounterBtns();
 }
 // Sorterings funktion, sorterar när använderan gör ett val i select inputen
 function onSortSelect() {
