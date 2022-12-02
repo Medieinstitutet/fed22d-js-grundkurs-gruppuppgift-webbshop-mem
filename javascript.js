@@ -372,18 +372,19 @@ tuesdayDiscount();
 // Funktion för inmatad rabattkod -----------------------------------
 function inputDiscount() {
   const discountInput = document.querySelector('.discount_text');
-  const discountButton = document
-    .querySelector('.discount_button')
-    .addEventListener('click', inputDiscount);
+  const discountButton = document.querySelector('.discount_button').addEventListener('click', inputDiscount);
 
   if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
     console.log('japp');
+    setSuccessFor(discountInput)
     totalAmountPlacement.innerHTML = totalAmount - totalAmount + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const inputDiscountText =
       'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
     discountText.innerHTML = inputDiscountText;
     discountInput.value = '';
+  }else if(discountInput.value > 0 && discountInput.value != 'a_damn_fine-cup_of-coffee'){
+    setErrorFor(discountInput, 'Du har inte angivit en giltig rabattkod');
   }
 }
 inputDiscount();
@@ -911,6 +912,7 @@ invoicePaymentForm.addEventListener('submit', (e) => {
 });
 
 function checkInvoicePaymentInputs() {
+  const personalIdentity = document.querySelector('#idnr');  
   const personalIdentityValue = personalIdentity.value.trim();
 
   if (personalIdentityValue === '') {
@@ -923,6 +925,19 @@ function checkInvoicePaymentInputs() {
     setSuccessFor(personalIdentity);
   }
 }
+
+discountForm.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    checkDiscountInput();
+});
+
+function checkDiscountInput(){
+    const discount = document.querySelector('#discount_text');
+    const discountValue = discount.value.trim();
+
+}
+
 
 /**
  - När formuläret är godkänt ska betalningsalternativen dyka upp när man klickar på Betalning
