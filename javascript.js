@@ -518,6 +518,7 @@ function clearCart() {
     donut.selectCounter = 0;
   });
   displayDonutCart();
+  calcTotalorder();
 }
 
 
