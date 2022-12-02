@@ -69,7 +69,12 @@ invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
 let controlCardForm = 0;
 
-
+//Återanvändbara datumvariabler
+const date = new Date();
+console.log(date)
+const friday = date.getDay() === 5;
+const monday = date.getDay() === 1;
+const time = date.getHours();
 
 /******************************************************************
  *                      FUNKTIONER
@@ -215,12 +220,7 @@ function resetCounterBtns() {
 
 //Funktion för prisökning fredag 15.00 - måndag 03.00 ------
 function fridayIncrease() {
-  const date = new Date();
-  const friday = date.getDay() === 5;
-  const monday = date.getDay() === 1;
-  const time = date.getHours();
-
-  if ((friday && time > 15) || (monday && time <= 3)) {
+  if ((friday && time <= 15) || (monday && time >= 3)) {
     for (let i = 0; i < donuts.length; i++) {
       donuts[i].price = Math.floor(donuts[i].price * 1.15);
     }
@@ -343,8 +343,6 @@ function calcTotalorder() {
 
 //Funktion för måndagsrabatt -----------------------------------------------
 function mondayDiscount() {
-  const date = new Date();
-  const monday = date.getDay() === 1;
   if (monday) {
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.9) + 'kr';
     const discountText = document.querySelector('.discount_alert');
@@ -354,13 +352,15 @@ function mondayDiscount() {
 }
 //Funktion för tisdagsrabatt --------------------------------------------
 function tuesdayDiscount() {
-  currentDate = new Date();
-  startDate = new Date(currentDate.getFullYear(), 0, 1);
-  let days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+  const tuesday = date.getDay() === 2;
+  startDate = new Date(date.getFullYear(), 0, 1);
+  let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
   let weekNumber = Math.ceil(days / 7);
-  const tuesday = currentDate.getDay() === 2;
+  console.log(weekNumber)
 
-  if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
+  if (
+    (weekNumber % 2 == 0) && (tuesday && totalAmount > 25)) {
+    console.log('japp')
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
@@ -391,7 +391,6 @@ inputDiscount();
 
 // Funktion för att lägga till gratis munk på Lucia -----------
 function addLuciaDonut() {
-  const date = new Date();
   const lucia = date.getDate() === 13;
   const december = date.getMonth() === 11;
   const luciaMunk = {
@@ -940,7 +939,6 @@ function checkDiscountInput(){
 
 function christmasMode() {
   const priceText = document.querySelectorAll('.price')
-  const date = new Date();
   const christmas = date.getDate() === 24;
   const december = date.getMonth() === 11;
 
@@ -954,3 +952,29 @@ function christmasMode() {
   }
 }
 christmasMode()
+
+/**
+ * Leveransregler
+Generellt levereras beställningar 30 minuter från då beställningen läggs, med följande undantag:
+Om det är helg så levereras munkarna istället om 1,5 h
+Om det är mitt i natten, så sker leverans om 45 min
+Om beställningen läggs någon gång på fredag mellan kl. 11 och 13 (då har personalen veckomöte) så är leveranstiden kl. 15.
+ * 
+ *Helg:
+ const saturday = date.getDay() === 6;
+ const sunday = date.GetDay() === 0;
+ if (saturday && sunday){
+
+ }
+
+ Fredag:
+ 
+ if ((friday && time >= 11) && (time <=13)){
+
+ }
+
+ if (time >= 24 && time <= 6){
+  
+ }
+ *
+ */

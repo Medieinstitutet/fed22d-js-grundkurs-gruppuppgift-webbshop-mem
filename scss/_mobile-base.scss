@@ -202,10 +202,12 @@ span.menu_bar {
 }
 
 .start_page {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 
   .header_image {
-    display: flex;
+    display: inline-flex;
     align-items: flex-end;
     height: 300px;
     background-image: url('images/donut_image_startpage.jpg');
@@ -227,6 +229,10 @@ span.menu_bar {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    h2 {
+      text-align: center;
+    }
 
     p {
       text-align: center;
