@@ -449,6 +449,7 @@ function toggleOrderPage() {
   calcTotalorder();
   setTimeout(cartTimerClear, 9000000); // rensar efter 15min
   displayDonut1();
+  document.querySelector('.order_page').classList.toggle('toggle-hidden');
 }
 
 //Funktion för timer i varukorgen -----------------------
