@@ -200,10 +200,12 @@ span.menu_bar {
 }
 
 .start_page {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 
   .header_image {
-    display: flex;
+    display: inline-flex;
     align-items: flex-end;
     height: 300px;
     background-image: url('images/donut_image_startpage.jpg');
@@ -226,14 +228,23 @@ span.menu_bar {
     flex-direction: column;
     justify-content: center;
 
+    h2 {
+      text-align: center;
+    }
+
     p {
       text-align: center;
       line-height: 1.3rem;
     }
   }
-
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .orderbutton,
   #toggleDarkMode {
+    
     background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;
@@ -331,6 +342,7 @@ input[type='number'] {
     }
   }
 }
+
 .highLighted {
   background-color: darkblue !important;
 }
@@ -411,7 +423,20 @@ input[type='number'] {
       }
     }
   }
-  .counterAndBtns {
+}
+
+  .plus_minusBtn, .cart_plus_minusBtn {
+    display: flex !important;
+    button {
+      min-width: 50px;
+      min-width: 50px;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+ } 
+
+ .counterAndBtns {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
@@ -423,10 +448,7 @@ input[type='number'] {
     }
     .plus_minusBtn {
       grid-area: btns;
-    }
-  }
-}
-
+      }
 .selectcounter {
   border: 1px solid black;
   font-size: 1.5rem;
@@ -444,6 +466,14 @@ input[type='number'] {
     cursor: pointer;
   }
 }
+  .plus_minusBtn{
+    flex-direction: column;
+  }
+
+  .cart_plus_minusBtn{
+    flex-direction: row !important;
+  }
+
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
@@ -473,12 +503,25 @@ input[type='number'] {
     font-size: 1.3rem;
   }
 
+  h4{
+    margin: 0;
+  }
+
   .centerDonuts {
-    width: 75%;
+    width: 85%;
     margin: 0 auto;
 
     .selectedOrder {
       margin-bottom: 10px;
+
+      img{
+        height: 100px;
+        width: 100px;
+      }
+
+      ul{
+        margin-right: 4em;
+      }
     }
   }
 }
@@ -498,17 +541,21 @@ input[type='number'] {
 
   .discount_alert {
     align-self: center;
+    max-width: 18em;
   }
 
   .discount_alert span {
-    margin-right: 3em;
+    margin-right: 6.3em;
   }
 
   .discount_button {
     padding: 7px;
     margin-bottom: 15px;
-  }
+    margin-top: 15px;
+    cursor: pointer;
+  }  
 }
+
 .shipping {
   display: flex;
   justify-content: center;
@@ -519,6 +566,7 @@ input[type='number'] {
     margin-right: 11.5em;
   }
 }
+
 .total_sum {
   display: flex;
   justify-content: center;
@@ -721,4 +769,5 @@ form#invoicePaymentForm {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         type="text/css">
 </head>
@@ -41,22 +41,18 @@
                 <h1>Gottfrids munkar</h1>
             </div>
             <article>
-                <p>Text om Gottfrids bakande.</p>
+                <h2>Grängesbergs bästa munkar!</h2>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pellentesque,
-                    velit non pretium semper, leo urna bibendum turpis, eu laoreet arcu arcu vitae nisi.
-                    Ut sollicitudin sit amet lorem nec malesuada. Aliquam dignissim ac tortor non sodales.
-                    Vestibulum euismod libero id lobortis elementum. Integer placerat metus vel est luctus,
-                    at sollicitudin dolor dignissim. Suspendisse potenti. Phasellus maximus velit ac massa molestie
-                    consequat eu cursus tellus.
-                    Morbi lacinia elit ipsum. Duis fermentum, libero sed rhoncus dictum, nisi mauris congue neque,
-                    vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
-                    commodo.
+                Gottfrids munkar grundades 1925 av Gottfrid Johansson och har sedan dess drivits i familjens regi. 
+                Alla våra munkar bakas i vår fabrik i Grängesberg, med helt ekologiska ingredienser och mycket kärlek.
+                Välkommen in i vår ljuvligt doftande webbshop. <br>Låt dig väl smaka!
                 </p>
-
+                <div class="buttons">
                 <button id="toggleDarkMode" onclick="toggleDarkMode()">Välj mörkt/ljust Läge</button>
-                <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ
-                        Här</a></button>
+                <form>
+                    <button class="orderbutton" type="button" id="order_button">Beställ här</button>
+                 </form>
+                </div>
             </article>
 
         </section>
@@ -131,15 +127,20 @@
                         <div class="selectedOrder"></div>
                     </div>
                 </div>
-                <div class="price_discount">
+                <form action="" class="price_discount" id="discountForm">
                     <div class="row">
                         <div class="form_control">
                             <label class="discount_code">
                                 <span>Rabattkod:</span>
-                                <input type="text" class="discount_text">
+                                <input type="text" class="discount_text" id="discount_text" name="discount_text">
+                                <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                <i class="fa-regular fa-circle-check fa-lg"></i>
+                                <small class="toggle-hidden">Error</small>
                             </label>
                         </div>
-                        <button class="discount_button">Lös in din kod</button>
+                        <div class="form_control">
+                            <button class="discount_button">Lös in din kod</button>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="discount_alert">
@@ -147,7 +148,7 @@
                             <span></span>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="shipping">
                     <div class="shipping_text">Frakt:</div>
                     <div class="shipping_amount"></div>
@@ -159,7 +160,7 @@
 
                     <h3>Dina Uppgifter</h3>
                     <article>
-                        <form action="" id="paymentForm">
+                        <form id="paymentForm">
                             <div class="row row_button">
                                 <div class="form_control">
                                     <div class="order_clear_buttons">
@@ -279,7 +280,7 @@
                             <small class="errorMsg toggle-hidden">Faktura kan inte väljas när beloppet överskider
                                 800kr</small>
                         </div>
-                        <form action="" id="cardPaymentForm" class="toggle-hidden">
+                        <form id="cardPaymentForm" class="toggle-hidden">
                             <div class="row">
                                 <div class="form_control">
                                     <label>
@@ -323,16 +324,12 @@
                             </div>
                             <div class="row">
                                 <div class="form_control">
-                                    <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form_control">
                                     <button id="cardOrderButton">Beställ</button>
                                 </div>
+                            </div>   
                         </form>
-                </div>
-                <form action="" id="invoicePaymentForm" class="toggle-hidden">
+                    </article>
+                <form id="invoicePaymentForm" class="toggle-hidden">
                     <div class="row">
                         <div class="form_control">
                             <label>
@@ -346,16 +343,10 @@
                     </div>
                     <div class="row">
                         <div class="form_control">
-                            <button id="clearCartBtn" type="reset" onclick="clearForm()">Rensa</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form_control">
-                            <button id="cardOrderButton">Beställ</button>
+                            <button id="invoiceOrderButton">Beställ</button>
                         </div>
                     </div>
                 </form>
-                </article>
             </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
