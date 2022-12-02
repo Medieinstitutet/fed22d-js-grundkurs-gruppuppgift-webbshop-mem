@@ -6,6 +6,14 @@ const menuButton = document.getElementsByClassName('toggle_menu')[0];
 const menuLinks = document.getElementsByClassName('menu_links')[0];
 let menuOpen = false; //Menyn är stängd som default
 
+menuButton.addEventListener('click', toggleMenu);
+
+//Stänger menyn
+const listItemLinks = document.querySelectorAll('.list_item');
+listItemLinks.forEach((link) => {
+  link.addEventListener('click', closeMenu);
+});
+
 // Variabler för Shoppingcart page toggle ----
 const toggleShoppingCartBtn = document.querySelector('.shopping_cart');
 const shoppingCartPage = document.querySelector('.shopping_basket');
@@ -16,11 +24,42 @@ returnToShoppingCartBtn.addEventListener('click', toggleOrderPage);
 //Varibaler för munkar
 const donutPlacement = document.querySelectorAll('.donut_article');
 
+//Varibaler för filter
+const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
+let bar = false;
+let glasyr = false;
+let choklad = false; // Alla alternativ till filter funktionen
+let socker = false;
+let strossel = false;
+let open = false;
+
+document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
+const sortSelect = document.querySelector('#sorting');
+sortSelect.addEventListener('input', onSortSelect);
+document
+  .querySelector('#mainFilterBtn')
+  .addEventListener('click', toggleFilterOptions);
+const filterButtons = document.querySelector('.filterOptions').children;
+for (let i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', toggleFilter);
+}
+
 //Variabler för varukorgen
 let totalAmount = 0;
 const totalAmountPlacement = document.querySelector('.total_amount');
 
 //Variabler för betalningsformulär
+const cardPaymentForm = document.querySelector('#cardPaymentForm');
+const orderBtn = document.querySelector('#orderButton');
+const cardNumber = document.querySelector('#cardnr');
+const cardMonth = document.querySelector('#date');
+const cardYear = document.querySelector('#year');
+const cvc = document.querySelector('#cvc');
+
+const lowestMonth = 0;
+const highestMonth = 12;
+const lowestYear = 2021;
+const highestYear = 2030;
 let controlForm = 0;
 
 const cardOptionBtn = document.querySelector('#cardPaymentBtn');
@@ -51,14 +90,6 @@ function toggleMenu() {
   }
   menuButton.setAttribute('aria-expanded', true);
 }
-
-menuButton.addEventListener('click', toggleMenu);
-
-//Stänger menyn
-const listItemLinks = document.querySelectorAll('.list_item');
-listItemLinks.forEach((link) => {
-  link.addEventListener('click', closeMenu);
-});
 
 function closeMenu() {
   menuOpen = false;
@@ -299,6 +330,13 @@ function calcTotalorder() {
     totalAmount += 25;
   }
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
+
+  if (totalDonutAmount > 0)// Stänger av betala knappen om beställningen är tom
+
+    document.querySelector('#paymentButton').disabled = false;
+
+  else document.querySelector('#paymentButton').disabled = true;
+
   mondayDiscount();
   tuesdayDiscount();
 }
@@ -624,25 +662,6 @@ function toggleFilter(e) {
 }
 displayDonut1();
 
-const selectedOrderplacment = document.querySelectorAll('.selectedOrder'); // Dessa hämtar från inom displayDonut1(), och måste därför ligga efter
-let bar = false;
-let glasyr = false;
-let choklad = false; // Alla alternativ till filter funktionen
-let socker = false;
-let strossel = false;
-let open = false;
-
-document.querySelector('#clearCartBtn').addEventListener('click', clearCart);
-const sortSelect = document.querySelector('#sorting');
-sortSelect.addEventListener('input', onSortSelect);
-document
-  .querySelector('#mainFilterBtn')
-  .addEventListener('click', toggleFilterOptions);
-const filterButtons = document.querySelector('.filterOptions').children;
-for (let i = 0; i < filterButtons.length; i++) {
-  filterButtons[i].addEventListener('click', toggleFilter);
-}
-
 //Kod för betalningsformulär
 function clearForm() {
   const formController = document.querySelectorAll('.form_control');
@@ -819,17 +838,7 @@ function isZipcode(zipcode) {
 }
 
 //Validering för kortbetalningsformulär
-const cardPaymentForm = document.querySelector('#cardPaymentForm');
-const orderBtn = document.querySelector('#orderButton');
-const cardNumber = document.querySelector('#cardnr');
-const cardMonth = document.querySelector('#date');
-const cardYear = document.querySelector('#year');
-const cvc = document.querySelector('#cvc');
 
-const lowestMonth = 0;
-const highestMonth = 12;
-const lowestYear = 2021;
-const highestYear = 2030;
 
 cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
@@ -841,8 +850,6 @@ cardPaymentForm.addEventListener('submit', (e) => {
     alert('Du har lagt en beställning');
   }
 });
-
-
 
 function checkCardPaymentInputs() {
   const cardNumberValue = cardNumber.value.trim();
@@ -896,8 +903,6 @@ function checkCardPaymentInputs() {
 }
 
 //Validering för fakturaformulär
-
-
 invoicePaymentForm.addEventListener('submit', (e) => {
   // e står för event
   e.preventDefault(); //Förhindrar att skicka formuläret
@@ -926,10 +931,6 @@ function checkInvoicePaymentInputs() {
  - Validering för formuläret
  - När allt är godkänt ska en ruta dyka upp som berättar att betalning är godkänd + övrig info.
  */
-
-
-
-
 
 function christmasMode() {
   const priceText = document.querySelectorAll('.price')
