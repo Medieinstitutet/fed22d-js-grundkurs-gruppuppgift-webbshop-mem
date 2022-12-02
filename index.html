@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         type="text/css">
 </head>
@@ -41,7 +41,7 @@
                 <h1>Gottfrids munkar</h1>
             </div>
             <article>
-                <p>Text om Gottfrids bakande.</p>
+                <h1>Text om Gottfrids bakande.</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pellentesque,
                     velit non pretium semper, leo urna bibendum turpis, eu laoreet arcu arcu vitae nisi.
@@ -53,10 +53,12 @@
                     vel finibus leo ligula sagittis eros. Maecenas ullamcorper magna lectus, et auctor lectus semper
                     commodo.
                 </p>
-
+                <div class="buttons">
                 <button id="toggleDarkMode" onclick="toggleDarkMode()">Välj mörkt/ljust Läge</button>
-                <button class="orderbutton" type="button" id="order_button"><a href="#donut-articles">Beställ
-                        Här</a></button>
+                <form>
+                    <button class="orderbutton" type="button" id="order_button">Beställ här</button>
+                 </form>
+                </div>
             </article>
 
         </section>
@@ -112,6 +114,7 @@
                 </article>
                 <footer></footer>
             </section>
+        </section>    
             <section class="shopping_basket toggle-hidden">
                 <h2>Varukorg</h2>
                 <div id="forTimerClear"></div>
@@ -163,7 +166,7 @@
 
                     <h3>Dina Uppgifter</h3>
                     <article>
-                        <form action="" id="paymentForm">
+                        <form id="paymentForm">
                             <div class="row row_button">
                                 <div class="form_control">
                                     <div class="order_clear_buttons">
@@ -283,7 +286,7 @@
                             <small class="errorMsg toggle-hidden">Faktura kan inte väljas när beloppet överskider
                                 800kr</small>
                         </div>
-                        <form action="" id="cardPaymentForm" class="toggle-hidden">
+                        <form id="cardPaymentForm" class="toggle-hidden">
                             <div class="row">
                                 <div class="form_control">
                                     <label>
@@ -329,9 +332,10 @@
                                 <div class="form_control">
                                     <button id="cardOrderButton">Beställ</button>
                                 </div>
+                            </div>   
                         </form>
-                </div>
-                <form action="" id="invoicePaymentForm" class="toggle-hidden">
+                    </article>
+                <form id="invoicePaymentForm" class="toggle-hidden">
                     <div class="row">
                         <div class="form_control">
                             <label>
@@ -345,11 +349,10 @@
                     </div>
                     <div class="row">
                         <div class="form_control">
-                            <button id="cardOrderButton">Beställ</button>
+                            <button id="invoiceOrderButton">Beställ</button>
                         </div>
                     </div>
                 </form>
-                </article>
             </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
