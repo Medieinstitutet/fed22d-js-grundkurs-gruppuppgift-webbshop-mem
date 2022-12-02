@@ -34,6 +34,7 @@
     background-color: whitesmoke;
     border-radius: 20px;
     padding: 5px;
+    margin-top: 10px;
     div {
       border-style: none;
       figure > img{
@@ -48,6 +49,14 @@
   margin-top: 1rem;
 }
 
+.selectedOrder{
+  width: 80%;
+  margin: 0 auto;
+
+  h4{
+    margin-right: 2em;
+  }
+}
 
 .cart_plus_minusBtn{
   button{
@@ -60,8 +69,8 @@
     flex-direction: unset;
   }
 
-  .discount_button {
-    margin-bottom: 10px;
+  .discount_button{
+    margin-bottom: 5px;
     margin-left: 10px;
   }
 

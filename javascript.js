@@ -668,8 +668,13 @@ displayDonut1();
 
 //Kod för betalningsformulär
 function clearForm() {
+  console.log('clearform');
   const formController = document.querySelectorAll('.form_control');
   formController.forEach((div) => {
+    const input = div.querySelector('input');
+    if (input !== null) {
+      input.value = '';
+    }
     div.classList.remove('success', 'error');
   });
 
