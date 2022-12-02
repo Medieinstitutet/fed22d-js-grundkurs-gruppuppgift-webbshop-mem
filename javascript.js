@@ -852,7 +852,7 @@ function isZipcode(zipcode) {
   return /^[0-9]{3}\s?[0-9]{2}$/g.test(zipcode);
 }
 
-//Validering för kortbetalningsformulär
+//Validering för samt beställningsmeddelanden för kortbetalningsformulär
 
 cardPaymentForm.addEventListener('submit', (e) => {
     const saturday = date.getDay() === 6;
@@ -930,7 +930,7 @@ function checkCardPaymentInputs() {
   }
 }
 
-//Validering för fakturaformulär
+//Validering samt beställningsmeddelanden för fakturaformulär
 invoicePaymentForm.addEventListener('submit', (e) => {
     const saturday = date.getDay() === 6;
     const sunday = date.getDay() === 0;

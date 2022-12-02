@@ -77,6 +77,12 @@ body {
   .selectedOrder div {
     background-color: var.$whiteBgColor;
   }
+
+  .order_page{
+    .donuts{
+      background-color: var.$whiteBgColor;
+    }
+  }
 }
 
 .darkMode {
@@ -110,6 +116,12 @@ body {
   .shopping_basket,
   .selectedOrder div {
     background-color: var.$dmBgColor;
+  }
+
+  .order_page{
+    .donuts{
+      background-color: var.$dmBgColor;
+    }
   }
 }
 .christmas {
@@ -243,8 +255,8 @@ span.menu_bar {
     align-items: center;
   }
   .orderbutton,
+
   #toggleDarkMode {
-    
     background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;
@@ -341,10 +353,6 @@ input[type='number'] {
       }
     }
   }
-}
-
-.highLighted {
-  background-color: darkblue !important;
 }
 
 .material-symbols-outlined {
@@ -509,8 +517,6 @@ input[type='number'] {
   }
   }
   
-
-
   .centerDonuts {
     width: 85%;
     margin: 0 auto;
