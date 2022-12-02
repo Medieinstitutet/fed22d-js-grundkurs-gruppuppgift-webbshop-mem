@@ -77,6 +77,16 @@ body {
   .selectedOrder div {
     background-color: var.$whiteBgColor;
   }
+
+  .order_page{
+    .donuts{
+      background-color: var.$whiteBgColor;
+    }
+
+    #donut-articles{
+      background-color: #c8d8d9;
+    }
+  }
 }
 
 .darkMode {
@@ -110,6 +120,16 @@ body {
   .shopping_basket,
   .selectedOrder div {
     background-color: var.$dmBgColor;
+  }
+
+  .order_page{
+    .donuts{
+      background-color: var.$dmBgColor;
+    }
+
+    #donut-articles{
+      background-color: #406063;
+    }
   }
 }
 .christmas {
@@ -243,8 +263,8 @@ span.menu_bar {
     align-items: center;
   }
   .orderbutton,
+
   #toggleDarkMode {
-    
     background-color: #c9c7c7;
     text-transform: uppercase;
     min-width: 140px;
@@ -312,21 +332,35 @@ input[type='number'] {
 
   select#sorting {
     cursor: pointer;
+    height: 1.8rem;
   }
 
   .filter {
     margin-right: 20px;
     display: flex;
+
     #mainFilterBtn {
       display: flex;
       gap: 3px;
       margin-right: 30px;
-      background-color: rgb(112, 45, 45);
+      background-color: var.$filterBtnBgColor;
       color: whitesmoke;
-      border-color: black;
+      border: 1px solid var.$filterBorderColor;
+      border-radius: 4px;
       cursor: pointer;
       font-size: 0.8em;
+      color: var.$blackTextColor;
+
+      &:hover{
+        background-color: var.$filterHoverBgColor;
+        border: 1px solid var.$filterHoverBorderColor;
+      }
+
+      span{
+        margin-top: 3px;
+      }
     }
+
     .filterOptions {
       width: 100%;
       display: flex;
@@ -334,17 +368,19 @@ input[type='number'] {
       gap: 3px;
       font-size: 0.8em;
       button {
-        background-color: rgb(112, 45, 45);
-        color: whitesmoke;
-        border-color: black;
+        background-color: var.$filterBtnBgColor;
+        color: var.$blackTextColor;
+        border: 1px solid var.$filterBorderColor;
+        border-radius: 4px;
         cursor: pointer;
+
+        &:hover{
+          background-color: var.$filterHoverBgColor;
+          border: 1px solid var.$filterHoverBorderColor;
+        }
       }
     }
   }
-}
-
-.highLighted {
-  background-color: darkblue !important;
 }
 
 .material-symbols-outlined {
@@ -356,7 +392,7 @@ input[type='number'] {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  color: black;
+  color: var.$blackTextColor;
   font-weight: bold;
   font-size: 18px;
   background: none;
@@ -370,17 +406,20 @@ input[type='number'] {
   opacity: 0.5;
 }
 .next {
-  right: 15%;
+  //right: 15%;
+  right: 0.5em;
 }
 .prev {
-  left: 15%;
+  //left: 15%;
+  left: 0.5em;
 }
 
 .donut_article > div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
-  border: 1px solid black;
+  border: 2px solid var.$btnBorderColor;
+  padding: 15px;
   align-items: center;
   max-width: 800px;
   margin: 0;
@@ -390,17 +429,20 @@ input[type='number'] {
     padding: 0;
     text-align: center;
     figcaption {
-      color: whitesmoke;
+      color: var.$blackTextColor;
       position: absolute;
-      bottom: 15px;
+      bottom: 10px;
       left: 15%;
       border-radius: 10px;
-      background-color: rgb(112, 45, 45);
+      border: 2px solid #494e50;
+      //background-color: rgb(112, 45, 45);
+      background-color: var.$blueDetailColor;
       width: 70px;
       font-size: 0.8em;
     }
   }
   img {
+    margin-left: 5px;
     width: 100px;
     height: 100px;
   }
@@ -417,10 +459,10 @@ input[type='number'] {
     li {
       list-style: none;
       font-size: 0.8em;
+    }
 
-      &:nth-child(1) {
-        border-bottom: solid;
-      }
+    li.price{
+      margin-top: 10px;
     }
   }
 }
@@ -450,10 +492,12 @@ input[type='number'] {
       grid-area: btns;
       }
     }
+
 .selectcounter {
-  border: 1px solid black;
   font-size: 1.5rem;
   margin-left: 20px;
+  margin-top: 10px;
+  margin-right: 5px;
 }
 
 .plus_minusBtn {
@@ -509,8 +553,6 @@ input[type='number'] {
   }
   }
   
-
-
   .centerDonuts {
     width: 85%;
     margin: 0 auto;
