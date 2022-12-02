@@ -1,5 +1,9 @@
 @import 'scss/normalize';
 @import 'scss/mobile-base';
+
+@media screen and (min-width: 400px) {
+  @import 'scss/_larger_mobile.scss';
+}
 @media screen and (min-width: 600px) {
   @import 'scss/tablet';
 }

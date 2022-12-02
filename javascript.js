@@ -272,10 +272,10 @@ function displayDonutCart() {
                 <img src="${donuts[i].picSrc[0]}" width="150" height="150 loading="lazy">
                 <h4>${donuts[i].name}</h4>
                 <ul>
-                    <li>${donuts[i].price}kr</li>
-                    <li>${donuts[i].selectCounter}</li>
+                    <li>${donuts[i].price} kr</li>
+                    <li>${donuts[i].selectCounter} st</li>
                 </ul>
-                <div class="plus_minusBtn">
+                <div class="cart_plus_minusBtn">
                         <button class="btn_cart_plus">+</button>
                         <button class="btn_cart_minus">-</button>
                 </div>
