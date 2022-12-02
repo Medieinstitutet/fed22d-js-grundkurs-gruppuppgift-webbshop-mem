@@ -459,10 +459,10 @@ input[type='number'] {
     li {
       list-style: none;
       font-size: 0.8em;
+    }
 
-      &:nth-child(1) {
-        border-bottom: solid;
-      }
+    li.price{
+      margin-top: 10px;
     }
   }
 }
@@ -492,10 +492,11 @@ input[type='number'] {
       grid-area: btns;
       }
     }
+
 .selectcounter {
-  border: 1px solid black;
   font-size: 1.5rem;
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 .plus_minusBtn {
