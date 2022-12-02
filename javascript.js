@@ -68,6 +68,7 @@ cardOptionBtn.addEventListener('click', pickPaymentOption);
 invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
 let controlCardForm = 0;
+let invoiceForm = 0;
 
 
 //Återanvändbara datumvariabler
@@ -852,13 +853,27 @@ function isZipcode(zipcode) {
 //Validering för kortbetalningsformulär
 
 cardPaymentForm.addEventListener('submit', (e) => {
+    const saturday = date.getDay() === 6;
+    const sunday = date.getDay() === 0;
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if (controlCardForm >= 4) {
+  if ((controlCardForm >= 4) && (friday) && (time >= 11) && (time <=13)){
     clearCart();
     clearForm();
-    alert('Du har lagt en beställning');
+    alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
+  }else if(saturday || sunday){
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 90 minuter!');
+  }else if(time >= 00 && time <= 6){
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 45 minuter!');
+  }else{
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 30 minuter!');
   }
 });
 
@@ -915,10 +930,28 @@ function checkCardPaymentInputs() {
 
 //Validering för fakturaformulär
 invoicePaymentForm.addEventListener('submit', (e) => {
-  // e står för event
+    const saturday = date.getDay() === 6;
+    const sunday = date.getDay() === 0;
   e.preventDefault(); //Förhindrar att skicka formuläret
-
   checkInvoicePaymentInputs();
+
+  if ((controlCardForm >= 1) && (friday) && (time >= 11) && (time <=13)){
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
+  }else if(saturday || sunday){
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 90 minuter!');
+  }else if(time >= 00 && time <= 6){
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 45 minuter!');
+  }else{
+    clearCart();
+    clearForm();
+    alert('Tack för din beställning, Vi levererar dina munkar om 30 minuter!');
+  }
 });
 
 function checkInvoicePaymentInputs() {
@@ -936,6 +969,7 @@ function checkInvoicePaymentInputs() {
     );
   } else {
     setSuccessFor(personalIdentity);
+    invoiceForm++;
   }
 }
 
