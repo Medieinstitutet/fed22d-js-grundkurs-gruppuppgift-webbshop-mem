@@ -16,6 +16,15 @@
   margin-top: 1rem;
 }
 
+.selectedOrder{
+  width: 80%;
+  margin: 0 auto;
+
+  h4{
+    margin-right: 2em;
+  }
+}
+
 .cart_plus_minusBtn{
   button{
     padding: 4px;
@@ -28,7 +37,7 @@
   }
 
   .discount_button{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-left: 10px;
   }
 

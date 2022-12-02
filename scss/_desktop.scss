@@ -74,11 +74,6 @@ nav {
   }
 }
 
-.shopping_basket h2{
-  font-size: 1.9rem;
-  margin-top: 2rem;
-}
-
 button.toggle_menu {
   @include visuallyHidden();
 }
@@ -96,4 +91,26 @@ button.toggle_menu {
   .shopping_basket {
     top: 60px;
   }
+  
+}
+
+.price_discount{
+  .discount_alert{
+    margin-right: 6em;
+  }
+}
+
+.selectedOrder{
+  width: 70%;
+
+  h4{
+    margin-right: 10em;
+  }
+}
+
+
+
+.shopping_basket h2{
+  font-size: 1.9rem;
+  margin-top: 2rem;
 }
