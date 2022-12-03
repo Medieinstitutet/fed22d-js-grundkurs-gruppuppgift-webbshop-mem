@@ -70,14 +70,12 @@ invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 let controlCardForm = 0;
 let invoiceForm = 0;
 
-
 //Återanvändbara datumvariabler
 const date = new Date();
-console.log(date)
+console.log(date);
 const friday = date.getDay() === 5;
 const monday = date.getDay() === 1;
 const time = date.getHours();
-
 
 /******************************************************************
  *                      FUNKTIONER
@@ -361,9 +359,8 @@ function tuesdayDiscount() {
   let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
   let weekNumber = Math.ceil(days / 7);
 
-  if (
-    (weekNumber % 2 == 0) && (tuesday && totalAmount > 25)) {
-    console.log('japp')
+  if (weekNumber % 2 == 0 && tuesday && totalAmount > 25) {
+    console.log('japp');
     totalAmountPlacement.innerHTML = Math.floor(totalAmount * 0.75) + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const tuesdayDiscountText = 'Tisdagsrabatt: 25 % på hela beställningen';
@@ -375,18 +372,23 @@ tuesdayDiscount();
 // Funktion för inmatad rabattkod -----------------------------------
 function inputDiscount() {
   const discountInput = document.querySelector('.discount_text');
-  const discountButton = document.querySelector('.discount_button').addEventListener('click', inputDiscount);
+  const discountButton = document
+    .querySelector('.discount_button')
+    .addEventListener('click', inputDiscount);
 
   if (discountInput.value === 'a_damn_fine-cup_of-coffee') {
     console.log('japp');
-    setSuccessFor(discountInput)
+    setSuccessFor(discountInput);
     totalAmountPlacement.innerHTML = totalAmount - totalAmount + ' kr';
     const discountText = document.querySelector('.discount_alert');
     const inputDiscountText =
       'Grattis! Vi älskar kaffe lika mycket som du gör och bjuder på din beställning.';
     discountText.innerHTML = inputDiscountText;
     discountInput.value = '';
-  }else if(discountInput.value > 0 && discountInput.value != 'a_damn_fine-cup_of-coffee'){
+  } else if (
+    discountInput.value > 0 &&
+    discountInput.value != 'a_damn_fine-cup_of-coffee'
+  ) {
     setErrorFor(discountInput, 'Du har inte angivit en giltig rabattkod');
   }
 }
@@ -516,8 +518,7 @@ function clearCart() {
   calcTotalorder();
  */
 
-
-// Ny clear version igen. 
+// Ny clear version igen.
 function clearCart() {
   donuts.forEach((donut) => {
     donut.selectCounter = 0;
@@ -525,7 +526,6 @@ function clearCart() {
   displayDonutCart();
   calcTotalorder();
 }
-
 
 // Sorterings funktion, sorterar när använderan gör ett val i select inputen
 function onSortSelect() {
@@ -856,24 +856,24 @@ function isZipcode(zipcode) {
 //Validering för samt beställningsmeddelanden för kortbetalningsformulär
 
 cardPaymentForm.addEventListener('submit', (e) => {
-    const saturday = date.getDay() === 6;
-    const sunday = date.getDay() === 0;
+  const saturday = date.getDay() === 6;
+  const sunday = date.getDay() === 0;
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if ((friday) && (time >= 11) && (time <=13) && (controlCardForm >= 4)){
+  if (friday && time >= 11 && time <= 13 && controlCardForm >= 4) {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
-  }else if(saturday || sunday){
+  } else if (saturday || sunday) {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 90 minuter!');
-  }else if(time >= 00 && time <= 6){
+  } else if (time >= 00 && time <= 6) {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 45 minuter!');
-  }else{
+  } else {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 30 minuter!');
@@ -931,37 +931,35 @@ function checkCardPaymentInputs() {
   }
 }
 
-
 //Validering samt beställningsmeddelanden för fakturaformulär
 invoicePaymentForm.addEventListener('submit', (e) => {
-    const saturday = date.getDay() === 6;
-    const sunday = date.getDay() === 0;
+  const saturday = date.getDay() === 6;
+  const sunday = date.getDay() === 0;
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkInvoicePaymentInputs();
 
-  if ((controlCardForm >= 1) && (friday)&&(time >= 11 && time <= 13)){
-    console.log('japp')
+  if (controlCardForm >= 1 && friday && time >= 11 && time <= 13) {
+    console.log('japp');
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
-  }else if(saturday || sunday){
+  } else if (saturday || sunday) {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 90 minuter!');
-  }else if(time >= 00 && time <= 6){
+  } else if (time >= 00 && time <= 6) {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 45 minuter!');
-  }else{
+  } else {
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar om 30 minuter!');
   }
 });
 
-
 function checkInvoicePaymentInputs() {
-  const personalIdentity = document.querySelector('#idnr');  
+  const personalIdentity = document.querySelector('#idnr');
   const personalIdentityValue = personalIdentity.value.trim();
 
   if (personalIdentityValue === '') {
@@ -978,18 +976,16 @@ function checkInvoicePaymentInputs() {
     invoiceForm++;
   }
 }
-discountForm.addEventListener('submit', (e) =>{
-    e.preventDefault();
+discountForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-    checkDiscountInput();
+  checkDiscountInput();
 });
 
-function checkDiscountInput(){
-    const discount = document.querySelector('#discount_text');
-    const discountValue = discount.value.trim();
-
+function checkDiscountInput() {
+  const discount = document.querySelector('#discount_text');
+  const discountValue = discount.value.trim();
 }
-
 
 /**
  - När formuläret är godkänt ska betalningsalternativen dyka upp när man klickar på Betalning
@@ -1000,8 +996,7 @@ function checkDiscountInput(){
  */
 
 function christmasMode() {
-
-  const priceText = document.querySelectorAll('.price')
+  const priceText = document.querySelectorAll('.price');
   const christmas = date.getDate() === 24;
   const december = date.getMonth() === 11;
 
@@ -1014,7 +1009,7 @@ function christmasMode() {
     darkModeButton.classList.add('toggle-hidden');
   }
 }
-christmasMode()
+christmasMode();
 
 /**
  * Leveransregler

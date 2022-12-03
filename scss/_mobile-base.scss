@@ -32,14 +32,13 @@
   height: unset;
   margin: unset;
   border: unset;
-  padding: unset;     
+  padding: unset;
 
   white-space: unset;
   clip-path: unset;
   clip: unset;
   overflow: unset;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -48,9 +47,7 @@ html {
 body {
   background-color: var.$whiteBgColor;
   color: var.$blackTextColor;
-  font-family: var.$rubikFont,
-
-  nav {
+  font-family: var.$rubikFont, nav {
     li {
       &:hover {
         background-color: #dcdcdc;
@@ -66,9 +63,8 @@ body {
     }
   }
   #basket_icon {
-  border:none;
-  background-color: rgba($color: #ffffff, $alpha: 0);
-
+    border: none;
+    background-color: rgba($color: #ffffff, $alpha: 0);
   }
 
   .filtering_buttons {
@@ -84,12 +80,12 @@ body {
     background-color: var.$whiteBgColor;
   }
 
-  .order_page{
-    .donuts{
+  .order_page {
+    .donuts {
       background-color: var.$whiteBgColor;
     }
 
-    #donut-articles{
+    #donut-articles {
       background-color: #c8d8d9;
     }
   }
@@ -128,12 +124,12 @@ body {
     background-color: var.$dmBgColor;
   }
 
-  .order_page{
-    .donuts{
+  .order_page {
+    .donuts {
       background-color: var.$dmBgColor;
     }
 
-    #donut-articles{
+    #donut-articles {
       background-color: #406063;
     }
   }
@@ -269,7 +265,6 @@ span.menu_bar {
     align-items: center;
   }
   .orderbutton,
-
   #toggleDarkMode {
     background-color: #c9c7c7;
     text-transform: uppercase;
@@ -357,12 +352,12 @@ input[type='number'] {
       font-size: 0.8em;
       color: var.$blackTextColor;
 
-      &:hover{
+      &:hover {
         background-color: var.$filterHoverBgColor;
         border: 1px solid var.$filterHoverBorderColor;
       }
 
-      span{
+      span {
         margin-top: 3px;
       }
     }
@@ -380,7 +375,7 @@ input[type='number'] {
         border-radius: 4px;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
           background-color: var.$filterHoverBgColor;
           border: 1px solid var.$filterHoverBorderColor;
         }
@@ -467,37 +462,38 @@ input[type='number'] {
       font-size: 0.8em;
     }
 
-    li.price{
+    li.price {
       margin-top: 10px;
     }
   }
 }
 
-  .plus_minusBtn, .cart_plus_minusBtn {
-    display: flex !important;
-    button {
-      min-width: 50px;
-      min-width: 50px;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
- } 
+.plus_minusBtn,
+.cart_plus_minusBtn {
+  display: flex !important;
+  button {
+    min-width: 50px;
+    min-width: 50px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+}
 
- .counterAndBtns {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      'counters btns'
-      'counters btns';
-    .selectcounter {
-      grid-area: counters;
-    }
-    .plus_minusBtn {
-      grid-area: btns;
-      }
-    }
+.counterAndBtns {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'counters btns'
+    'counters btns';
+  .selectcounter {
+    grid-area: counters;
+  }
+  .plus_minusBtn {
+    grid-area: btns;
+  }
+}
 
 .selectcounter {
   font-size: 1.5rem;
@@ -517,14 +513,14 @@ input[type='number'] {
     cursor: pointer;
   }
 }
-  .plus_minusBtn{
-    flex-direction: column;
-  }
+.plus_minusBtn {
+  flex-direction: column;
+}
 
-  .cart_plus_minusBtn{
-    flex-direction: row !important;
-    font-size: 1.2rem;
-  }
+.cart_plus_minusBtn {
+  flex-direction: row !important;
+  font-size: 1.2rem;
+}
 
 /*-----------------------------------------shopping-cart------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------*/
@@ -554,27 +550,27 @@ input[type='number'] {
     font-size: 1.3rem;
   }
 
-  h4{
+  h4 {
     margin: 0;
   }
-  }
-  
-  .centerDonuts {
-    width: 85%;
-    margin: 0 auto;
-  }
-    .selectedOrder {
-      margin-bottom: 10px;
+}
 
-      img{
-        height: 100px;
-        width: 100px;
-      }
+.centerDonuts {
+  width: 85%;
+  margin: 0 auto;
+}
+.selectedOrder {
+  margin-bottom: 10px;
 
-      ul{
-        margin-right: 4em;
-      }
-    }
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  ul {
+    margin-right: 4em;
+  }
+}
 .luciaOrder {
   display: flex;
   justify-content: space-between;
@@ -602,7 +598,7 @@ input[type='number'] {
     margin-bottom: 15px;
     margin-top: 15px;
     cursor: pointer;
-  }  
+  }
 }
 
 .shipping {
@@ -820,4 +816,3 @@ form#invoicePaymentForm {
   align-items: center;
   flex-direction: column;
 }
-
