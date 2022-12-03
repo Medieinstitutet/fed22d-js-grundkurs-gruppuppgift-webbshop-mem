@@ -67,7 +67,7 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 cardOptionBtn.addEventListener('click', pickPaymentOption);
 invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
-let controlCardForm = 1;
+let controlCardForm = 0;
 let invoiceForm = 0;
 
 

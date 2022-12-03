@@ -49,17 +49,13 @@
                 </p>
                 <div class="buttons">
                 <button id="toggleDarkMode" onclick="toggleDarkMode()">Välj mörkt/ljust Läge</button>
-            </article>
-
+                </article>
         </section>
         <section class="order_page">
             <div class="filtering_buttons">
-                <i class="fa-solid fa-cart-shopping fa-xl shopping_cart"></i>
-
-                <!-- <label for="sort" aria-label="sortera munkar" class="sorting"><span>Sortera</span><span class="material-symbols-outlined">
-                    expand_more
-                    </span> </label> -->
-                <select name="sort" id="sorting">
+                <button aria-label="varukorg" id="basket_icon" class="fa-solid fa-cart-shopping fa-xl shopping_cart">
+                </button>
+                <select name="sort" id="sorting" aria-label="sortering">
                     <option autofocus value="">Sortera:</option>
                     <option value="pricefalling">Pris fallande</option>
                     <option value="pricerising">Pris stigande</option>
@@ -72,7 +68,7 @@
                             class="material-symbols-outlined">
                             tune
                         </span></button>
-                    <div id="filterOptions" class="filterOptions toggle-hidden">
+                    <div id="filterOptions" class="filterOptions toggle-hidden" z-index="1">
                         <button>Bär</button>
                         <button>Glasyr</button>
                         <button>Choklad</button>
@@ -81,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <section id="donut-articles">
+            <section id="donut-articles" z-index="0">
                 <article class="donut_article">
                 </article>
                 <article class="donut_article">
