@@ -67,16 +67,18 @@ const invoiceOptionBtn = document.querySelector('#invoicePaymentBtn');
 cardOptionBtn.addEventListener('click', pickPaymentOption);
 invoiceOptionBtn.addEventListener('click', pickPaymentOption);
 
-let controlCardForm = 0;
+let controlCardForm = 1;
 let invoiceForm = 0;
 
 
 //Återanvändbara datumvariabler
-const date = new Date();
+const date = new Date('2022-12-05 03:00');
 console.log(date)
 const friday = date.getDay() === 5;
 const monday = date.getDay() === 1;
 const time = date.getHours();
+
+
 /******************************************************************
  *                      FUNKTIONER
  *******************************************************************/
@@ -358,7 +360,6 @@ function tuesdayDiscount() {
   startDate = new Date(date.getFullYear(), 0, 1);
   let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
   let weekNumber = Math.ceil(days / 7);
-  console.log(weekNumber)
 
   if (
     (weekNumber % 2 == 0) && (tuesday && totalAmount > 25)) {
@@ -860,7 +861,7 @@ cardPaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkCardPaymentInputs();
 
-  if ((controlCardForm >= 4) && (friday) && (time >= 11) && (time <=13)){
+  if ((friday) && (time >= 11) && (time <=13) && (controlCardForm >= 4)){
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
@@ -930,6 +931,7 @@ function checkCardPaymentInputs() {
   }
 }
 
+
 //Validering samt beställningsmeddelanden för fakturaformulär
 invoicePaymentForm.addEventListener('submit', (e) => {
     const saturday = date.getDay() === 6;
@@ -937,7 +939,8 @@ invoicePaymentForm.addEventListener('submit', (e) => {
   e.preventDefault(); //Förhindrar att skicka formuläret
   checkInvoicePaymentInputs();
 
-  if ((controlCardForm >= 1) && (friday) && (time >= 11) && (time <=13)){
+  if ((controlCardForm >= 1) && (friday)&&(time >= 11 && time <= 13)){
+    console.log('japp')
     clearCart();
     clearForm();
     alert('Tack för din beställning, Vi levererar dina munkar 15.00!');
@@ -955,6 +958,7 @@ invoicePaymentForm.addEventListener('submit', (e) => {
     alert('Tack för din beställning, Vi levererar dina munkar om 30 minuter!');
   }
 });
+
 
 function checkInvoicePaymentInputs() {
   const personalIdentity = document.querySelector('#idnr');  
@@ -974,7 +978,6 @@ function checkInvoicePaymentInputs() {
     invoiceForm++;
   }
 }
-
 discountForm.addEventListener('submit', (e) =>{
     e.preventDefault();
 
