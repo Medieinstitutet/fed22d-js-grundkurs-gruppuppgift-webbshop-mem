@@ -11,7 +11,6 @@
   }
 }
 
-
 .order_page {
   display: flex;
   flex-direction: column;
@@ -28,16 +27,16 @@
     gap: 10px;
   }
   .donuts {
-    width: 400px; 
+    width: 400px;
     //background-color: #f5f5f5;
     border-radius: 20px;
     padding: 5px;
     margin-top: 20px;
     div {
       border-style: none;
-      figure > img{
-          border-radius: 15px;
-      }    
+      figure > img {
+        border-radius: 15px;
+      }
     }
   }
 }
@@ -47,27 +46,27 @@
   margin-top: 1rem;
 }
 
-.selectedOrder{
+.selectedOrder {
   width: 80%;
   margin: 0 auto;
 
-  h4{
+  h4 {
     margin-right: 2em;
   }
 }
 
-.cart_plus_minusBtn{
-  button{
+.cart_plus_minusBtn {
+  button {
     padding: 4px;
   }
 }
 
-.price_discount{
-  .row{
+.price_discount {
+  .row {
     flex-direction: unset;
   }
 
-  .discount_button{
+  .discount_button {
     margin-bottom: 5px;
     margin-left: 10px;
   }
@@ -77,12 +76,12 @@
   }
 }
 
-.shipping .shipping_text{
+.shipping .shipping_text {
   margin-right: 17.3em;
 }
 
-.total_sum{
-  .amount_text{
+.total_sum {
+  .amount_text {
     margin-right: 17.3em;
   }
 }
