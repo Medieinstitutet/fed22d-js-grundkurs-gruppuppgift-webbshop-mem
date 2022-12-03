@@ -47,11 +47,12 @@ html {
 body {
   background-color: var.$whiteBgColor;
   color: var.$blackTextColor;
-  font-family: var.$rubikFont, nav {
+  font-family: var.$rubikFont, }
+  nav {
     li {
       &:hover {
         background-color: #dcdcdc;
-      }
+      } 
     }
 
     a {
@@ -89,7 +90,7 @@ body {
       background-color: #c8d8d9;
     }
   }
-}
+
 
 .darkMode {
   background-color: var.$dmBgColor;

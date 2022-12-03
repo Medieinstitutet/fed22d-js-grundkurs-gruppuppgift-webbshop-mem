@@ -327,15 +327,16 @@ function calcTotalorder() {
   }
   if (totalDonutAmount > 15) {
     fraktSelector.innerHTML = 'GRATIS';
-  } else {
+  } else if (totalDonutAmount == 0) {
+    fraktSelector.innerHTML = '0'; // Om varukorgen är tom så är frakt ej aktuellt
+  }
+  else {
     fraktSelector.innerHTML = '25kr';
     totalAmount += 25;
-  }
+  } 
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
 
-  if (totalDonutAmount > 0)
-    // Stänger av betala knappen om beställningen är tom
-
+  if (totalDonutAmount > 0)// Stänger av betala knappen om beställningen är tom
     document.querySelector('#paymentButton').disabled = false;
   else document.querySelector('#paymentButton').disabled = true;
 
