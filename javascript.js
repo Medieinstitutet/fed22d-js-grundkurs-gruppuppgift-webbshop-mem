@@ -72,7 +72,7 @@ let invoiceForm = 0;
 
 
 //Återanvändbara datumvariabler
-const date = new Date('2022-12-05 03:00');
+const date = new Date();
 console.log(date)
 const friday = date.getDay() === 5;
 const monday = date.getDay() === 1;
