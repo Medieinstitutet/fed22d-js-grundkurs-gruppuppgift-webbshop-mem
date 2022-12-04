@@ -4,3 +4,4 @@
 The assingment was to build a one-page webbshop using HTML, CSS and Vanilla Javascript.
 #Credits: The webshop was built by Emilia Mässing, Mattias Heurlin and Maria Larsson Bovin
 #Languages: HTML, CSS, Javascript, Prettier, ESLint
+#Repos: https://marialbovin.github.io/Gottfrids_munkar/ https://emiliamassing.github.io/Grupparbete-Webshop/ https://mattiasheurlin.github.io/WebShop/
