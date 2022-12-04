@@ -1,5 +1,9 @@
 @use 'variables' as var;
 
+
+main {
+  overflow: hidden ;
+}
 @mixin visuallyHidden {
   position: absolute;
   width: 1px;
