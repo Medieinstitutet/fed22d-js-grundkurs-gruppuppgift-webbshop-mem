@@ -20,6 +20,7 @@ const shoppingCartPage = document.querySelector('.shopping_basket');
 const returnToShoppingCartBtn = document.querySelector('#toggle_shopping_cart');
 toggleShoppingCartBtn.addEventListener('click', toggleOrderPage);
 returnToShoppingCartBtn.addEventListener('click', toggleOrderPage);
+let cartCurrentlyOpen = false;
 
 //Varibaler för munkar
 const donutPlacement = document.querySelectorAll('.donut_article');
@@ -454,7 +455,12 @@ function toggleOrderPage() {
   calcTotalorder();
   setTimeout(cartTimerClear, 9000000); // rensar efter 15min
   displayDonut1();
-  document.querySelector('.order_page').classList.toggle('toggle-hidden');
+  if (!cartCurrentlyOpen) {
+  document.querySelector('.order_page').style.display = 'none'; // Gör så tab index blir rätt
+  cartCurrentlyOpen = true;
+  } else {
+  document.querySelector('.order_page').style.display = 'block';
+  cartCurrentlyOpen = false;}
 }
 
 //Funktion för timer i varukorgen -----------------------
@@ -496,30 +502,7 @@ function countDownCart(e) {
   calcTotalorder();
 }
 //Funktion för att rensa varukorgen ---------------------------
-/*
-function clearCart() {
-  // current_donuts_order och selectcounter har olika "längd" (vet ej varför?)
-  // så därför blir det error när båda försöker loopas igenom - därav två separata loopar
-  const currentDonutsOrder = document.querySelectorAll('.current_donuts_order');
-  if (currentDonutsOrder !== null) {
-    currentDonutsOrder.forEach((child) => {
-      child.innerHTML = '';
-    });
-  }
 
-  const selectCounter = document.querySelectorAll('.selectcounter');
-  if (selectCounter !== null) {
-    selectCounter.forEach((sc) => {
-      // forEach = for-loop, men bara "kortare" syntax
-      sc.innerHTML = '';
-    });
-  }
-
-  document.querySelector('.shopping_basket').style.opacity = 0; // TODO
-  calcTotalorder();
- */
-
-// Ny clear version igen.
 function clearCart() {
   donuts.forEach((donut) => {
     donut.selectCounter = 0;
@@ -554,7 +537,7 @@ function toggleFilterOptions() {
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
-
+ 
   if (open) {
     open = false;
     for (let i = 0; i < donuts.length; i++) {
@@ -615,9 +598,6 @@ function toggleFilterOptions() {
     // Om man inte valt något alternativ så skrivs donutsen ut som vanligt
     displayDonut1();
   }
-  // Animationer
-  // gsap.from('#filterOptions', {x: 500, duration: 0.3})
-  gsap.from('.filterOptions>button', { x: 400, duration: 0.6, stagger: 0.2 });
 }
 // Denna ändar värdet på de olika alternativen till true när de väljs, lägger även till css klassen highLighted så det syns vilka som är aktiva.
 function toggleFilter(e) {
