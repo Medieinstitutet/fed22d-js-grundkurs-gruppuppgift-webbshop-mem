@@ -151,7 +151,7 @@ const donuts = [
     'images/small/strosselmunk_liten.jpg',
     'images/small/strosselmunk2_liten.jpg',
   ]),
-  new Donut('Syltmunk, glutenfri', 32, 4, 'Socker, Glutenfri', [
+  new Donut('Syltmunk', 32, 4, 'Socker, Glutenfri', [
     'images/small/syltmunk_liten.jpg',
     'images/small/syltmunk2_liten.jpg',
   ]),
@@ -330,14 +330,14 @@ function calcTotalorder() {
     fraktSelector.innerHTML = 'GRATIS';
   } else if (totalDonutAmount == 0) {
     fraktSelector.innerHTML = '0'; // Om varukorgen är tom så är frakt ej aktuellt
-  }
-  else {
+  } else {
     fraktSelector.innerHTML = '25kr';
     totalAmount += 25;
-  } 
+  }
   totalAmountPlacement.innerHTML = Math.floor(totalAmount) + 'kr';
 
-  if (totalDonutAmount > 0)// Stänger av betala knappen om beställningen är tom
+  if (totalDonutAmount > 0)
+    // Stänger av betala knappen om beställningen är tom
     document.querySelector('#paymentButton').disabled = false;
   else document.querySelector('#paymentButton').disabled = true;
 
@@ -456,11 +456,12 @@ function toggleOrderPage() {
   setTimeout(cartTimerClear, 9000000); // rensar efter 15min
   displayDonut1();
   if (!cartCurrentlyOpen) {
-  document.querySelector('.order_page').style.display = 'none'; // Gör så tab index blir rätt
-  cartCurrentlyOpen = true;
+    document.querySelector('.order_page').style.display = 'none'; // Gör så tab index blir rätt
+    cartCurrentlyOpen = true;
   } else {
-  document.querySelector('.order_page').style.display = 'block';
-  cartCurrentlyOpen = false;}
+    document.querySelector('.order_page').style.display = 'block';
+    cartCurrentlyOpen = false;
+  }
 }
 
 //Funktion för timer i varukorgen -----------------------
@@ -537,7 +538,7 @@ function toggleFilterOptions() {
   document.querySelector('.filterOptions').classList.toggle('toggle-hidden');
   toggleShoppingCartBtn.classList.toggle('toggle-hidden');
   sortSelect.classList.toggle('toggle-hidden');
- 
+
   if (open) {
     open = false;
     for (let i = 0; i < donuts.length; i++) {

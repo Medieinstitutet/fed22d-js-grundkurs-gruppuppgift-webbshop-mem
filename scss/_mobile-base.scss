@@ -1,8 +1,7 @@
 @use 'variables' as var;
 
-
 main {
-  overflow: hidden ;
+  overflow: hidden;
 }
 @mixin visuallyHidden {
   position: absolute;
@@ -51,50 +50,50 @@ html {
 body {
   background-color: var.$whiteBgColor;
   color: var.$blackTextColor;
-  font-family: var.$rubikFont, }
-  nav {
-    li {
-      &:hover {
-        background-color: #dcdcdc;
-      } 
-    }
-
-    a {
-      color: var.$menuColor;
-    }
-
-    span.menu_bar {
-      background-color: var.$menuColor;
+  font-family: var.$rubikFont;
+}
+nav {
+  li {
+    &:hover {
+      background-color: #dcdcdc;
     }
   }
-  #basket_icon {
-    border: none;
-    background-color: rgba($color: #ffffff, $alpha: 0);
+
+  a {
+    color: var.$menuColor;
   }
 
-  .filtering_buttons {
-    background-color: var.$blueDetailColor;
+  span.menu_bar {
+    background-color: var.$menuColor;
   }
+}
+#basket_icon {
+  border: none;
+  background-color: rgba($color: #ffffff, $alpha: 0);
+}
 
-  .shopping_cart {
-    color: var.$blackTextColor;
-  }
+.filtering_buttons {
+  background-color: var.$blueDetailColor;
+}
 
-  .shopping_basket,
-  .selectedOrder div {
+.shopping_cart {
+  color: var.$blackTextColor;
+}
+
+.shopping_basket,
+.selectedOrder div {
+  background-color: var.$whiteBgColor;
+}
+
+.order_page {
+  .donuts {
     background-color: var.$whiteBgColor;
   }
 
-  .order_page {
-    .donuts {
-      background-color: var.$whiteBgColor;
-    }
-
-    #donut-articles {
-      background-color: #c8d8d9;
-    }
+  #donut-articles {
+    background-color: #c8d8d9;
   }
-
+}
 
 .darkMode {
   background-color: var.$dmBgColor;
