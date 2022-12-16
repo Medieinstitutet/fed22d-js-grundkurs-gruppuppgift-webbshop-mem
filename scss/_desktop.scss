@@ -1,0 +1,125 @@
+@use 'variables' as var;
+
+@mixin visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin removeVisuallyHidden {
+  position: unset;
+  width: unset;
+  height: unset;
+  margin: unset;
+  border: unset;
+  padding: unset;
+
+  white-space: unset;
+  clip-path: unset;
+  clip: unset;
+  overflow: unset;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .menu_links {
+    @include removeVisuallyHidden();
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      li {
+        display: block;
+        margin-right: 5px;
+        &:hover {
+          background-color: unset !important;
+        }
+        a.underline {
+          margin-right: 5px;
+          position: relative;
+          font-size: 1.1rem;
+
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2.7px;
+            bottom: 6px;
+            left: 0;
+            background-color: var.$blackTextColor; //Fixa detta för darkmode
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+          }
+
+          &:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+      }
+    }
+  }
+}
+
+.shopping_basket h2 {
+  font-size: 1.9rem;
+  margin-top: 2rem;
+}
+
+button.toggle_menu {
+  @include visuallyHidden();
+}
+
+.start_page {
+  article {
+    p {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  button {
+    margin-top: 5rem;
+
+    &:hover {
+      background-color: #999999;
+      transition: 0.3s;
+    }
+  }
+
+  .shopping_basket {
+    top: 60px;
+  }
+}
+
+.price_discount {
+  .discount_alert {
+    margin-right: 6em;
+  }
+}
+
+.selectedOrder {
+  width: 70%;
+
+  h4 {
+    margin-right: 10em;
+  }
+}
+
+.shopping_basket h2 {
+  font-size: 1.9rem;
+  margin-top: 2rem;
+}

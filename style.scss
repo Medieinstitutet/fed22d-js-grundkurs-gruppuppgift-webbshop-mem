@@ -1,0 +1,15 @@
+@import 'scss/normalize';
+@import 'scss/mobile-base';
+
+@media screen and (min-width: 400px) {
+  @import 'scss/_larger_mobile.scss';
+}
+@media screen and (min-width: 600px) {
+  @import 'scss/tablet';
+}
+@media screen and (min-width: 1000px) {
+  @import 'scss/desktop';
+}
+@media screen and (min-width: 1500px) {
+  @import 'scss/large-desktop';
+}
